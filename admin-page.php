@@ -27,7 +27,15 @@
 </div>
 
 <html> <!-- JASMINE AND DANA's STUFF -->
+    <head>
+        <link rel="stylesheet" type="text/css" href="admin-style.css">
+    </head>
     <body>
+        <button class="button">Members</button>
+        <button class="button">Classes</button>
+        <button class="button">Access</button>
+        <button class="button">Integrations</button>
+        
         <h1>Here's my plugin front-end page</h1>
         <h2>You can put anything you want in this php file.</h2>
     </body>
