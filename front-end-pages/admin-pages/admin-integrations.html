@@ -2,13 +2,58 @@
 <html>
 	
 	<head>
+ 		<link rel="stylesheet" type="text/css" href="../wp-content/plugins/MAS/front-end-pages/admin-pages/admin-integrations.css">
+
 		<title>
 			Integrations Page for Admin
 		</title>
 	</head>
 	
 	<body>
-		INTEGRATIONS PAGE
+
+		<table>
+			<tr>
+				<td>	
+					<form>
+
+					  <div id="slack">
+					  	<h1>Slack</h1>
+					    <label for="domain">Slack Domain:</label>
+					    <input type="text" id="domain" name="domain">
+					    <br>
+					    <label for="key">API Key:</label>
+					    <input type="text" id="key" name="key">
+					  </div>
+
+					</form>
+				</td>
+
+				<td>
+					<button class="save" type="submit">Save Changes</button>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<form>
+						<div id="G Suite">
+							<h1>Google for Non-Profits</h1>
+							<label for="domain">Google Domain:</label>
+							<input type="text" id="domain" name="domain">
+							<br>
+							<label for="key">API Key:</label>
+							<input type="text" id="key" name="key">
+						</div>
+					</form>
+				</td>
+
+				<td>
+					<button class="save" type="submit">Save Changes</button>
+				</td>
+			</tr>
+		</table>
 	</body>
 
 </html>
+
+<!-- How to populate this? Is there a list of integrations somewhere? I dunno... -->
