@@ -61,7 +61,7 @@ function elegance_referal_init()
 {
 	if(is_page('share')){	
 		$dir = plugin_dir_path( __FILE__ );
-		include($dir."front-end-pages/admin-pages/admin-box.php");
+		include($dir."front-end-pages/admin-pages/admin-header.php");
 		die();
 	}
 }
