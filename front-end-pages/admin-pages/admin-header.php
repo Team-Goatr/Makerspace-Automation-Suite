@@ -25,6 +25,10 @@
 			case 1: include 'admin-members-table.html'; break;
 			case 4: include 'admin-integrations.html'; break;
 		}
+		
+		switch($_GET['member']) {
+			case 1: include 'admin-members-edit.html'; break;
+		}
 
 		?>
 

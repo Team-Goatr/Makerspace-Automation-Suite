@@ -20,11 +20,6 @@
 			// End of the loop.
 		endwhile;
 
-		// changes the html in the div based on button click
-		// switch($_GET['member']) {
-		// 	case 1: include 'admin-members-edit.html'; break;
-		// }
-
 		?>
 
 	</main><!-- .site-main -->
