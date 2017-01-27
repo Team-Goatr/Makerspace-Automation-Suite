@@ -2,7 +2,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 # Constants used for G Suite connection
-define('CREDENTIALS_PATH', '/home/thomascoe/service_account.json');
+define('CREDENTIALS_PATH', '/home/ubuntu/service_account.json');
 define('APPLICATION_NAME', 'Makerspace Automation Suite');
 define('SCOPES', implode(' ', array(
     Google_Service_Directory::ADMIN_DIRECTORY_USER)
