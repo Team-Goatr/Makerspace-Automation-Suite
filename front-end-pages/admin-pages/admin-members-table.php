@@ -1,6 +1,7 @@
 <?php /* Template Name: CustomPageT1 */ ?>
 
 <?php get_header(); ?>
+<?php include 'admin-header.html';?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
@@ -18,6 +19,7 @@
 
 			// End of the loop.
 		endwhile;
+
 		?>
 
 	</main><!-- .site-main -->
@@ -25,13 +27,6 @@
 	<?php get_sidebar( 'content-bottom' ); ?>
 
 </div>
-
-<html> <!-- JASMINE AND DANA's STUFF -->
-    <body>
-        <h1>Here's my plugin front-end page</h1>
-        <h2>You can put anything you want in this php file.</h2>
-    </body>
-</html>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

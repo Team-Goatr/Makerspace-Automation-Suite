@@ -59,9 +59,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
 
 function elegance_referal_init()
 {
-	if(is_page('share')){	
+	if(is_page('admin')){	
 		$dir = plugin_dir_path( __FILE__ );
-		include($dir."admin-page.php");
+		include($dir."front-end-pages/admin-pages/admin-header.php");
 		die();
 	}
 }
