@@ -20,8 +20,10 @@
 			// End of the loop.
 		endwhile;
 
+		// changes the html in the div based on button click
 		switch($_GET['content']) {
 			case 1: include 'admin-members-table.html'; break;
+			case 4: include 'admin-integrations.html'; break;
 		}
 
 		?>
