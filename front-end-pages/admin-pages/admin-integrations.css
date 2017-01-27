@@ -39,6 +39,7 @@ label {
 	clear: left;
 	width: 150px;
 	text-align: right;
+	padding-top: 13px;
 }
 
 input {
@@ -57,7 +58,7 @@ textarea {
 }
 
 .save{
-	background-color: #E93B1E;
+	background-color: #F47B42;
 	margin: auto;
 	display: inline-block;
 }

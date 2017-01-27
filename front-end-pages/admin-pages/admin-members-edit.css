@@ -9,17 +9,12 @@ table {
     border-right: 1px solid #ddd !important;
 }
 
-th{
-    background-color: #fff;
-    text-align: center;
-    font-size:16px;
-    padding: 8px;
-}
-
-td{
+td {
     border: 0px;
     text-align: center;
     padding: 8px;
+    
+    vertical-align: middle;
 }
 
 tr:nth-child(even) {
@@ -32,7 +27,45 @@ tr:nth-child(odd) {
     border: 1px;
 }
 
-.edit {
-    color: #555;
+h1 {
+    font-size: 18px;
+    padding: 0.5em;
+    float: left;
+}
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 150px;
+    text-align: right;
+    padding-top: 13px;
+}
+
+input {
+    display: inline-block;
+    margin: 0.5em;
+    float: left
+}
+
+.save {
+    background-color: #F47B42;
+    margin: auto;
+    display: inline-block;
+}
+
+.breadcrumb {
+    font-size: 18px;
+    background-color: #F47B42;
+    color: white;
+    padding: 3px;
+}
+
+a {
+    color: white;
     text-decoration: none;
+}
+
+img {
+    height: 30%;
 }

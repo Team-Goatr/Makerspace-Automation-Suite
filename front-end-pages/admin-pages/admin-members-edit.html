@@ -10,12 +10,20 @@
 
 		<table>
 			<tr>
+				<div id="breadcrumb" class="breadcrumb">
+					<a href="?content=1">Members</a> >> Dana Koutsky
+				</div>
+			</tr>
+
+			<tr>
 				<td>	
 					<form>
 
 					  <div id="name">
 					    <label for="firstName">First Name:</label>
 					    <input type="text" id="firstName" name="firstName">
+
+					    <br>
 
 					    <label>Last Name:</label>
 					    <input type="text" id="lastName" name="lastName">
@@ -31,6 +39,8 @@
 
 					  	<label for="ccDate">Exp. Date:</label>
 					  	<input type="text" id="ccDate" name="ccDate">
+
+					  	<br>
 
 					  	<label for="ccCode">Security Code:</label>
 					  	<input type="text" id="ccCode" name="ccCode">
@@ -52,8 +62,12 @@
 							<label for="city">City:</label>
 							<input type="text" id="city" name="city">
 
+							<br>
+
 							<label for="state">State:</label>
 							<input type="text" id="state" name="state">
+
+							<br>
 
 							<label for="zip">Zip Code:</label>
 							<input type="text" id="zip" name="zip">
@@ -62,10 +76,14 @@
 					</form>
 
 				</td>
-			</tr>
 
-			<tr>
-				<button class="save" type="submit">Save Changes</button>
+				<td>
+
+					<img src="../wp-content/plugins/MAS/front-end-pages/images/female-placeholder.png" id="profilePic">
+					<br> 
+					<button class="save" type="submit">Save Changes</button>
+				</td>
+
 			</tr>
 
 		</table>
