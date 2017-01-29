@@ -2,7 +2,9 @@
 <html>
 	
 	<head>
-		<link rel="stylesheet" type="text/css" href="../wp-content/plugins/Makerspace-Automation-Suite/front-end-pages/admin-pages/admin-members-edit.css">
+		<?php
+		echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
+		?>
 		<title>Edit A Member</title>
 	</head>
 	
@@ -11,7 +13,7 @@
 		<table>
 			<tr>
 				<div id="breadcrumb" class="breadcrumb">
-					<a href="?content=1">Members</a> >> Dana Koutsky
+					<a href="?content=1">Members</a> >> <?php echo $_GET['email']?>
 				</div>
 			</tr>
 
@@ -78,8 +80,9 @@
 				</td>
 
 				<td>
-
-					<img src="../wp-content/plugins/Makerspace-Automation-Suite/front-end-pages/images/female-placeholder.png" id="profilePic">
+					<?php
+					echo '<img src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic">' . "\n";
+					?>
 					<br> 
 					<button class="save" type="submit">Save Changes</button>
 				</td>

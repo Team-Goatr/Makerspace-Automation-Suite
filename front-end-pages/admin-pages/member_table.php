@@ -41,7 +41,7 @@ if (count($results->getUsers()) != 0) {
     echo '<table cellpadding="0" cellspacing="5" class="member-table">';
     echo "\n";
     # Print header row
-    echo '<tr><th>Name</th><th>Email</th><th>Member Since</th><th>Membership Plan</th><th>Subscription Status</th></tr>';
+    echo '<tr><th></th><th>Name</th><th>Email</th><th>Member Since</th><th>Membership Plan</th><th>Subscription Status</th></tr>';
     echo "\n";
     # Loop through each user, printing a row in the table
     foreach ($results->getUsers() as $user) {
@@ -60,6 +60,7 @@ if (count($results->getUsers()) != 0) {
 
         # Print Table Row
         echo '<tr>';
+        echo '<td><a href="?member=1&email=',$email,'" class="edit">&#9998</a></td>';
         echo '<td>',$name,'</td>';
         echo '<td>',$email,'</td>';
         echo '<td>',$creation_time,'</td>';

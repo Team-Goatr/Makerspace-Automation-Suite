@@ -1,6 +1,8 @@
 <html> <!-- JASMINE AND DANA's STUFF -->
     <head>
-        <link rel="stylesheet" type="text/css" href="../wp-content/plugins/Makerspace-Automation-Suite/front-end-pages/admin-pages/admin-header.css">
+	<?php
+	echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-header.css', __FILE__ ) . '">' . "\n";
+	?>
     </head>
     <body>
         <a href="?content=1"><button class="button">Members</button></a>

@@ -2,7 +2,9 @@
 <html>
 	
 	<head>
- 		<link rel="stylesheet" type="text/css" href="../wp-content/plugins/Makerspace-Automation-Suite/front-end-pages/admin-pages/admin-integrations.css">
+		<?php
+                echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integrations.css', __FILE__ ) . '">' . "\n";
+                ?>
 
 		<title>
 			Integrations Page for Admin
