@@ -13,9 +13,9 @@
  * @package           Plugin_Name
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress Plugin Boilerplate
+ * Plugin Name:       Makerspace Automation Suite
  * Plugin URI:        http://example.com/plugin-name-uri/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       A plugin to automate the onboarding process for the Decatur Makerspace.
  * Version:           1.0.0
  * Author:            Your Name or Your Company
  * Author URI:        http://example.com/
@@ -56,6 +56,17 @@ register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
+
+function elegance_referal_init()
+{
+	if(is_page('admin')){	
+		$dir = plugin_dir_path( __FILE__ );
+		include($dir."front-end-pages/admin-pages/admin-header.php");
+		die();
+	}
+}
+
+add_action( 'wp', 'elegance_referal_init' );
 
 /**
  * Begins execution of the plugin.
