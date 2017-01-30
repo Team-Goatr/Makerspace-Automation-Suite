@@ -55,7 +55,8 @@ input {
 }
 
 .mas-breadcrumb {
-    margin-top: 
+    text-align: center;
+    margin-top: 20px;
     font-size: 18px;
     background-color: #F47B42;
     color: white;
