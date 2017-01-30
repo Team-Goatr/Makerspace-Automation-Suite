@@ -59,6 +59,7 @@ input {
     background-color: #F47B42;
     color: white;
     padding: 3px;
+    float: left;
 }
 
 a {
