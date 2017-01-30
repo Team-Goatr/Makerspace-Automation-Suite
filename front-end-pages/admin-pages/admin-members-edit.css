@@ -55,12 +55,14 @@ input {
 }
 
 .mas-breadcrumb {
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 40px;
     text-align: center !important;
     font-size: 18px !important;
     background-color: #F47B42 !important;
-    color: white;
+    color: white !important;
     padding: 3px;
-    float: left;
 }
 
 a {
