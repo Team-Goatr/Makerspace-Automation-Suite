@@ -74,6 +74,7 @@ function mas_admin_menu_setup() {
 };
 
 function mas_admin_init() {
+    echo '<br>';
     $dir = plugin_dir_path( __FILE__ );
     include($dir."front-end-pages/admin-pages/admin-header.php");
 }
