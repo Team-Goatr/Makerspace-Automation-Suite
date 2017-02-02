@@ -74,7 +74,7 @@ function mas_admin_menu_setup() {
 };
 
 function mas_admin_init() {
-    echo '<h3>Hey Bro</h3>'
+    echo '<h3>Hey Bro</h3>';
 }
 
 /**
