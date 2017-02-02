@@ -67,6 +67,15 @@ function elegance_referal_init()
 }
 
 add_action( 'wp', 'elegance_referal_init' );
+add_action('admin_menu', 'mas_admin_menu_setup');
+
+function mas_admin_menu_setup() {
+    add_menu_page('MAS Administration Page', 'Makerspace Automation Suite', 'manage_options', 'mas-plugin', 'mas_admin_init');
+};
+
+function mas_admin_init() {
+    echo '<h3>Hey Bro</h3>'
+}
 
 /**
  * Begins execution of the plugin.
