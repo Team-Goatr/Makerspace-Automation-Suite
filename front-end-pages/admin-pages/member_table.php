@@ -1,29 +1,7 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+include 'GSuiteAPI.php';
 
-# Constants used for G Suite connection
-define('CREDENTIALS_PATH', '/home/ubuntu/service_account.json');
-define('APPLICATION_NAME', 'Makerspace Automation Suite');
-define('SCOPES', implode(' ', array(
-    Google_Service_Directory::ADMIN_DIRECTORY_USER)
-));
-
-/**
- * Returns an authorized API client.
- * @return Google_Client the authorized client object
- */
-function getClient() {
-    $client = new Google_Client();
-    $client->setApplicationName(APPLICATION_NAME);
-    $client->setScopes(SCOPES);
-    $client->setAuthConfig(CREDENTIALS_PATH);
-    $client->setSubject('thomas@decaturmakers.org');
-    return $client;
-}
-
-// Get the API client and construct the service object.
-$client = getClient();
-$service = new Google_Service_Directory($client);
+$service = getService();
 
 $optParams = array(
     'domain' => 'decaturmakers.org',
