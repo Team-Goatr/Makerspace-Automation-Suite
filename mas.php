@@ -74,7 +74,7 @@ function mas_admin_menu_setup() {
 };
 
 function mas_admin_init() {
-    echo '<iframe src="./front-end-pages/admin-pages/admin-header.html"></iframe>';
+    echo '<iframe src="', $dir, '"></iframe>';
 }
 
 /**
