@@ -1,7 +1,7 @@
 <?php /* Template Name: CustomPageT1 */ ?>
 
 <?php get_header(); ?>
-<?php include 'admin-header.html';?>
+<?php include '../admin-header.html';?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
@@ -19,16 +19,6 @@
 
 			// End of the loop.
 		endwhile;
-
-		// changes the html in the div based on button click
-		switch($_GET['content']) {
-			case 1: include 'members-tab/member-table/admin-members-table.html'; break;
-			case 4: include 'integrations-tab/admin-integrations.html'; break;
-		}
-		
-		switch($_GET['member']) {
-			case 1: include 'members-tab/member-edit/admin-members-edit.html'; break;
-		}
 
 		?>
 
