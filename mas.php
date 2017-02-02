@@ -74,7 +74,9 @@ function mas_admin_menu_setup() {
 };
 
 function mas_admin_init() {
-    echo '<iframe src="', $dir."front-end-pages/admin-pages/admin-header.php", '"></iframe>';
+    echo '<h3>Hey Bro</h3>';
+    $dir = plugin_dir_path( __FILE__ );
+    include($dir."front-end-pages/admin-pages/admin-header.php");
 }
 
 /**
