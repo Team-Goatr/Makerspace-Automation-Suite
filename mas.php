@@ -75,6 +75,7 @@ function mas_admin_menu_setup() {
 
 function mas_admin_init() {
     echo '<h3>Hey Bro</h3>';
+    include 'front-end-pages/admin-pages/admin-header.html';
 }
 
 /**
