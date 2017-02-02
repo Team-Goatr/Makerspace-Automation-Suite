@@ -16,7 +16,7 @@
 					<a href="?content=1" class="mas">Members</a> >> <?php echo $_GET['email']?>
 				</div>
 			</th>
-
+<!-- 
 			<tr colspan="3" class="mas">
 				<?php
 					echo '<img class="mas" src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic">' . "\n";
@@ -24,9 +24,9 @@
 
 				<h1 class="mas">First Last Name</h1>
 			</tr>
+ -->
 
-
-			<tr class="mas">
+			<!-- <tr class="mas">
 				<td class="mas">
 					<fieldset>
 						<legend>Payment Information:</legend>
@@ -85,8 +85,8 @@
 				<button class="mas-save" type="submit">Save Changes</button>
 				<button class="mas-cancel">Cancel</button>		
 			</tr>
-
-			<!-- <tr>
+ -->
+			<tr>
 				<td class="mas">	
 					<form>
 
@@ -149,12 +149,15 @@
 				</td>
 
 				<td class="mas">
+					<?php
+						echo '<img class="mas" src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic">' . "\n";
+					?>
 					<br> 
 					<button class="mas-save" type="submit">Save Changes</button>
 				</td>
 
 			</tr>
- -->
+
 		</table>
 
 	</body>
