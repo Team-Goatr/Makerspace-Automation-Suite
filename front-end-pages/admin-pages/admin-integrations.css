@@ -1,4 +1,4 @@
-table {
+table.mas {
     font-family: arial, sans-serif;
     color: #555;
     border: 0px;
@@ -9,7 +9,7 @@ table {
     border-right: 1px solid #ddd !important;
 }
 
-td{
+td.mas {
     border: 0px;
     text-align: center;
     padding: 8px;
@@ -17,23 +17,23 @@ td{
 	vertical-align: middle;
 }
 
-tr:nth-child(even) {
+tr.mas:nth-child(even) {
     background-color: #ddd;
     border: 1px;
 }
 
-tr:nth-child(odd) {
+tr.mas:nth-child(odd) {
     background-color: #eee;
     border: 1px;
 }
 
-h1 {
+h1.mas {
 	font-size: 18px;
 	padding: 0.5em;
 	float: left;
 }
 
-label {
+label.mas {
 	display: inline-block;
 	float: left;
 	clear: left;
@@ -42,27 +42,14 @@ label {
 	padding-top: 13px;
 }
 
-input {
+input.mas {
 	display: inline-block;
 	margin: 0.5em;
 	float: left
 }
 
-input:focus, textarea:focus {
-}
-
-input {
-}
-
-textarea {
-}
-
-.save{
+.mas-save{
 	background-color: #F47B42;
 	margin: auto;
 	display: inline-block;
-}
-
-button:hover,
-button:focus {
 }
