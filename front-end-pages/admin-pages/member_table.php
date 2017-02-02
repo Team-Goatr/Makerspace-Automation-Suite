@@ -38,7 +38,7 @@ if (count($results->getUsers()) != 0) {
 
         # Print Table Row
         echo '<tr>';
-        echo '<td><a href="?member=1&email=',$email,'" class="edit">&#9998</a></td>';
+        echo '<td><a href="admin.php?page=mas-plugin&member=1&email=',$email,'" class="edit">&#9998</a></td>';
         echo '<td>',$name,'</td>';
         echo '<td>',$email,'</td>';
         echo '<td>',$creation_time,'</td>';
