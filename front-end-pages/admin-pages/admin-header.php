@@ -23,6 +23,7 @@
 		switch($_GET['content']) {
 			case 1: include 'admin-members-table.html'; break;
 			case 4: include 'admin-integrations.html'; break;
+            default: include 'admin-members-table.html'; break;
 		}
 		
 		switch($_GET['member']) {
