@@ -21,9 +21,9 @@
 
 		// changes the html in the div based on button click
 		switch($_GET['content']) {
-			case 1: include 'admin-members-table.html'; break;
-			case 4: include 'admin-integrations.html'; break;
-            default: include 'admin-members-table.html'; break;
+			case 1: include 'members-tab/member-table/admin-members-table.html'; break;
+			case 4: include 'integrtions-tab/admin-integrations.html'; break;
+            default: include 'members-tab/member-table/admin-members-table.html'; break;
 		}
 		
 		switch($_GET['member']) {
