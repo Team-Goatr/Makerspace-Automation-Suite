@@ -1,6 +1,5 @@
 <?php /* Template Name: CustomPageT1 */ ?>
 
-<?php get_header(); ?>
 <?php include 'admin-header.html';?>
 
 <div id="primary" class="content-area">
@@ -22,8 +21,9 @@
 
 		// changes the html in the div based on button click
 		switch($_GET['content']) {
-			case 1: include 'members-tab/member-table/admin-members-table.html'; break;
-			case 4: include 'integrations-tab/admin-integrations.html'; break;
+			case 1: include 'admin-members-table.html'; break;
+			case 4: include 'admin-integrations.html'; break;
+            default: include 'admin-members-table.html'; break;
 		}
 		
 		switch($_GET['member']) {
@@ -34,10 +34,4 @@
 
 	</main><!-- .site-main -->
 
-	<?php get_sidebar( 'content-bottom' ); ?>
-
 </div>
-
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
-
