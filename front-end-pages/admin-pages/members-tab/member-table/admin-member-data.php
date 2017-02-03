@@ -1,5 +1,5 @@
 <?php
-include 'GSuiteAPI.php';
+include dirname(__DIR__).'../../resources/GSuiteAPI.php';
 
 $service = getService();
 
