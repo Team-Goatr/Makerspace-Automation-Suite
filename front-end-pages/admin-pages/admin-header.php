@@ -23,13 +23,10 @@
 		switch($_GET['content']) {
 			case 1: include 'members-tab/member-table/admin-members-table.html'; break;
 			case 4: include 'integrations-tab/admin-integrations.html'; break;
+			case 5: include 'members-tab/member-edit/admin-members-edit.html'; break;
             default: include 'members-tab/member-table/admin-members-table.html'; break;
 		}
 		
-		switch($_GET['member']) {
-			case 1: include 'members-tab/member-edit/admin-members-edit.html'; break;
-		}
-
 		?>
 
 	</main><!-- .site-main -->
