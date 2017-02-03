@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html>
-	
-	<head>
-		<?php
-		echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
-		?>
-		<title>Edit A Member</title>
-	</head>
-	
-	<body>
-
+<?php
+echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
+?>
 		<table class="mas">
-			<th colspan="3" class="mas">
-				<div id="breadcrumb" class="mas-breadcrumb">
-					<a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $_GET['email']?>
-				</div>
-			</th>
+			<tr>
+				<th colspan="3" class="mas">
+					<div id="breadcrumb" class="mas-breadcrumb">
+						<a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $_GET['email']?>
+					</div>
+				</th>
+			</tr>
 <!-- 
 			<tr colspan="3" class="mas">
 				<?php
@@ -150,7 +143,7 @@
 
 				<td class="mas">
 					<?php
-						echo '<img class="mas" src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic">' . "\n";
+						echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
 					?>
 					<br> 
 					<button class="mas-save" type="submit">Save Changes</button>
@@ -159,7 +152,3 @@
 			</tr>
 
 		</table>
-
-	</body>
-
-</html>

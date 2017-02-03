@@ -12,15 +12,7 @@ $optParams = array(
 );
 $results = $service->users->listUsers($optParams);
 
-#echo "<html><body>\n";
-
 if (count($results->getUsers()) != 0) {
-    # Create html table
-    echo '<table cellpadding="0" cellspacing="5" class="member-table">';
-    echo "\n";
-    # Print header row
-    echo '<tr><th></th><th>Name</th><th>Email</th><th>Member Since</th><th>Membership Plan</th><th>Subscription Status</th></tr>';
-    echo "\n";
     # Loop through each user, printing a row in the table
     foreach ($results->getUsers() as $user) {
         # Fields from custom schema
@@ -36,18 +28,23 @@ if (count($results->getUsers()) != 0) {
         $name = $user->getName()->getFullName();
         $email = $user->getPrimaryEmail();
 
+	# Convert creation time to useful string
+	date_default_timezone_set('EST');
+	$creation_string = date("M d, Y - g:i:s A T", strtotime($creation_time));
+
         # Print Table Row
-        echo '<tr>';
-        echo '<td><a href="admin.php?page=mas-plugin&content=5&email=',$email,'" class="edit">&#9998</a></td>';
-        echo '<td>',$name,'</td>';
-        echo '<td>',$email,'</td>';
-        echo '<td>',$creation_time,'</td>';
-        echo '<td>',$type,'</td>';
-        echo '<td>',$status,'</td>';
-        echo "</tr>\n";
+        echo <<<END
+	<tr>
+		<td><a href="admin.php?page=mas-plugin&content=5&email=$email" class="edit">&#9998;</a></td>
+		<td>$name</td>
+		<td>$email</td>
+		<td>$creation_string</td>
+		<td>$type</td>
+		<td>$status</td>
+	</tr>
+
+END;
     }
-    # End the table
-    echo "</table>\n";
 }
 
-#echo "</body></html>\n";
+?>
