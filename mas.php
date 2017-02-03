@@ -59,14 +59,25 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
 
 function elegance_referal_init()
 {
-	if(is_page('admin')){	
-		$dir = plugin_dir_path( __FILE__ );
-		include($dir."front-end-pages/admin-pages/admin-header.php");
-		die();
-	}
+//	if(is_page('admin')){	
+//		$dir = plugin_dir_path( __FILE__ );
+//		include($dir."front-end-pages/admin-pages/admin-header.php");
+//		die();
+//	}
 }
 
 add_action( 'wp', 'elegance_referal_init' );
+add_action('admin_menu', 'mas_admin_menu_setup');
+
+function mas_admin_menu_setup() {
+    add_menu_page('MAS Administration Page', 'Makerspace Automation Suite', 'manage_options', 'mas-plugin', 'mas_admin_init');
+};
+
+function mas_admin_init() {
+    echo '<br>';
+    $dir = plugin_dir_path( __FILE__ );
+    include($dir."front-end-pages/admin-pages/admin-header.php");
+}
 
 /**
  * Begins execution of the plugin.

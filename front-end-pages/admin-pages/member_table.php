@@ -1,29 +1,7 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+include 'GSuiteAPI.php';
 
-# Constants used for G Suite connection
-define('CREDENTIALS_PATH', '/home/ubuntu/service_account.json');
-define('APPLICATION_NAME', 'Makerspace Automation Suite');
-define('SCOPES', implode(' ', array(
-    Google_Service_Directory::ADMIN_DIRECTORY_USER)
-));
-
-/**
- * Returns an authorized API client.
- * @return Google_Client the authorized client object
- */
-function getClient() {
-    $client = new Google_Client();
-    $client->setApplicationName(APPLICATION_NAME);
-    $client->setScopes(SCOPES);
-    $client->setAuthConfig(CREDENTIALS_PATH);
-    $client->setSubject('thomas@decaturmakers.org');
-    return $client;
-}
-
-// Get the API client and construct the service object.
-$client = getClient();
-$service = new Google_Service_Directory($client);
+$service = getService();
 
 $optParams = array(
     'domain' => 'decaturmakers.org',
@@ -60,7 +38,7 @@ if (count($results->getUsers()) != 0) {
 
         # Print Table Row
         echo '<tr>';
-        echo '<td><a href="?member=1&email=',$email,'" class="edit">&#9998</a></td>';
+        echo '<td><a href="admin.php?page=mas-plugin&member=1&email=',$email,'" class="edit">&#9998</a></td>';
         echo '<td>',$name,'</td>';
         echo '<td>',$email,'</td>';
         echo '<td>',$creation_time,'</td>';
