@@ -1,5 +1,5 @@
 <?php
-include 'GSuiteAPI.php';
+include '../GSuiteAPI.php';
 
 $service = getService();
 
