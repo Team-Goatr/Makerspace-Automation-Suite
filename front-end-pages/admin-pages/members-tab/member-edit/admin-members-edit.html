@@ -1,11 +1,16 @@
 <?php
 echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
+
+include dirname(__DIR__).'../../resources/GSuiteAPI.php';
+
+$user = getUser($_GET['email']);
+
 ?>
 		<table class="mas">
 			<tr>
 				<th colspan="3" class="mas">
 					<div id="breadcrumb" class="mas-breadcrumb">
-						<a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $_GET['email']?>
+                        <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $user->getName()->getFullName();?>
 					</div>
 				</th>
 			</tr>
