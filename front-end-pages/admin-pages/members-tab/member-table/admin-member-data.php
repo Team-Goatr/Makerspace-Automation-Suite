@@ -17,11 +17,11 @@ if (count($results->getUsers()) != 0) {
     foreach ($results->getUsers() as $user) {
         # Fields from custom schema
         $sub_mgmt = $user->getCustomSchemas()["Subscription_Management"];
-        $recurring = $sub_mgmt["Subscription_Recurring"];
-        $expiration = $sub_mgmt["Subscription_Expiration"];
-        $status = $sub_mgmt["Subscription_Status"];
-        $type = $sub_mgmt["Subscription_Type"];
-        $stripe_id = $sub_mgmt["Stripe_ID"];
+        $recurring = !empty($sub_mgmt["Subscription_Recurring"]) ? $sub_mgmt["Subscription_Recurring"] : '';
+        $expiration = !empty($sub_mgmt["Subscription_Expiration"]) ? $sub_mgmt["Subscription_Expiration"] : '';
+        $status = !empty($sub_mgmt["Subscription_Status"]) ? $sub_mgmt["Subscription_Status"] : '';
+        $type = !empty($sub_mgmt["Subscription_Type"]) ? $sub_mgmt["Subscription_Type"] : '';
+        $stripe_id = !empty($sub_mgmt["Stripe_ID"]) ? $sub_mgmt["Stripe_ID"] : '';
 
         # Default Google Fields to use
         $creation_time = $user->getCreationTime();
