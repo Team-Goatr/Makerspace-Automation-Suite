@@ -1,0 +1,19 @@
+<?php
+include dirname(__DIR__).'/resources/StripeAPI.php';
+?>
+
+<form action="/register.php" method="POST">
+    First name:<br>
+    <input type="text" name="firstname"><br>
+    Last name:<br>
+    <input type="text" name="lastname">
+    Membership type:<br>
+    <select name="type">
+        <option value="ib">Individual Basic</option>
+        <option value="is">Individual Supporter</option>
+        <option value="fb">Family Basic</option>
+        <option value="fs">Family Supporter</option>
+    </select>
+    <?php getStripeCheckout() ?>
+    <input type="submit" value="Submit">
+</form>
