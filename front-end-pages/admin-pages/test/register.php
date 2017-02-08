@@ -1,4 +1,5 @@
 <?php
+include dirname(__DIR__).'/resources/StripeAPI.php';
 
 // Dump everything (for testing)
 print_r($_POST);
