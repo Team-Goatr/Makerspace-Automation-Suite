@@ -2,7 +2,9 @@
 include dirname(__DIR__).'/resources/StripeAPI.php';
 ?>
 
-<form action="/register.php" method="POST">
+<?php
+echo '<form action="' . plugins_url( 'register.php', __FILE__ ) . '" method="POST">';
+?>
     First name:<br>
     <input type="text" name="firstname"><br>
     Last name:<br>
