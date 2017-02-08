@@ -12,9 +12,9 @@ function getStripeCheckout() {
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="$stripe_pub_key"
-        data-amount="2000"
-        data-name="Demo Site"
-        data-description="2 widgets"
+        data-amount="2500"
+        data-name="Decatur Makerspace"
+        data-description="Membership"
         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
         data-locale="auto"
         data-zip-code="true">
