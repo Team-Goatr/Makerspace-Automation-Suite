@@ -1,0 +1,81 @@
+table.mas {
+    font-family: arial, sans-serif;
+    color: #555;
+    border: 0px;
+    width: 100%;
+    border-bottom: 0px solid #ddd !important;
+    border-top: 0px solid #ddd !important;
+    border-left: 0px solid #ddd !important;
+    border-right: 0px solid #ddd !important;
+}
+
+th.mas {
+    border: 0px;
+    text-align: center;
+    padding: 8px;
+    font-weight: bold;
+	vertical-align: middle;
+}
+
+td.mas {
+    border: 0px;
+    text-align: center;
+    padding: 0px;
+    border-left: 0px solid #ddd !important;
+    border-right: 0px solid #ddd !important;
+    
+	vertical-align: middle;
+}
+
+tr.mas:nth-child(even) {
+    background-color: #ddd;
+    border: 1px;
+}
+
+tr.mas:nth-child(odd) {
+    background-color: #eee;
+    border: 1px;
+}
+
+.mas-edit{
+	background-color: #0085A7;
+	margin: auto;
+	display: inline-block;
+}
+
+label.mas {
+    font-family: arial, sans-serif;
+    color: #555;
+	display: inline-block;
+	width: 100%;
+    font-weight: bold;
+}
+
+input.mas {
+	display: inline-block;
+	margin: 0.5em;
+	float: left
+}
+
+.mas-save{
+	background-color: #F47B42;
+	margin: auto;
+	display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 15%;
+    padding: 10px;
+}
+
+.mas-container {
+    width: 100%;
+}
+
+.mas-left {
+    width: 25%;
+    float: left;
+}
+
+.mas-right {
+    margin-left: 25%;
+}
