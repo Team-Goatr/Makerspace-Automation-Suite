@@ -27,6 +27,7 @@
 			case 5: include 'members-tab/member-edit/admin-members-edit.html'; break;
 			case 6: include 'test/form.html'; break;
             		default: include 'members-tab/member-table/admin-members-table.html'; break;
+            case 7: include 'classes-tab/admin-create-class.html'; break;
 		}
 		
 		?>
