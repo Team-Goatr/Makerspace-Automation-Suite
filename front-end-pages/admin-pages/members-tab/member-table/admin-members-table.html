@@ -1,0 +1,14 @@
+<?php
+echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-table.css', __FILE__ ) . '">' . "\n";
+?>
+<table class="member-table">
+	<tr>
+		<th></th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Member Since</th>
+		<th>Membership Plan</th>
+		<th>Subscription Status</th>
+	</tr>
+<?php include 'admin-member-data.php'; ?>
+</table>

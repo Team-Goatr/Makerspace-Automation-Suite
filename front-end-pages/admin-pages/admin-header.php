@@ -6,7 +6,7 @@
 	<main id="main" class="site-main" role="main">
 		<?php
 		// Start the loop.
-		while ( have_posts() ) : the_post();
+		/*while ( have_posts() ) : the_post();
 
 			// Include the page content template.
 			get_template_part( 'template-parts/content', 'page' );
@@ -17,19 +17,17 @@
 			}
 
 			// End of the loop.
-		endwhile;
+		endwhile;*/
 
 		// changes the html in the div based on button click
 		switch($_GET['content']) {
-			case 1: include 'admin-members-table.html'; break;
-			case 4: include 'admin-integrations.html'; break;
-            default: include 'admin-members-table.html'; break;
+			case 1: include 'members-tab/member-table/admin-members-table.html'; break;
+			case 4: include 'integrations-tab/admin-integrations.html'; break;
+			case 5: include 'members-tab/member-edit/admin-members-edit.html'; break;
+			case 6: include 'test/form.html'; break;
+            		default: include 'members-tab/member-table/admin-members-table.html'; break;
 		}
 		
-		switch($_GET['member']) {
-			case 1: include 'admin-members-edit.html'; break;
-		}
-
 		?>
 
 	</main><!-- .site-main -->
