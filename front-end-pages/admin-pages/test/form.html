@@ -17,5 +17,5 @@ echo '<form action="' . plugins_url( 'register.php', __FILE__ ) . '" method="POS
         <option value="fs">Family Supporter</option>
     </select>
     <br>
-    <?php getStripeCheckout() ?>
+    <?php getStripeCheckout("test@test.com", "2500") ?>
 </form>
