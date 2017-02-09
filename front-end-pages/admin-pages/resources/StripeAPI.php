@@ -47,7 +47,29 @@ function createStripeCustomer($email, $token) {
 }
 
 /**
- * Charge a stripe customer an amount
+ * Returns a Stripe customer object that already exists in our user base
+ */
+function retrieveStripeCustomer($customer_id) {
+    $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+    $customer = \Stripe\Customer::retrieve($customer_id);
+    return $customer;
+}
+
+/**
+ * Returs a Stripe plan
+ */
+function retrieveStripePlan($id) {
+    $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+    $plan = \Stripe\Plan::retrieve($id);
+    return $plan;
+}
+
+/**
+ * Charge a stripe customer an amount (one time)
  */
 function chargeStripeCustomer($id, $amount) {
     $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
@@ -63,7 +85,7 @@ function chargeStripeCustomer($id, $amount) {
 }
 
 /**
- * Subscribe a stripe customer to a plan
+ * Subscribe a stripe customer to a plan (recurring)
  */
 function subscribeStripeCustomer($id, $plan) {
     $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
