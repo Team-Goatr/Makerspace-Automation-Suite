@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<?php
+            echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-classes.css', __FILE__ ) . '">' . "\n";
+        ?>
 		<title>Create A New Class</title>
 	</head>
 	
@@ -16,42 +19,55 @@
 		Max number of attendees
 		Required skills	
 	-->
+		<div class="panel panel-default" style="width:60%">
+			
+			<div class="panel-heading">
+				<h3 class="mas panel-title">Create A New Class</h3>
+			</div>
 
-		<div class="row">
-			<form class="form-horizontal">
-				<div class="form-group">
-					<label for="title" class="col-md-3 control-label">Class Title</label>
-					<input type="text" style="width: 60%" class="col-md-6 form-control" id="title" placeholder="Title">
-				</div>
+			<div class="panel-body">
+				<div class="row">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="title" class="col-md-3 control-label">Class Title</label>
+							<input type="text" style="width: 60%" class="col-md-6 form-control" id="title" placeholder="Title" required>
+						</div>
 
-				<div class="form-group">
-					<label for="title" class="col-md-3 control-label">Date</label>
-					<input type="text" style="width: 60%" class="col-md-6 form-control" id="title" placeholder="Title">
-				</div>
+						<div class="form-group">
+							<label for="date" class="col-md-3 control-label">Date</label>
+							<input type="date" style="width: 60%" class="col-md-6 form-control" id="date" placeholder="Date" required>
+						</div>
 
-				<div class="form-group">
-					<label for="title" class="col-md-3 control-label">Time</label>
-					<input type="text" style="width: 60%" class="col-md-6 form-control" id="title" placeholder="Title">
-				</div>
+						<div class="form-group">
+							<label for="start" class="col-md-3 control-label">Start Time</label>
+							<input type="time" style="width: 60%" class="col-md-6 form-control" id="start" placeholder="Start Time" required>
+						</div>
 
-				<div class="form-group">
-					<label for="title" class="col-md-3 control-label">Description</label>
-					<input type="text" style="width: 60%" class="col-md-6 form-control" id="title" placeholder="Title">
-				</div>
+						<div class="form-group">
+							<label for="end" class="col-md-3 control-label">End Time</label>
+							<input type="time" style="width: 60%" class="col-md-6 form-control" id="end" placeholder="End Time" required>
+						</div>
 
-				<div class="form-group">
-					<label for="title" class="col-md-3 control-label">Maximum # Attendees</label>
-					<input type="text" style="width: 60%" class="col-md-6 form-control" id="title" placeholder="Title">
-				</div>
+						<div class="form-group">
+							<label for="description" class="col-md-3 control-label">Description</label>
+							<input type="text" style="width: 60%" class="col-md-6 form-control" id="description" placeholder="Description">
+						</div>
 
-				<div class="form-group">
-					<label for="title" class="col-md-3 control-label">Required Skills</label>
-					<input type="text" style="width: 60%" class="col-md-6 form-control" id="title" placeholder="Title">
+						<div class="form-group">
+							<label for="attendees" class="col-md-3 control-label">Maximum # Attendees</label>
+							<input type="text" style="width: 60%" class="col-md-6 form-control" id="attendees" placeholder="Maxiumum # of Attendees" required>
+						</div>
+
+						<div class="form-group">
+							<label for="skills" class="col-md-3 control-label">Required Skills</label>
+							<input type="text" style="width: 60%" class="col-md-6 form-control" id="skills" placeholder="Required Skills, If Any">
+						</div>
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
 
-		<button class="btn">Submit New Class</button>
+		<button class="btn mas-create">Submit New Class</button>
 
 
 
