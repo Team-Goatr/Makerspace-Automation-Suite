@@ -55,18 +55,20 @@ register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
+
 
 function elegance_referal_init()
 {
-//	if(is_page('admin')){	
-//		$dir = plugin_dir_path( __FILE__ );
-//		include($dir."front-end-pages/admin-pages/admin-header.php");
-//		die();
-//	}
+	if(is_page('register')){	
+		$dir = plugin_dir_path( __FILE__ );
+		include($dir."front-end-pages/registration-form/registration-form.php");
+		die();
+	}
 }
 
 add_action( 'wp', 'elegance_referal_init' );
+
+require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
 add_action('admin_menu', 'mas_admin_menu_setup');
 
 function mas_admin_menu_setup() {
@@ -78,6 +80,7 @@ function mas_admin_init() {
     $dir = plugin_dir_path( __FILE__ );
     include($dir."front-end-pages/admin-pages/admin-header.php");
 }
+
 
 /**
  * Begins execution of the plugin.
