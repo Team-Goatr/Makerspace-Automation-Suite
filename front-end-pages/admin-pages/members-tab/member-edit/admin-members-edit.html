@@ -90,7 +90,6 @@ $user = getUser($_GET['email']);
 
 					  <div id="name">
 					    <label for="firstName" class="mas">First Name:</label>
-                        <?php echo $user->getName()->getFullName();?>
 					    <input type="text" id="firstName" name="firstName" class="mas" value="<?php echo $user->getName()->getGivenName();?>">
 					    <br>
 
@@ -102,7 +101,7 @@ $user = getUser($_GET['email']);
 
 					  <div id="cc">
 					  	<label for="ccNumber" class="mas">Credit Card:</label>
-					  	<input type="text" id="ccNumber" name="ccNumber" class="mas" value="<?php echo $user->getCustomSchemas();?>">
+					  	<input type="text" id="ccNumber" name="ccNumber" class="mas" value="">
 
 					  	<br>
 
