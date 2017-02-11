@@ -102,7 +102,7 @@ $user = getUser($_GET['email']);
 
 					  <div id="cc">
 					  	<label for="ccNumber" class="mas">Credit Card:</label>
-					  	<input type="text" id="ccNumber" name="ccNumber" class="mas" value="<?php echo $user->getCustomSchemas()->getSubscriptionManagement()->getStripeID();?>">
+					  	<input type="text" id="ccNumber" name="ccNumber" class="mas" value="<?php echo $user->getCustomSchemas()->getSubscriptionManagement();?>">
 
 					  	<br>
 
