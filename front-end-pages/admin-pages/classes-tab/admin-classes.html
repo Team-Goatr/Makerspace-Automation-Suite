@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<?php
+            echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-classes.css', __FILE__ ) . '">' . "\n";
+        ?>
+		<title>Classes</title>
+	</head>
+
+	<body>
+		<br>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h3 class="mas panel-title">Class Details</h3>
+				  </div>
+				  <div class="panel-body">
+				    Select a class to the right to view and edit details.
+				  </div>
+				</div>
+
+				<div>
+					<a href="admin.php?page=mas-plugin&content=7"><button class="btn mas-create">Create A Class</button></a>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<table class="table table-bordered table-hover">
+					<tr>
+						<th>Class Title</th>
+						<th>Date</th>
+						<th># Registered</th>
+					</tr>
+
+					<tr>
+						<td>Power Tools 101</td>
+						<td>3/30/2017</td>
+						<td>12/20</td>
+					</tr>
+
+					<tr>
+						<td>Intro to Raspberry Pi</td>
+						<td>2/30/2017</td>
+						<td>10/15</td>
+					</tr>
+
+					<tr>
+						<td>Build Your Own Skateboard</td>
+						<td>4/2/2017</td>
+						<td>8/10</td>
+					</tr>
+
+					<tr>
+						<td>Power Tools 101</td>
+						<td>3/30/2017</td>
+						<td>12/20</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- ANGULAR -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+		<!-- BOOTSTRAP -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</body>
+</html>

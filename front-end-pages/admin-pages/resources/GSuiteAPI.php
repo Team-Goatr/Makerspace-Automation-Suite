@@ -30,4 +30,16 @@ function getService() {
     return $service;
 }
 
+/**
+ * Returns a Google_Service_Directory_User Object corresponding to the email given
+ */
+function getUser($email) {
+    $service = getService();
+    $optParams = array(
+        'projection' => 'custom',
+        'customFieldMask' => 'Subscription_Management',
+    );
+    return $service->users->get($email, $optParams);
+}
+
 ?>

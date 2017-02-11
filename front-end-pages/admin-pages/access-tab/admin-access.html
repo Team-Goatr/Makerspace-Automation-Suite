@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<?php
+                echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-access-ha.css', __FILE__ ) . '">' . "\n";
+                ?>
+
+		<title>
+			Access Page for Admin
+		</title>
+	</head>
+	
+	<body>
+        <section class="mas-container">
+            <div class="mas-left">
+                <label for="group" class="mas">Membership Group</label>
+                <select id="group" name="group" class="mas" >
+                  <option value="basic">Basic</option>
+                  <option value="family">Family</option>
+                  <option value="circularSaw">Circular Saw Certified</option>
+                </select>
+            </div>
+
+            <div class="mas-right">
+                <table class="mas">
+                    <th class="mas" colspan="4">Permissions</th>
+                    <tr class="mas">
+                        <td class="mas">	
+                            <p>&#9989</p>
+                        </td>
+                        <td class="mas">	
+                            Exterior Doors
+                        </td>
+                        <td class="mas">	
+                            8:00am - 9:00pm
+                        </td>
+                        <td class="mas">	
+                            <button class="mas-edit" type="edit">Edit</button>
+                        </td>
+                    </tr>
+                    <tr class="mas">
+                        <td class="mas">	
+                            <p>&#9989</p>
+                        </td>
+                        <td class="mas">	
+                            Interior Doors
+                        </td>
+                        <td class="mas">	
+                            8:00am - 9:00pm
+                        </td>
+                        <td class="mas">	
+                            <button class="mas-edit" type="edit">Edit</button>
+                        </td>
+                    </tr>
+                    <tr class="mas">
+                        <td class="mas">	
+                            <p>&#9744</p>
+                        </td>
+                        <td class="mas">	
+                            Circular Saw
+                        </td>
+                        <td class="mas">	
+                            8:00am - 9:00pm
+                        </td>
+                        <td class="mas">	
+                            <button class="mas-edit" type="edit">Edit</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+            
+        <div class="mas-right" style="margin-top:15px">
+            <button class="mas-save" type="submit">Save Changes</button>
+        </div>
+        
+	</body>
+
+</html>
