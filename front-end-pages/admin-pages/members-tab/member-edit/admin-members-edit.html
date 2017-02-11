@@ -95,14 +95,14 @@ $user = getUser($_GET['email']);
 					    <br>
 
 					    <label class="mas">Last Name:</label>
-					    <input type="text" id="lastName" name="lastName" class="mas">
+					    <input type="text" id="lastName" name="lastName" class="mas" value="<?php echo $user->getName()->getFamilyName();?>">
 					  </div>
 
 					  <br>
 
 					  <div id="cc">
 					  	<label for="ccNumber" class="mas">Credit Card:</label>
-					  	<input type="text" id="ccNumber" name="ccNumber" class="mas" value=>
+					  	<input type="text" id="ccNumber" name="ccNumber" class="mas" value="<?php echo $user->getCustomSchemas()->getStripeID();?>">
 
 					  	<br>
 
