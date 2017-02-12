@@ -19,6 +19,7 @@ echo <<<END
 
 <html>
     <body>
+        <h1>Registration Confirmation Page</h1>
         <div class="row">
             <form action="$submitfile" method="POST" class="form-horizonal">
                 <div class="form-group">
@@ -72,14 +73,14 @@ echo <<<END
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                        getStripeCheckout($email, $amount);
+                        <p style="font-style: italic">Payments have been secured with Stripe</p>
                     </div>
                 </div>
 
-                <p style="font-style: italic">Payments have been secured with Stripe</p>
 END;
 
-                getStripeCheckout($email, $amount);
 
 echo <<<END
             </form>
