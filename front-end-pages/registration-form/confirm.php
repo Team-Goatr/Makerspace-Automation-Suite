@@ -23,6 +23,7 @@ if (empty($plan)) {
 
 $planamount = $plan->amount;
 $planname = $plan->name;
+$plandollars = $planamount/100;
 
 //print_r($_POST);
 
@@ -64,7 +65,7 @@ echo <<<END
                 <div class="form-group">
                     <label for="type" class="col-md-3 control-label" >Membership type:</label>
                     <div class="col-sm-10">
-                        <label>$planname for $planamount/mo</label>
+                        <label>$planname for $plandollars/mo</label>
                     </div>
                 </div>
 
