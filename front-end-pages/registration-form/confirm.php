@@ -14,6 +14,8 @@ $username = $_POST["username"] . "@decaturmakers.org";
 $type = $_POST['type'];
 $checked = empty($_POST["autorenew"]) ? "" : "checked";
 
+// TODO: Check G suite if this username already exists. If so, print warning and don't allow user to continue
+
 // Get plan from Stripe
 $plan = retrieveStripePlan($type);
 if (empty($plan)) {
@@ -24,8 +26,6 @@ if (empty($plan)) {
 $planamount = $plan->amount;
 $planname = $plan->name;
 $plandollars = $planamount/100;
-
-//print_r($_POST);
 
 echo <<<END
 
