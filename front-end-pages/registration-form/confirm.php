@@ -72,10 +72,12 @@ echo <<<END
                 <div class="form-group">
                     <div class="col-sm-10">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="autorenew" $checked readonly="readonly"> Auto-renew Membership</label>
+                            <label><input type="checkbox" name="autorenew" $checked> Auto-renew Membership</label>
                         </div>
                     </div>
                 </div>
+
+                <input type="hidden" value="$type" name="type" />
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
