@@ -6,12 +6,23 @@ include dirname(__DIR__).'/resources/StripeAPI.php';
 //$submitfile = plugins_url('submit.php', __FILE__);
 $submitfile = 'submit.php';
 
+// Things that were POST'ed
 $first = $_POST["firstname"];
 $last = $_POST["lastname"];
 $email = $_POST["email"];
+$username = $_POST["username"] . "@decaturmakers.org";
+$type = $_POST['type'];
+$checked = empty($_POST["autorenew"]) ? "" : "checked";
 
+$planamount = $plan->amount;
+$planname = $plan->name;
 
-$amount = "2000";
+// Get plan from Stripe
+$plan = retrieveStripePlan($type);
+if (empty($plan)) {
+    echo "Invalid subscription type.";
+    die();
+}
 
 //print_r($_POST);
 
@@ -46,27 +57,21 @@ echo <<<END
                 <div class="form-group">
                     <label for="username" class="col-md-3 control-label" >Username:</label>
                     <div class="col-sm-10">
-                        <input type="text" style="width: 60%" class="col-md-6 form-control" id="username" name="username" placeholder="ex: username@decaturmakers.org">
+                        <input type="text" style="width: 60%" class="col-md-6 form-control" id="username" name="username" value="$username" disabled="disabled">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="type" class="col-md-3 control-label" >Membership type:</label>
                     <div class="col-sm-10">
-                        <select style="width: 25%" class="form-control" name="type" id="type">
-                            <option value="basic-ind">Individual Basic ($25/mo)</option>
-                            <option value="support-ind">Individual Supporter ($40/mo)</option>
-                            <option value="basic-fam">Family Basic ($50/mo)</option>
-                            <option value="support-fam">Family Supporter ($75/mo)</option>
-                            <option value="invalid">Invalid</option>
-                        </select>
+                        <label>$planname for $planamount/mo</label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-10">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="autorenew" checked> Auto-renew Membership</label>
+                            <label><input type="checkbox" name="autorenew" $checked disabled="disabled"> Auto-renew Membership</label>
                         </div>
                     </div>
                 </div>
@@ -75,9 +80,8 @@ echo <<<END
                     <div class="col-xs-offset-2 col-xs-10">
                         <!--<button type="submit" class="btn btn-primary">Submit</button>-->
 END;
-                        getStripeCheckout($email, $amount);
+                        getStripeCheckout($email, $planamount);
 echo <<<END
-                        <p style="font-style: italic">Payments have been secured with Stripe</p>
                     </div>
                 </div>
             </form>
