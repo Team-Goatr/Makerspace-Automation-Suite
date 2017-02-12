@@ -1,5 +1,5 @@
 <?php
-include dirname(__DIR__).'../resources/StripeAPI.php';
+include dirname(__DIR__).'/../resources/StripeAPI.php';
 
 echo "<html><body>\n";
 
