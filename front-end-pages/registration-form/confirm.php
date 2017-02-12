@@ -74,18 +74,14 @@ echo <<<END
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
                         <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+END;
                         getStripeCheckout($email, $amount);
+echo <<<END
                         <p style="font-style: italic">Payments have been secured with Stripe</p>
                     </div>
                 </div>
-
-END;
-
-
-echo <<<END
             </form>
         </div>
-
 
         <!-- ANGULAR -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
