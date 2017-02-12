@@ -37,28 +37,28 @@ echo <<<END
                 <div class="form-group">
                     <label for="first" class="col-md-3 control-label">First Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" style="width: 60%" class="form-control" id="first" name="firstname" value="$first" disabled="disabled">
+                        <input type="text" style="width: 60%" class="form-control" id="first" name="firstname" value="$first" readonly="readonly">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="last" class="col-md-3 control-label">Last Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" style="width: 60%" class="form-control" id="last" name="lastname" value="$last" disabled="disabled">
+                        <input type="text" style="width: 60%" class="form-control" id="last" name="lastname" value="$last" readonly="readonly">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email" class="col-md-3 control-label">Email:</label>
                     <div class="col-sm-10">
-                        <input type="email" style="width: 60%" class="col-md-6 form-control" id="email" name="email" value="$email" disabled="disabled">
+                        <input type="email" style="width: 60%" class="col-md-6 form-control" id="email" name="email" value="$email" readonly="readonly">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="username" class="col-md-3 control-label" >Username:</label>
                     <div class="col-sm-10">
-                        <input type="text" style="width: 60%" class="col-md-6 form-control" id="username" name="username" value="$username" disabled="disabled">
+                        <input type="text" style="width: 60%" class="col-md-6 form-control" id="username" name="username" value="$username" readonly="readonly">
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@ echo <<<END
                 <div class="form-group">
                     <div class="col-sm-10">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="autorenew" $checked disabled="disabled"> Auto-renew Membership</label>
+                            <label><input type="checkbox" name="autorenew" $checked readonly="readonly"> Auto-renew Membership</label>
                         </div>
                     </div>
                 </div>
