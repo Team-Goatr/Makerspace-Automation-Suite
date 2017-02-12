@@ -14,15 +14,15 @@ $username = $_POST["username"] . "@decaturmakers.org";
 $type = $_POST['type'];
 $checked = empty($_POST["autorenew"]) ? "" : "checked";
 
-$planamount = $plan->amount;
-$planname = $plan->name;
-
 // Get plan from Stripe
 $plan = retrieveStripePlan($type);
 if (empty($plan)) {
     echo "Invalid subscription type.";
     die();
 }
+
+$planamount = $plan->amount;
+$planname = $plan->name;
 
 //print_r($_POST);
 
