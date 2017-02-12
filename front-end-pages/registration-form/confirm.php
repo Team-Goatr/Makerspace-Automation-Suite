@@ -3,7 +3,8 @@ include dirname(__DIR__).'/resources/StripeAPI.php';
 
 //get_header();
 
-$submitfile = plugins_url('submit.php', __FILE__);
+//$submitfile = plugins_url('submit.php', __FILE__);
+$submitfile = 'submit.php';
 
 $first = $_POST["firstname"];
 $last = $_POST["lastname"];
