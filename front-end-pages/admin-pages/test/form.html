@@ -1,5 +1,5 @@
 <?php
-include dirname(__DIR__).'/resources/StripeAPI.php';
+include dirname(__DIR__).'/../resources/StripeAPI.php';
 ?>
 
 <?php
@@ -11,11 +11,13 @@ echo '<form action="' . plugins_url( 'register.php', __FILE__ ) . '" method="POS
     <input type="text" name="lastname"><br>
     Membership type:<br>
     <select name="type">
-        <option value="ib">Individual Basic</option>
-        <option value="is">Individual Supporter</option>
-        <option value="fb">Family Basic</option>
-        <option value="fs">Family Supporter</option>
+        <option value="basic-ind">Individual Basic</option>
+        <option value="support-ind">Individual Supporter</option>
+        <option value="basic-fam">Family Basic</option>
+        <option value="support-fam">Family Supporter</option>
+        <option value="invalid">Invalid</option>
     </select>
     <br>
-    <?php getStripeCheckout() ?>
+    <input type="checkbox" name="recurring" value="true" checked="checked"> Recurring<br>
+    <?php getStripeCheckout("decaturmakers@test.com", "2500") ?>
 </form>
