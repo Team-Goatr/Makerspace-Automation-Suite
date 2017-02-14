@@ -15,4 +15,4 @@ if (isset($_POST["gsuite-json"])) {
     updateGSuiteCredentials($_GET["gsuite-json"]);
 }
 
-echo 'Successful Update!';
+header('https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4') ;
