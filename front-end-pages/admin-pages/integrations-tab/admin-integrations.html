@@ -39,16 +39,19 @@
 			</tr>
 
 			<tr class="mas">
-				<td class="mas">
-					<form action="<?php echo plugins_url( 'integrations-manager.php', __FILE__ ) ?>" method="post">
-						<div id="G Suite">
-							<h1 class="mas">GSuite for Non-Profits</h1>
-							<label for="gsuite-json" class="mas">GSuite Access JSON:</label>
+                <form action="<?php echo plugins_url( 'integrations-manager.php', __FILE__ ) ?>" method="post">
+                    <td class="mas">
+                        <div id="G Suite">
+                            <h1 class="mas">GSuite for Non-Profits</h1>
+                            <label for="gsuite-json" class="mas">GSuite Access JSON:</label>
                             <textarea rows="10" cols="60" id="gsuite-json" name="gsuite-json" class="mas"><?php echo  getGSuiteCredentials() ?></textarea>
-						</div>
+                        </div>
+
+                    </td>
+                    <td>
                         <input id="gsuite-save" class="mas-save" type="submit" value="Save Changes">
-					</form>
-				</td>
+                    </td>
+                </form>
 			</tr>
 		</table>
 	</body>
