@@ -14,4 +14,5 @@ if (isset($_POST["stripe-private"])) {
 if (isset($_POST["gsuite-json"])) {
     updateGSuiteCredentials($_GET["gsuite-json"]);
 }
-header('Location: https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4');
+
+echo '<script>window.location = "https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4"</script>';
