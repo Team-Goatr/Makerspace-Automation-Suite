@@ -14,3 +14,5 @@ if (isset($_POST["stripe-private"])) {
 if (isset($_POST["gsuite-json"])) {
     updateGSuiteCredentials($_GET["gsuite-json"]);
 }
+
+echo 'Successful Update!'
