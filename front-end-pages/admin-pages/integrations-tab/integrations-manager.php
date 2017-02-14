@@ -1,7 +1,7 @@
 <?php
 
-include dirname(__DIR__).'/../resources/GSuiteAPI.php';
-include dirname(__DIR__).'/../resources/StripeAPI.php';
+include dirname(__DIR__).'/resources/GSuiteAPI.php';
+include dirname(__DIR__).'/resources/StripeAPI.php';
 
 if (isset($_POST["stripe-public"])) {
     updateStripePublic($_GET["stripe-public"]);
