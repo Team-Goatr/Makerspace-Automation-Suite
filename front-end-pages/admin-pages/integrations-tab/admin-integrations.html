@@ -12,8 +12,8 @@
 	</head>
     
     <?php
-        include dirname(__DIR__).'../../resources/GSuiteAPI.php';
-        include dirname(__DIR__).'../../resources/StripeAPI.php';
+        include dirname(__DIR__).'/../../resources/GSuiteAPI.php';
+        include dirname(__DIR__).'/../../resources/StripeAPI.php';
     ?>
 	
 	<body>
@@ -46,7 +46,7 @@
 						<div id="G Suite">
 							<h1 class="mas">GSuite for Non-Profits</h1>
 							<label for="gsuite-json" class="mas">GSuite Access JSON:</label>
-							<textarea rows="10" id="gsuite-json" name="gsuite-json" class="mas" value="<?php echo  getGSuiteCredentials()?>">
+							<textarea rows="10" id="gsuite-json" name="gsuite-json" class="mas" value="<?php echo  getGSuiteCredentials() ?>">
 						</div>
 					</form>
 				</td>
