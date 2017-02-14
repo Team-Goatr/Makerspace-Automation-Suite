@@ -42,4 +42,16 @@ function getUser($email) {
     return $service->users->get($email, $optParams);
 }
 
-?>
+/**
+ * Updates the GSuite JSON stored in the credentials path
+ */
+function updateGSuiteCredentials($newCredentials) {
+    file_put_contents(CREDENTIALS_PATH, $newCredentials);
+}
+
+/**
+ * Returns the GSuite JSON stored in the credentials path
+ */
+function getGSuiteCredentials() {
+    return file_get_contents(CREDENTIALS_PATH);
+}

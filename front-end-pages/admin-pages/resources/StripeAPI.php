@@ -68,3 +68,31 @@ function subscribeStripeCustomer($id, $plan) {
       "plan" => $plan,
     ));
 }
+
+/**
+ * Updates the secret key for Stripe
+ */
+function updateStripeSecret($newSecret) {
+    file_put_contents(STRIPE_SECRET_KEY_PATH, newSecret);
+}
+
+/**
+ * Gets the secret key for Stripe
+ */
+function getStripeSecret() {
+    return file_get_contents(STRIPE_SECRET_KEY_PATH);
+}
+
+/**
+ * Updates the public key for Stripe
+ */
+function updateStripePublic($newPublic) {
+    file_put_contents(STRIPE_PUB_KEY_PATH, newPublic);
+}
+
+/**
+ * Gets the public key for Stripe
+ */
+function getStripePublic() {
+    return file_get_contents(STRIPE_PUB_KEY_PATH);
+}
