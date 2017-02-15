@@ -31,11 +31,11 @@ $user = getUser($_GET['email']);
 					</form>
                     <br>
                     <form action="update-card.php" method="POST">
-                        <input type="hidden" value="<php? 
+                        <input type="hidden" value="<?php 
                             $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
-                            $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID''] : '';
+                            $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
                             echo $stripe_id; ?>" name="customer-id">
-                        <?php getStripeUpdateCard($email); ?>
+                        <?php getStripeUpdateCard($_GET['email']); ?>
                     </form>
 				</td>
 
