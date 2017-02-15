@@ -34,7 +34,7 @@ $user = getUser($_GET['email']);
                         <input type="hidden" value="<php? 
                             $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
                             $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID''] : '';
-                            echo $stripe_id; ?>" name="customer-id"
+                            echo $stripe_id; ?>" name="customer-id">
                         <?php getStripeUpdateCard($email); ?>
                     </form>
 				</td>
