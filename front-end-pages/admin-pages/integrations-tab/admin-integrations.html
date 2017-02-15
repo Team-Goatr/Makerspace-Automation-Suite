@@ -5,6 +5,10 @@
 		<?php
                 echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integrations.css', __FILE__ ) . '">' . "\n";
                 ?>
+        
+                if ( ! defined( 'WPINC' ) ) {
+                    die;
+                }
 
 		<title>
 			Integrations Page for Admin
