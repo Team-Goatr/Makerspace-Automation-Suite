@@ -1,0 +1,13 @@
+h3.mas {
+	background-color: #0085A7;
+	color: white;
+	text-align: center;
+	padding: 3px;
+}
+
+.mas-create{
+	background-color: #F47B42;
+	color: white;
+	margin: auto;
+	display: inline-block;
+}

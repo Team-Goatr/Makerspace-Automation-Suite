@@ -1,5 +1,5 @@
 <?php
-include dirname(__DIR__).'/../resources/StripeAPI.php';
+include dirname(__DIR__).'/resources/StripeAPI.php';
 
 echo "<html><body>\n";
 
@@ -11,9 +11,10 @@ echo "<br>";
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
 $token = $_POST['stripeToken'];
-$email = $_POST['stripeEmail'];
+$email = $_POST['email'];
+$username = $_POST["username"] . "@decaturmakers.org";
 $type = $_POST['type'];
-$recurring = $_POST['recurring'];
+$recurring = empty($_POST["autorenew"]) ? "" : "checked";
 
 // Get plan from Stripe
 $plan = retrieveStripePlan($type);
@@ -26,8 +27,9 @@ if (empty($plan)) {
 $customer = createStripeCustomer($email, $token);
 echo "Customer $firstname $lastname created with ID: " . $customer->id . "<br>";
 // TODO: The $customer->id needs to be stored in G Suite
+// TODO: The user $username needs to be created in G Suite
 
-if ($recurring == 'true') {
+if ($recurring == 'checked') {
     // Subscribe the new customer as basic individual
     subscribeStripeCustomer($customer->id, $type);
     echo "Customer $email has been subscribed to " . $plan->name . "<br>";
