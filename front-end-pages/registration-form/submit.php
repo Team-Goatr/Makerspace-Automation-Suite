@@ -39,7 +39,10 @@ if ($recurring == 'checked') {
 
 $password = "ChangeMe";
 $status = "Pending";
-$expiration = ""
+
+$now = new DateTime();
+$now.modify("+1 month");
+$expiration = $now.date_format($DATE_ATOM);
 
 //Create Customer
 $newUser = userFactory($username, $email, $firstname, $lastname, $password, $stripeToken, $plan, $status, $recurring, $expiration);
