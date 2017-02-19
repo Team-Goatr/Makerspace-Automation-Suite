@@ -25,73 +25,56 @@ $planname = $plan->name;
 $plandollars = $planamount/100;
 
 echo <<<END
-
-        <h1>Registration Confirmation Page</h1>
-        <div class="row">
-            <form action="?action=submit" method="POST" class="form-horizonal">
-                <div class="form-group">
-                    <label for="first" class="col-md-3 control-label">First Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" style="width: 60%" class="form-control" id="first" name="firstname" value="$first" readonly="readonly">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="last" class="col-md-3 control-label">Last Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" style="width: 60%" class="form-control" id="last" name="lastname" value="$last" readonly="readonly">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="col-md-3 control-label">Email:</label>
-                    <div class="col-sm-10">
-                        <input type="email" style="width: 60%" class="col-md-6 form-control" id="email" name="email" value="$email" readonly="readonly">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="username" class="col-md-3 control-label" >Username:</label>
-                    <div class="col-sm-10">
-                        <input type="text" style="width: 60%" class="col-md-6 form-control" id="username" name="username" value="$username" readonly="readonly">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="type" class="col-md-3 control-label" >Membership type:</label>
-                    <div class="col-sm-10">
-                        <label>$planname for $plandollars/mo</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-10">
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="autorenew" $checked> Auto-renew Membership</label>
+        
+        <br>
+        <h3>Registration Confirmation Page</h3>
+        
+        <div class="container">
+            <div class="row">
+                <form action="?action=submit" method="POST" class="form-horizonal">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="first" class="control-label">First Name:</label>
+                            <input type="text" class="form-control" id="first" name="firstname" value="$first" readonly="readonly">
                         </div>
-                    </div>
-                </div>
 
-                <input type="hidden" value="$type" name="type" />
+                        <div class="form-group">
+                            <label for="last" class="control-label">Last Name:</label>
+                            <input type="text" class="form-control" id="last" name="lastname" value="$last" readonly="readonly">
+                        </div>
 
-                <div class="form-group">
-                    <div class="col-xs-offset-2 col-xs-10">
-                        <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                        <div class="form-group">
+                            <label for="email" class="control-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" value="$email" readonly="readonly">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username" class="control-label" >Username:</label>
+                            <input type="text" class="form-control" id="username" name="username" value="$username" readonly="readonly">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type" class="control-label" >Membership type:</label>
+                            <label>$planname for $plandollars/mo</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="autorenew" $checked> Auto-renew Membership</label>
+                            </div>
+                        </div>
+
+                        <input type="hidden" value="$type" name="type" />
+
+                        <div class="form-group">
 END;
                         getStripeCheckout($email, $planamount);
 echo <<<END
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-
-        <!-- ANGULAR -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-
-        <!-- BOOTSTRAP -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 END;
 
