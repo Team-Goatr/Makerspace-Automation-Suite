@@ -42,4 +42,38 @@ function getUser($email) {
     return $service->users->get($email, $optParams);
 }
 
-?>
+/**
+ * Adds the user-object given to the Google Service Directory
+ */
+function createUser($user) {
+    $service = getService();
+    $service->users->insert($user);
+}
+
+function userFactory($email, $firstName, $lastName, $password) {
+    $userData = array(
+        'kind' => 'admin#directory#user',
+        'primaryEmail' => $email,
+        'password' => $password,
+        'name' => array(
+            'givenName' => $firstName,
+            'familyName' => $lastName
+        )
+    );
+    $user = new Google_Service_Directory_User($userData);
+    return $user;
+}
+
+/**
+ * Updates the GSuite JSON stored in the credentials path
+ */
+function updateGSuiteCredentials($newCredentials) {
+    file_put_contents(CREDENTIALS_PATH, $newCredentials);
+}
+
+/**
+ * Returns the GSuite JSON stored in the credentials path
+ */
+function getGSuiteCredentials() {
+    return file_get_contents(CREDENTIALS_PATH);
+}
