@@ -1,5 +1,6 @@
 <?php
-include dirname(__DIR__).'/resources/StripeAPI.php';
+require dirname(__DIR__).'/resources/StripeAPI.php';
+require dirname(__DIR__).'/resources/GSuiteAPI.php';
 
 // Dump everything (for testing)
 print_r($_POST);
@@ -24,8 +25,7 @@ if (empty($plan)) {
 // Create a new customer
 $customer = createStripeCustomer($email, $token);
 echo "Customer $firstname $lastname created with ID: " . $customer->id . "<br>";
-// TODO: The $customer->id needs to be stored in G Suite
-// TODO: The user $username needs to be created in G Suite
+
 
 if ($recurring == 'checked') {
     // Subscribe the new customer as basic individual
@@ -35,5 +35,15 @@ if ($recurring == 'checked') {
     $charge = chargeStripeCustomer($customer->id, $plan->amount);
     echo "Customer $email has been charged for " . $plan->name . "<br>";
 }
+
+
+$password = "ChangeMe";
+$status = "Pending";
+$expiration = ""
+
+//Create Customer
+$newUser = userFactory($username, $email, $firstname, $lastname, $password, $stripeToken, $plan, $status, $recurring, $expiration);
+
+createUser($newUser);
 
 ?>

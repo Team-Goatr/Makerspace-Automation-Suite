@@ -50,15 +50,29 @@ function createUser($user) {
     $service->users->insert($user);
 }
 
-function userFactory($email, $firstName, $lastName, $password) {
+function userFactory($username, $email, $firstName, $lastName, $password, $stripeToken, $subcriptionType, $subscriptionStatus, $subscriptionRecurring, $subscriptionExpiration) {
     $userData = array(
         'kind' => 'admin#directory#user',
-        'primaryEmail' => $email,
+        'primaryEmail' => $username,
         'password' => $password,
         'name' => array(
             'givenName' => $firstName,
             'familyName' => $lastName
-        )
+        ),
+        'emails': array(
+            array(
+                'address' => $email
+            )
+        ),
+        'customSchemas' =>  array(
+            'Subscription_Management' => array(
+                'Subscription_Type' => $subcriptionType,
+                'Subscription_Status' => $subscriptionStatus,
+                'Subscription_Recurring' => $subscriptionRecurring,
+                'Subscription_Expiration' => $subscriptionExpiration,
+                'Stripe_ID' => $stripeToken
+                ) 
+            )
     );
     $user = new Google_Service_Directory_User($userData);
     return $user;
