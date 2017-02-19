@@ -137,7 +137,7 @@ function subscribeStripeCustomer($id, $plan) {
 
     \Stripe\Subscription::create(array(
       "customer" => $id,
-      "plan" => $plan,
+      "plan" => $plan
     ));
 }
 
