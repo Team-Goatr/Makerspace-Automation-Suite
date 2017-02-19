@@ -1,7 +1,7 @@
 <?php
 include dirname(__DIR__).'/resources/StripeAPI.php';
 
-echo "<html><body>\n";
+//echo "<html><body>\n";
 
 // Dump everything (for testing)
 print_r($_POST);
@@ -38,6 +38,6 @@ if ($recurring == 'checked') {
     echo "Customer $email has been charged for " . $plan->name . "<br>";
 }
 
-echo "</body></html>";
+//echo "</body></html>";
 
 ?>

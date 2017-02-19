@@ -3,9 +3,6 @@ include dirname(__DIR__).'/resources/StripeAPI.php';
 
 //get_header();
 
-//$submitfile = plugins_url('submit.php', __FILE__);
-$submitfile = 'submit.php';
-
 // Things that were POST'ed
 $first = $_POST["firstname"];
 $last = $_POST["lastname"];
@@ -29,11 +26,9 @@ $plandollars = $planamount/100;
 
 echo <<<END
 
-<html>
-    <body>
         <h1>Registration Confirmation Page</h1>
         <div class="row">
-            <form action="$submitfile" method="POST" class="form-horizonal">
+            <form action="?action=submit" method="POST" class="form-horizonal">
                 <div class="form-group">
                     <label for="first" class="col-md-3 control-label">First Name:</label>
                     <div class="col-sm-10">
@@ -99,9 +94,6 @@ echo <<<END
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </body>
-</html>
-
 
 END;
 
