@@ -3,7 +3,7 @@
     <main id="main" class="site-main" role="main">
 		<?php
 		switch($_GET['action']) {
-			case 'review': include 'confirm.php'; break;
+			case 'review': include 'review.php'; break;
 			case 'submit': include 'submit.php'; break;
             default: include 'registration-form.html'; break;
 		}
