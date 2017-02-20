@@ -8,3 +8,5 @@ if (isset($_POST["customer-id"]) && isset($_POST["stripeToken"])) {
 } else {
     echo 'Invalid parameters';
 }
+
+// Update User in G Suite
