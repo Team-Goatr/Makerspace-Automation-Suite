@@ -95,7 +95,7 @@ function updateUser($username, $properties) {
 function addRole($username, $role) {
     $roles = listRoles($username);
     if (!assertRole($role)) {
-        $roles[] = $role
+        $roles[] = $role;
         //Update user Object
     }
 }
