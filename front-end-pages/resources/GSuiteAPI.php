@@ -106,7 +106,7 @@ function listRoles($username) {
         'projection' => 'custom',
         'customFieldMask' => 'Subscription_Management',
     );
-    return $service->users->get($email, $optParams);
+    return $service->users->get($username, $optParams);
 }
 
 function assertRole($username, $role) {
