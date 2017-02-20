@@ -27,8 +27,6 @@ try {
     // Create a new customer
     $customer = createStripeCustomer($email, $token);
     error_log("Customer $firstname $lastname created with ID: " . $customer->id);
-    // TODO: The $customer->id needs to be stored in G Suite
-    // TODO: The user $username needs to be created in G Suite
 
     if ($recurring == 'checked') {
         // Subscribe the new customer as basic individual
@@ -43,8 +41,8 @@ try {
 	$status = "Pending";
 
 	$now = new DateTime();
-	$now.modify("+1 month");
-	$expiration = $now.date_format($DATE_ATOM);
+	$now->modify("+1 month");
+	$expiration = $now->date_format($DATE_ATOM);
 	
 	//Create Customer
 	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $stripeToken, $plan, $status, $recurring, $expiration);
