@@ -14,7 +14,7 @@ try {
     $lastname = $_POST['lastname'];
     $token = $_POST['stripeToken'];
     $email = $_POST['email'];
-    $username = $_POST["username"] . "@decaturmakers.org";
+    $username = $_POST["username"];
     $type = $_POST['type'];
     $recurring = empty($_POST["autorenew"]) ? "" : "checked";
 
