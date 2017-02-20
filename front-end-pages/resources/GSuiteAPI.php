@@ -101,7 +101,7 @@ function addRole($username, $role) {
 }
 
 function removeRole($username, $role) {
-
+    return FALSE;
 }
 
 function listRoles($username) {
