@@ -4,11 +4,8 @@ wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bo
 wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
 wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 
-include dirname(__DIR__).'/resources/StripeAPI.php';
-
-// Dump everything (for testing)
-//print_r($_POST);
-//echo "<br>";
+require dirname(__DIR__).'/resources/StripeAPI.php';
+require dirname(__DIR__).'/resources/GSuiteAPI.php';
 
 
 try {
