@@ -42,7 +42,7 @@ try {
 	$expiration = $now->format($DATE_ATOM);
 	
 	//Create Customer
-	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $stripeToken, $plan, $status, $recurring, $expiration);
+	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring, $expiration);
 	createUser($newUser);
 
     // If no errors have been thrown, the subscription is successful
