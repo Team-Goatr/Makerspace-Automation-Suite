@@ -1,9 +1,5 @@
 <?php
 
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
 include dirname(__DIR__).'/../resources/GSuiteAPI.php';
 include dirname(__DIR__).'/../resources/StripeAPI.php';
 
