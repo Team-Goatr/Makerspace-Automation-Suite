@@ -103,7 +103,14 @@ function removeRole($username, $role) {
 function listRoles($username) {
     $user = getUser($username);
     $roles = $user->getCustomSchemas()['roles']['permissions'];
-    return $roles;
+
+    $simpleRoles = array_map(stripRoles, $roles);
+
+    return $simpleRoles;
+}
+
+function stripRoles($role) {
+    return $role['value'];
 }
 
 function assertRole($username, $role) {
