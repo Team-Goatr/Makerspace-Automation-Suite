@@ -10,6 +10,7 @@ include dirname(__DIR__).'/resources/StripeAPI.php';
 //print_r($_POST);
 //echo "<br>";
 
+
 try {
     // Get things submitted to the form
     $firstname = $_POST['firstname'];
@@ -71,3 +72,4 @@ END;
         </body>
 END;
 }
+
