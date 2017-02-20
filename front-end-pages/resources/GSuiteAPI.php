@@ -78,7 +78,7 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
                 ) 
             )
     );
-    error_log(var_dump($userData));
+    //error_log(var_dump($userData));
     
     $user = new Google_Service_Directory_User($userData);
     return $user;
