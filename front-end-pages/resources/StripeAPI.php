@@ -135,10 +135,11 @@ function subscribeStripeCustomer($id, $plan) {
     $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
     \Stripe\Stripe::setApiKey($stripe_secret_key);
 
-    \Stripe\Subscription::create(array(
-      "customer" => $id,
-      "plan" => $plan
+    $customer = retrieveStripeCustomer($id);
+    $customer->updateSubscription(array(
+        "plan" => $plan
     ));
+    $customer->save();
 }
 
 /**
