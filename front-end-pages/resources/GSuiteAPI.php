@@ -106,7 +106,7 @@ function listRoles($username) {
         'projection' => 'custom',
         'customFieldMask' => 'Roles',
     );
-    var_dump($service->users->get($username, $optParams));
+    return $service->users->get($username, $optParams);
 }
 
 function assertRole($username, $role) {
