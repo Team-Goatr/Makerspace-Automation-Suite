@@ -11,3 +11,8 @@ h3.mas {
 	margin: auto;
 	display: inline-block;
 }
+
+.panel-info .panel-heading {
+	color: white !important;
+	background-color: #0085A7 !important;
+}
