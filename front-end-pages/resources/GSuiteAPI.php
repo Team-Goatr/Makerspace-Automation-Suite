@@ -72,12 +72,14 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
             'Subscription_Management' => array(
                 'Subscription_Type' => $subcriptionType,
                 'Subscription_Status' => $subscriptionStatus,
-                'Subscription_Recurring' => $subscriptionRecurring,
-                'Subscription_Expiration' => $subscriptionExpiration,
+                //'Subscription_Recurring' => $subscriptionRecurring,
+                //'Subscription_Expiration' => $subscriptionExpiration,
                 'Stripe_ID' => $stripeToken
                 ) 
             )
     );
+    //error_log(var_dump($userData));
+    
     $user = new Google_Service_Directory_User($userData);
     return $user;
 }
