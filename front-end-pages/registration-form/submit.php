@@ -63,6 +63,7 @@ END;
     
     
 } catch (Exception $e) {
+    echo $e->getMessage();
      echo <<<END
         <br>
         <body>
