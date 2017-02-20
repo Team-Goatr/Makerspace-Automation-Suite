@@ -37,7 +37,7 @@ function getUser($email) {
     $service = getService();
     $optParams = array(
         'projection' => 'custom',
-        'customFieldMask' => 'Subscription_Management',
+        'customFieldMask' => 'Subscription_Management,roles',
     );
     return $service->users->get($email, $optParams);
 }
@@ -101,12 +101,9 @@ function removeRole($username, $role) {
 }
 
 function listRoles($username) {
-    $service = getService();
-    $optParams = array(
-        'projection' => 'custom',
-        'customFieldMask' => 'Subscription_Management,roles',
-    );
-    return $service->users->get($username, $optParams);
+    $user = getUser($username);
+    $roles = $user->getCustomSchemas()->getRoles()->getPermissions();
+
 }
 
 function assertRole($username, $role) {
