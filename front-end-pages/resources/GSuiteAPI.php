@@ -104,7 +104,7 @@ function listRoles($username) {
     $service = getService();
     $optParams = array(
         'projection' => 'custom',
-        'customFieldMask' => 'Subscription_Management,Roles',
+        'customFieldMask' => 'Subscription_Management,roles',
     );
     return $service->users->get($username, $optParams);
 }
