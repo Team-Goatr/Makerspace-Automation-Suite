@@ -102,7 +102,7 @@ function removeRole($username, $role) {
 
 function listRoles($username) {
     $user = getUser($username);
-    $roles = $user->getCustomSchemas()->getRoles()->getPermissions();
+    $roles = $user->getCustomSchemas()['roles']['permissions'];
 
 }
 
