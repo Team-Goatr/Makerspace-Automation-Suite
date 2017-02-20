@@ -50,6 +50,10 @@ function createUser($user) {
     $service->users->insert($user);
 }
 
+/**
+ * Returns a Google_Service_Directory_User that can be used to make a new user
+ */
+
 function userFactory($username, $email, $firstName, $lastName, $password, $stripeToken, $subcriptionType, $subscriptionStatus, $subscriptionRecurring, $subscriptionExpiration) {
     $userData = array(
         'kind' => 'admin#directory#user',
@@ -76,6 +80,37 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
     );
     $user = new Google_Service_Directory_User($userData);
     return $user;
+}
+
+/*
+ * @param $username the UID of a user ending in @decaturmakers.org
+ * @param $properties The properties that are to be updated
+ */
+
+function updateUser($username, $properties) {
+    $service = getService();
+    $service->users->update($user);
+}
+
+function addRole($username, $role) {
+
+}
+
+function removeRole($username, $role) {
+
+}
+
+function listRoles($username) {
+    $service = getService();
+    $optParams = array(
+        'projection' => 'custom',
+        'customFieldMask' => 'Roles',
+    );
+    var_dump($service->users->get($username, $optParams));
+}
+
+function assertRole($username, $role) {
+
 }
 
 /**
