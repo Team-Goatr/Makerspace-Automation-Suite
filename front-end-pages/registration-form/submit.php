@@ -39,6 +39,17 @@ try {
         error_log("Customer $email has been charged for " . $plan->name);
     }
 
+    $password = "ChangeMe";
+	$status = "Pending";
+
+	$now = new DateTime();
+	$now.modify("+1 month");
+	$expiration = $now.date_format($DATE_ATOM);
+	
+	//Create Customer
+	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $stripeToken, $plan, $status, $recurring, $expiration);
+	createUser($newUser);
+
     // If no errors have been thrown, the subscription is successful
     echo <<<END
         <br>
