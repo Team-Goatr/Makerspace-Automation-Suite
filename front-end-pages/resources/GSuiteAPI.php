@@ -63,7 +63,7 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
             'givenName' => $firstName,
             'familyName' => $lastName
         ),
-        'emails': array(
+        'emails'=> array(
             array(
                 'address' => $email
             )
