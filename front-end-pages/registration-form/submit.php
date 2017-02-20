@@ -40,6 +40,7 @@ try {
 
     // If no errors have been thrown, the subscription is successful
     echo <<<END
+        <br>
         <body>
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -56,6 +57,7 @@ END;
     
 } catch (Exception $e) {
      echo <<<END
+        <br>
         <body>
             <div class="panel panel-danger">
                 <div class="panel-heading">
