@@ -114,7 +114,8 @@ function stripRoles($role) {
 }
 
 function assertRole($username, $role) {
-
+    $roles = listRoles($username);
+    return in_array($role, $roles);
 }
 
 /**
