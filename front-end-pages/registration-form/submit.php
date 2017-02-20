@@ -1,8 +1,6 @@
 <?php
 include dirname(__DIR__).'/resources/StripeAPI.php';
 
-echo "<html><body>\n";
-
 // Dump everything (for testing)
 print_r($_POST);
 echo "<br>";
@@ -31,13 +29,11 @@ echo "Customer $firstname $lastname created with ID: " . $customer->id . "<br>";
 
 if ($recurring == 'checked') {
     // Subscribe the new customer as basic individual
-    subscribeStripeCustomer($customer->id, $type);
+    subscribeStripeCustomer($customer->id, $plan->id);
     echo "Customer $email has been subscribed to " . $plan->name . "<br>";
 } else {
     $charge = chargeStripeCustomer($customer->id, $plan->amount);
     echo "Customer $email has been charged for " . $plan->name . "<br>";
 }
-
-echo "</body></html>";
 
 ?>

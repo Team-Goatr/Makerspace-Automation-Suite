@@ -2,6 +2,7 @@
 echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
 
 include dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+include dirname(__DIR__).'../../../resources/StripeAPI.php';
 
 $user = getUser($_GET['email']);
 
@@ -14,136 +15,28 @@ $user = getUser($_GET['email']);
 					</div>
 				</th>
 			</tr>
-<!-- 
-			<tr colspan="3" class="mas">
-				<?php
-					echo '<img class="mas" src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic">' . "\n";
-				?>
 
-				<h1 class="mas">First Last Name</h1>
-			</tr>
- -->
-
-			<!-- <tr class="mas">
-				<td class="mas">
-					<fieldset>
-						<legend>Payment Information:</legend>
-						  	<label for="ccNumber" class="mas">Credit Card:</label>
-						  	<input type="text" id="ccNumber" name="ccNumber" class="mas">
-
-						  	<br>
-
-						  	<label for="ccDate" class="mas">Exp. Date:</label>
-						  	<input type="text" id="ccDate" name="ccDate" class="mas">
-
-						  	<br>
-
-						  	<label for="ccCode" class="mas">Security Code:</label>
-						  	<input type="text" id="ccCode" name="ccCode" class="mas">
-					</fieldset>
-				</td>
-
-				<td class="mas">
-					<fieldset>
-						<legend>Address:</legend>
-							<label for="street" class="mas">Street:</label>
-							<input type="text" id="street" name="street" class="mas">
-
-							<br>
-
-							<label for="city" class="mas">City:</label>
-							<input type="text" id="city" name="city" class="mas">
-
-							<br>
-
-							<label for="state" class="mas">State:</label>
-							<input type="text" id="state" name="state" class="mas">
-
-							<br>
-
-							<label for="zip" class="mas">Zip Code:</label>
-							<input type="text" id="zip" name="zip" class="mas">
-					</fieldset>
-				</td>
-
-				<td class="mas">
-					<fieldset>
-						<legend>Access Group:</legend>
-					</fieldset>
-
-					<br>
-
-					<fieldset>
-						<legend>Certifications:</legend>
-					</fieldset>
-				</td>
-			</tr>
-
-			<tr class="mas">
-				<button class="mas-save" type="submit">Save Changes</button>
-				<button class="mas-cancel">Cancel</button>		
-			</tr>
- -->
 			<tr>
 				<td class="mas">	
 					<form>
 
 					  <div id="name">
 					    <label for="firstName" class="mas">First Name:</label>
-					    <input type="text" id="firstName" name="firstName" class="mas">
-
+					    <input type="text" id="firstName" name="firstName" class="mas" value="<?php echo $user->getName()->getGivenName();?>">
 					    <br>
 
 					    <label class="mas">Last Name:</label>
-					    <input type="text" id="lastName" name="lastName" class="mas">
+					    <input type="text" id="lastName" name="lastName" class="mas" value="<?php echo $user->getName()->getFamilyName();?>">
 					  </div>
-
-					  <br>
-
-					  <div id="cc">
-					  	<label for="ccNumber" class="mas">Credit Card:</label>
-					  	<input type="text" id="ccNumber" name="ccNumber" class="mas">
-
-					  	<br>
-
-					  	<label for="ccDate" class="mas">Exp. Date:</label>
-					  	<input type="text" id="ccDate" name="ccDate" class="mas">
-
-					  	<br>
-
-					  	<label for="ccCode" class="mas">Security Code:</label>
-					  	<input type="text" id="ccCode" name="ccCode" class="mas">
-					  </div>
-
 					</form>
-				</td>
-
-				<td class="mas">
-
-					<form>
-						
-						<div id="address">
-							<label for="street" class="mas">Street:</label>
-							<input type="text" id="street" name="street" class="mas">
-
-							<br>
-
-							<label for="city" class="mas">City:</label>
-							<input type="text" id="city" name="city" class="mas">
-
-							<br>
-
-							<label for="state" class="mas">State:</label>
-							<input type="text" id="state" name="state" class="mas">
-
-							<br>
-
-							<label for="zip" class="mas">Zip Code:</label>
-							<input type="text" id="zip" name="zip" class="mas">
-						</div>
-
-					</form>
-
+                    <br>
+                    <form action="update-card.php" method="POST">
+                        <input type="hidden" value="<?php 
+                            $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
+                            $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
+                            echo $stripe_id; ?>" name="customer-id">
+                        <?php getStripeUpdateCard($_GET['email']); ?>
+                    </form>
 				</td>
 
 				<td class="mas">
