@@ -104,7 +104,7 @@ function listRoles($username) {
     $user = getUser($username);
     $roles = $user->getCustomSchemas()['roles']['permissions'];
 
-    $simpleRoles = array_map(stripRoles, $roles);
+    $simpleRoles = array_map("stripRoles", $roles);
 
     return $simpleRoles;
 }
