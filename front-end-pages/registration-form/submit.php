@@ -25,7 +25,7 @@ try {
 
     // Create a new customer
     $customer = createStripeCustomer($email, $token);
-     error_log("Customer $firstname $lastname created with ID: " . $customer->id);
+    error_log("Customer $firstname $lastname created with ID: " . $customer->id);
     // TODO: The $customer->id needs to be stored in G Suite
     // TODO: The user $username needs to be created in G Suite
 
@@ -51,7 +51,7 @@ try {
                 </div>
             </div>
         </body>
-    END;
+END;
     
     
 } catch (Exception $e) {
@@ -67,6 +67,5 @@ try {
                 </div>
             </div>
         </body>
-    END;
+END;
 }
-?>
