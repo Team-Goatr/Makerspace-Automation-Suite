@@ -93,11 +93,11 @@ function updateUser($username, $properties) {
 }
 
 function addRole($username, $role) {
-
+    return FALSE;
 }
 
 function removeRole($username, $role) {
-
+    return FALSE;
 }
 
 function listRoles($username) {
