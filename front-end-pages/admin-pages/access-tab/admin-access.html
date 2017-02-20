@@ -23,35 +23,19 @@
             <table class="mas">
                 <th class="mas" colspan="4">Permissions</th>
                 <tr class="mas">
-                    <td class="mas">	
+                    <td class="mas" width="10%">	
                         <div class="checkbox">
                           <label><input class="form-control" type="checkbox" value="" checked></label>
                         </div>
                     </td>
-                    <td class="mas">	
+                    <td class="mas" width="50%">	
                         Exterior Doors
                     </td>
-                    <td class="mas">
+                    <td width="40%">
                         <span>
-                            <label><input class="form-control" maxlength="2" name="hour_start" id="hour_start" size="2"></label>
-                            :
-                            <label><input class="form-control" maxlength="2" name="min_start" id="min_start" size="2"></label>
-                            <label>
-                                <select class="form-control" name="period_start" id="period_start">
-                                    <option value="AM">am</option>
-                                    <option value="PM">pm</option>
-                                </select>
-                            </label>
-                             - 
-                            <label><input class="form-control" maxlength="2" name="hour_end" id="hour_end" size="2"></label>
-                            :
-                            <label><input class="form-control" maxlength="2" name="min_end" id="min_end" size="2"></label>
-                            <label>
-                                <select class="form-control" name="period_end" id="period_end">
-                                    <option value="AM">am</option>
-                                    <option value="PM">pm</option>
-                                </select>
-                            </label>
+                        <label style="width: 100px"><input type="time" style="" class="form-control" id="start" placeholder="Start Time"></label>
+                        - 
+                        <label style="width: 100px"><input type="time" style="" class="form-control" id="end" placeholder="End Time"></label>
                         </span>
                     </td>
                 </tr>
