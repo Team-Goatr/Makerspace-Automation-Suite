@@ -63,7 +63,7 @@ END;
     
     
 } catch (Exception $e) {
-    echo $e->getTraceAsString();
+    echo $e->message();
      echo <<<END
         <br>
         <body>
