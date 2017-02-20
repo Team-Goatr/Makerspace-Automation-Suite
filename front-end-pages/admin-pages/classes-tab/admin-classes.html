@@ -1,87 +1,69 @@
 <?php
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+    wp_enqueue_style('font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
     wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
     wp_enqueue_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js');
+
+    echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-classes.css', __FILE__ ) . '">' . "\n";
 ?>
 
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<?php
-            echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-classes.css', __FILE__ ) . '">' . "\n";
-        ?>
-		<title>Classes</title>
-	</head>
-
-	<body style="background-color: #EBEBEB">
-		<br>
-		<div class="row">
-			<div class="col-md-5">
-				<div class="panel panel-info">
-				  <div class="panel-heading text-center">
-				    <h3 class="panel-title">Class Details</h3>
-				  </div>
-				  <div class="panel-body">
-				    Select a class to the right to view and edit details.
-				  </div>
-				</div>
-
-				<div>
-					<a href="admin.php?page=mas-plugin&content=7"><button class="btn mas-create">Create A Class</button></a>
-				</div>
+<body style="background-color: #EBEBEB">
+	<br>
+	<div class="row">
+		<div class="col-md-5">
+			<div class="panel panel-info">
+			  <div class="panel-heading text-center">
+			    <h3 class="panel-title">Class Details</h3>
+			  </div>
+			  <div class="panel-body">
+			    Select a class to the right to view and edit details.
+			  </div>
 			</div>
 
-			<div class="col-md-6">
-				<table class="table table-bordered table-striped table-hover" style="background-color: white">
-					<tr>
-						<th></th>
-						<th>Class Title</th>
-						<th>Date</th>
-						<th># Registered</th>
-					</tr>
-
-					<tr>
-						<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
-						<td>Power Tools 101</td>
-						<td>3/30/2017</td>
-						<td>12/20</td>
-					</tr>
-
-					<tr>
-						<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
-						<td>Intro to Raspberry Pi</td>
-						<td>2/30/2017</td>
-						<td>10/15</td>
-					</tr>
-
-					<tr>
-						<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
-						<td>Build Your Own Skateboard</td>
-						<td>4/2/2017</td>
-						<td>8/10</td>
-					</tr>
-
-					<tr>
-						<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
-						<td>Power Tools 101</td>
-						<td>3/30/2017</td>
-						<td>12/20</td>
-					</tr>
-				</table>
+			<div>
+				<a href="admin.php?page=mas-plugin&content=7"><button class="btn mas-create">Create A Class</button></a>
 			</div>
 		</div>
 
-	 	<!-- BOOTSTRAP -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<div class="col-md-6">
+			<table class="table table-bordered table-striped table-hover" style="background-color: white">
+				<tr>
+					<th></th>
+					<th>Class Title</th>
+					<th>Date</th>
+					<th># Registered</th>
+				</tr>
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+				<tr>
+					<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
+					<td>Power Tools 101</td>
+					<td>3/30/2017</td>
+					<td>12/20</td>
+				</tr>
 
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+				<tr>
+					<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
+					<td>Intro to Raspberry Pi</td>
+					<td>2/30/2017</td>
+					<td>10/15</td>
+				</tr>
 
-		<!-- FONT AWESOME -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	</body>
-</html>
+				<tr>
+					<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
+					<td>Build Your Own Skateboard</td>
+					<td>4/2/2017</td>
+					<td>8/10</td>
+				</tr>
+
+				<tr>
+					<th style="text-align: center"><i class="fa fa-trash" aria-hidden="true"></i></th>
+					<td>Power Tools 102</td>
+					<td>3/30/2017</td>
+					<td>12/20</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
