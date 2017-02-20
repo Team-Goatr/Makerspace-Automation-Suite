@@ -37,7 +37,7 @@ function getUser($email) {
     $service = getService();
     $optParams = array(
         'projection' => 'custom',
-        'customFieldMask' => 'Subscription_Management',
+        'customFieldMask' => 'Subscription_Management,roles',
     );
     return $service->users->get($email, $optParams);
 }
@@ -50,18 +50,72 @@ function createUser($user) {
     $service->users->insert($user);
 }
 
-function userFactory($email, $firstName, $lastName, $password) {
+/**
+ * Returns a Google_Service_Directory_User that can be used to make a new user
+ */
+
+function userFactory($username, $email, $firstName, $lastName, $password, $stripeToken, $subcriptionType, $subscriptionStatus, $subscriptionRecurring, $subscriptionExpiration) {
     $userData = array(
         'kind' => 'admin#directory#user',
-        'primaryEmail' => $email,
+        'primaryEmail' => $username,
         'password' => $password,
         'name' => array(
             'givenName' => $firstName,
             'familyName' => $lastName
-        )
+        ),
+        'emails'=> array(
+            array(
+                'address' => $email
+            )
+        ),
+        'customSchemas' =>  array(
+            'Subscription_Management' => array(
+                'Subscription_Type' => $subcriptionType,
+                'Subscription_Status' => $subscriptionStatus,
+                'Subscription_Recurring' => $subscriptionRecurring,
+                'Subscription_Expiration' => $subscriptionExpiration,
+                'Stripe_ID' => $stripeToken
+                ) 
+            )
     );
     $user = new Google_Service_Directory_User($userData);
     return $user;
+}
+
+/*
+ * @param $username the UID of a user ending in @decaturmakers.org
+ * @param $properties The properties that are to be updated
+ */
+
+function updateUser($username, $properties) {
+    $service = getService();
+    $service->users->update($user);
+}
+
+function addRole($username, $role) {
+
+}
+
+function removeRole($username, $role) {
+
+}
+
+function listRoles($username) {
+    $user = getUser($username);
+    $roles = $user->getCustomSchemas()['roles']['permissions'];
+
+    $simpleRoles = array_map("stripRoles", $roles);
+
+    return $simpleRoles;
+}
+
+function stripRoles($role) {
+    return $role['value'];
+}
+
+function assertRole($username, $role) {
+    $roles = listRoles($username);
+    return in_array($role, $roles);
 }
 
 /**
