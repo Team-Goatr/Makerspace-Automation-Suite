@@ -19,8 +19,8 @@ function prefix_admin_update_keys() {
     if (isset($_POST["gsuite-json"])) {
         updateGSuiteCredentials($_POST["gsuite-json"]);
     }
+    
+    echo 'Testing stuff';
 
-    wp_redirect(admin_url('admin.php?page=mas-plugin&content=4'));
+//    wp_redirect(admin_url('admin.php?page=mas-plugin&content=4'));
 }
-
-do_action('admin_post_update_keys');
