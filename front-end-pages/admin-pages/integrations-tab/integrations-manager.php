@@ -1,9 +1,9 @@
 <?php
 
 // Adding the keys to the wordpress hooks
-add_action('admin_post_update_keys', 'update_keys');
+add_action('admin_post_update_keys', 'prefix_admin_update_keys');
 
-function update_keys() {
+function prefix_admin_update_keys() {
     include dirname(__DIR__).'/../resources/GSuiteAPI.php';
     include dirname(__DIR__).'/../resources/StripeAPI.php';
 
