@@ -3,25 +3,11 @@
 // Preventing loading direct from browser
 defined( 'ABSPATH' ) or die();
 
+
+include __DIR__ . '/../../resources/GSuiteAPI.php';
+include __DIR__ . '/../../resources/StripeAPI.php';
+
 ?>
-
-<!DOCTYPE html>
-<html>
-	
-	<head>
-		<?php
-                echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integrations.css', __FILE__ ) . '">' . "\n";
-                ?>
-
-		<title>
-			Integrations Page for Admin
-		</title>
-	</head>
-    
-    <?php
-        include __DIR__ . '/../../resources/GSuiteAPI.php';
-        include __DIR__ . '/../../resources/StripeAPI.php';
-    ?>
 	
 	<body>
 

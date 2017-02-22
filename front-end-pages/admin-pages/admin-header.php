@@ -3,7 +3,9 @@
 // Preventing loading direct from browser
 defined( 'ABSPATH' ) or die();
 
-include 'admin-header.html';?>
+include 'admin-header.html';
+
+?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
