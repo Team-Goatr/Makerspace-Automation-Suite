@@ -19,5 +19,5 @@ function update_keys() {
         updateGSuiteCredentials($_POST["gsuite-json"]);
     }
 
-    echo '<script>window.location = "' . admin_url('admin.php?page=mas-plugin&content=4)"</script>');
+    echo wp_redirect(admin_url('admin.php?page=mas-plugin&content=4)"</script>'));
 }
