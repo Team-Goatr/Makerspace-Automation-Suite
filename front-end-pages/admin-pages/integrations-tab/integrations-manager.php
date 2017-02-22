@@ -4,7 +4,7 @@
 add_action('admin_post_update_keys', 'prefix_admin_update_keys');
 
 function prefix_admin_update_keys() {
-    echo 'Test';
+    echo 'Testing';
     include dirname(__DIR__).'/../resources/GSuiteAPI.php';
     include dirname(__DIR__).'/../resources/StripeAPI.php';
 
@@ -22,3 +22,5 @@ function prefix_admin_update_keys() {
 
     wp_redirect(admin_url('admin.php?page=mas-plugin&content=4'));
 }
+
+do_action('admin_post_update_keys');
