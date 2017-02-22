@@ -36,4 +36,4 @@ function prefix_admin_add_foobar() {
 //    echo '<h1>Success</h1>';
 //
 //    wp_redirect(admin_url('admin.php?page=mas-plugin&content=4'));
-}
+//}
