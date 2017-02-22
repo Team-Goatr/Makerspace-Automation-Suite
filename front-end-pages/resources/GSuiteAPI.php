@@ -1,4 +1,8 @@
 <?php
+
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 # Constants used for G Suite connection

@@ -1,4 +1,8 @@
 <?php
+
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
 echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-table.css', __FILE__ ) . '">' . "\n";
 ?>
 <table class="member-table">

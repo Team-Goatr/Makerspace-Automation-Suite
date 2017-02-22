@@ -1,5 +1,8 @@
 <?php
 
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
 include dirname(__DIR__).'../../../resources/StripeAPI.php';
 
 if (isset($_POST["customer-id"]) && isset($_POST["stripeToken"])) {
