@@ -1,21 +1,24 @@
 <?php
 
-// Preventing loading direct from browser
-defined( 'ABSPATH' ) or die();
+// Ensuring that this can only be accessed by administrators
+if (current_user_can('edit_users')) {
+    include dirname(__DIR__).'/../resources/GSuiteAPI.php';
+    include dirname(__DIR__).'/../resources/StripeAPI.php';
 
-include dirname(__DIR__).'/../resources/GSuiteAPI.php';
-include dirname(__DIR__).'/../resources/StripeAPI.php';
+    if (isset($_POST["stripe-public"])) {
+        updateStripePublic($_POST["stripe-public"]);
+    }
 
-if (isset($_POST["stripe-public"])) {
-    updateStripePublic($_POST["stripe-public"]);
+    if (isset($_POST["stripe-private"])) {
+        updateStripeSecret($_POST["stripe-private"]);
+    }
+
+    if (isset($_POST["gsuite-json"])) {
+        updateGSuiteCredentials($_POST["gsuite-json"]);
+    }
+
+    echo '<script>window.location = "https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4"</script>';
+} else {
+    echo '<script>window.location = "https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4"</script>';
 }
 
-if (isset($_POST["stripe-private"])) {
-    updateStripeSecret($_POST["stripe-private"]);
-}
-
-if (isset($_POST["gsuite-json"])) {
-    updateGSuiteCredentials($_POST["gsuite-json"]);
-}
-
-echo '<script>window.location = "https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4"</script>';
