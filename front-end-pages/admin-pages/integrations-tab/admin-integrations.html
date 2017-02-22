@@ -7,6 +7,7 @@ echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integ
 
 include __DIR__ . '/../../resources/GSuiteAPI.php';
 include __DIR__ . '/../../resources/StripeAPI.php';
+include __DIR__ . 'integrations-manager.php';
 
 ?>
 	
@@ -14,7 +15,7 @@ include __DIR__ . '/../../resources/StripeAPI.php';
 
 		<table class="mas">
 			<tr class="mas">
-                <form action="<?php echo esc_url( admin_url('front-end-pages/admin-pages/integrations-tab/integrations-manager.php')); ?>" method="post">
+                <form action="<?php echo admin_url( 'admin.php' ); ?>" method="post">
 				    <td class="mas">	
 					  <div id="slack">
 					  	<h1 class="mas">Stripe</h1>
@@ -25,6 +26,8 @@ include __DIR__ . '/../../resources/StripeAPI.php';
 					    <input type="text" id="stripe-private" name="stripe-private" class="mas" value="<?php echo getStripeSecret()?>">
 					  </div>
                     </td>
+                    
+                    <input type="hidden" name="action" value="update_keys">
 
                     <td class="mas">
                         <input id="slack-save" class="mas-save" type="submit" value="Save Changes">
@@ -33,7 +36,7 @@ include __DIR__ . '/../../resources/StripeAPI.php';
 			</tr>
 
 			<tr class="mas">
-                <form action="<?php echo esc_url( admin_url('front-end-pages/admin-pages/integrations-tab/integrations-manager.php')); ?>" method="post">
+                <form action="<?php echo admin_url( 'admin.php' ?>" method="post">
                     <td class="mas">
                         <div id="G Suite">
                             <h1 class="mas">GSuite for Non-Profits</h1>
@@ -42,6 +45,9 @@ include __DIR__ . '/../../resources/StripeAPI.php';
                         </div>
 
                     </td>
+                    
+                    <input type="hidden" name="action" value="update_keys">
+                    
                     <td class="mas">
                         <input id="gsuite-save" class="mas-save" type="submit" value="Save Changes">
                     </td>

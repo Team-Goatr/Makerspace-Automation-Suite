@@ -1,7 +1,6 @@
 <?php
 
-// Ensuring that this can only be accessed by administrators
-if (current_user_can('edit_users')) {
+function update_keys() {
     include dirname(__DIR__).'/../resources/GSuiteAPI.php';
     include dirname(__DIR__).'/../resources/StripeAPI.php';
 
@@ -17,8 +16,8 @@ if (current_user_can('edit_users')) {
         updateGSuiteCredentials($_POST["gsuite-json"]);
     }
 
-    echo '<script>window.location = "https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4"</script>';
-} else {
-    echo '<script>window.location = "https://goatr.tech/wp-admin/admin.php?page=mas-plugin&content=4"</script>';
+    echo '<script>window.location = "' . admin_url('admin.php?page=mas-plugin&content=4)"</script>');
 }
 
+// Adding the keys to the wordpress hooks
+add_action('update_keys', 'update_keys');
