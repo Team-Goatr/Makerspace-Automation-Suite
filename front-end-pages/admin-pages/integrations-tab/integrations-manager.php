@@ -1,5 +1,8 @@
 <?php
 
+// Adding the keys to the wordpress hooks
+add_action('admin_post_update_keys', 'update_keys');
+
 function update_keys() {
     include dirname(__DIR__).'/../resources/GSuiteAPI.php';
     include dirname(__DIR__).'/../resources/StripeAPI.php';
@@ -18,6 +21,3 @@ function update_keys() {
 
     echo '<script>window.location = "' . admin_url('admin.php?page=mas-plugin&content=4)"</script>');
 }
-
-// Adding the keys to the wordpress hooks
-add_action('admin_post_update_keys', 'update_keys');
