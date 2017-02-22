@@ -20,4 +20,4 @@ function update_keys() {
 }
 
 // Adding the keys to the wordpress hooks
-add_action('update_keys', 'update_keys');
+add_action('admin_post_update_keys', 'update_keys');
