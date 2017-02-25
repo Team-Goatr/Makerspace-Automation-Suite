@@ -48,14 +48,14 @@ function prefix_admin_register_new() {
         createUser($newUser);
 
         // Success
-        wp_redirect(get_site_url() . 'register?action=success');
+        wp_redirect(get_site_url() . '/register?action=success');
         exit();
     
     } catch (Exception $e) {
         error_log($e->getMessage());
         
         // Failure
-        wp_redirect(get_site_url() . 'register?action=failure');
+        wp_redirect(get_site_url() . '/register?action=failure');
         exit();
     }
 }
