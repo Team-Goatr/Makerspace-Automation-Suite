@@ -3,8 +3,8 @@
 // Preventing loading direct from browser
 defined( 'ABSPATH' ) or die();
 
-require dirname(__DIR__).'/resources/StripeAPI.php';
-require dirname(__DIR__).'/resources/GSuiteAPI.php';
+include_once dirname(__DIR__).'/front-end-pages/resources/GSuiteAPI.php';
+include_once dirname(__DIR__).'/front-end-pages/resources/StripeAPI.php';
 
 // Adding action for non-logged-in users
 add_action( 'admin_post_nopriv_register_new', 'prefix_admin_register_new' );
