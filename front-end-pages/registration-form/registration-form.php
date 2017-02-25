@@ -15,7 +15,8 @@
 		<?php
 		switch($_GET['action']) {
 			case 'review': include 'review.php'; break;
-			case 'submit': include 'submit.php'; break;
+            case 'success': include 'success.html'; break;
+            case 'failure': include 'failure.html'; break;
             default: include 'registration-form.html'; break;
 		}
         ?>

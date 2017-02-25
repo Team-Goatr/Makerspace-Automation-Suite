@@ -24,4 +24,5 @@ function prefix_admin_update_keys() {
     echo '<h1>Success</h1>';
 
     wp_redirect(admin_url('admin.php?page=mas-plugin&content=4'));
+    exit();
 }
