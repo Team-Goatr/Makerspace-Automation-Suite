@@ -1,5 +1,7 @@
 <?php
 
+echo "testing";
+
 include_once dirname(__DIR__).'/../resources/GSuiteAPI.php';
 include_once dirname(__DIR__).'/../resources/StripeAPI.php';
 
@@ -27,5 +29,8 @@ function prefix_admin_update_keys() {
 }
 
 function prefix_admin_test() {
+    echo "Test successful";
     die('Working!');
 }
+
+echo "execution finished";
