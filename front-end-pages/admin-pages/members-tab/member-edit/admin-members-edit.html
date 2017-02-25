@@ -34,11 +34,12 @@ $user = getUser($_GET['email']);
 					  </div>
 					</form>
                     <br>
-                    <form action="update-card.php" method="POST">
+                    <form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="POST">
                         <input type="hidden" value="<?php 
                             $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
                             $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
                             echo $stripe_id; ?>" name="customer-id">
+                        <input type="hidden" value="update_card" name="action">
                         <?php getStripeUpdateCard($_GET['email']); ?>
                     </form>
 				</td>
