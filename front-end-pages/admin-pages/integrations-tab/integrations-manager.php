@@ -26,6 +26,6 @@ function prefix_admin_update_keys() {
     wp_redirect(admin_url('admin.php?page=mas-plugin&content=4'));
 }
 
-function prefix_admin_keys() {
+function prefix_admin_test() {
     die('Working!');
 }
