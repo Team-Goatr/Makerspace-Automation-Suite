@@ -3,7 +3,7 @@
 // Preventing loading direct from browser
 defined( 'ABSPATH' ) or die();
 
-include dirname(__DIR__).'/resources/StripeAPI.php';
+include_once dirname(__DIR__).'/resources/StripeAPI.php';
 
 //get_header();
 
