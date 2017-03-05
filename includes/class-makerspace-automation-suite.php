@@ -81,8 +81,6 @@ class Makerspace_Automation_Suite {
 	 *
 	 * - Makerspace_Automation_Suite_Loader. Orchestrates the hooks of the plugin.
 	 * - Makerspace_Automation_Suitee_i18n. Defines internationalization functionality.
-	 * - Makerspace_Automation_Suite_Admin. Defines all hooks for the admin area.
-	 * - Makerspace_Automation_Suite_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
