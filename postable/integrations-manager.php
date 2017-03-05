@@ -11,11 +11,11 @@ add_action('admin_post_update_keys', 'prefix_admin_update_keys');
 
 function prefix_admin_update_keys() {
     if (isset($_POST["stripe-public"])) {
-        updateStripePublic($_POST["stripe-public"]);
+        updateStripePublic(stripslashes($_POST["stripe-public"]));
     }
 
     if (isset($_POST["stripe-private"])) {
-        updateStripeSecret($_POST["stripe-private"]);
+        updateStripeSecret(stripslashes($_POST["stripe-private"]));
     }
 
     if (isset($_POST["gsuite-json"])) {
