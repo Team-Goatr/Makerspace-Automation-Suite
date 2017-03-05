@@ -17,11 +17,11 @@
  * Plugin URI:        http://example.com/plugin-name-uri/
  * Description:       A plugin to automate the onboarding process for the Decatur Makerspace.
  * Version:           1.0.0
- * Author:            Team GOATR
+ * Author:            Your Name or Your Company
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       makerspace-automation-suite
+ * Text Domain:       plugin-name
  * Domain Path:       /languages
  */
 
