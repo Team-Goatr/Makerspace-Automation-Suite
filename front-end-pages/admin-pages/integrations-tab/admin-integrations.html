@@ -15,8 +15,6 @@ include_once __DIR__ . '/../../resources/StripeAPI.php';
 		<table class="mas">
 			<tr class="mas">
                 <form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="post">
-                     <input type="hidden" name="action" value="add_foobar">
-                    
 				    <td class="mas">	
 					  <div id="slack">
 					  	<h1 class="mas">Stripe</h1>
@@ -27,7 +25,6 @@ include_once __DIR__ . '/../../resources/StripeAPI.php';
 					    <input type="text" id="stripe-private" name="stripe-private" class="mas" value="<?php echo getStripeSecret()?>">
 					  </div>
                     </td>
-                    
                     <input type="hidden" name="action" value="update_keys">
 
                     <td class="mas">
@@ -44,9 +41,9 @@ include_once __DIR__ . '/../../resources/StripeAPI.php';
                             <label for="gsuite-json" class="mas">GSuite Access JSON:</label>
                             <textarea rows="10" cols="60" id="gsuite-json" name="gsuite-json" class="mas"><?php echo  getGSuiteCredentials() ?></textarea>
                         </div>
-
                     </td>
-                    
+                    <input type="hidden" name="action" value="update_keys">
+
                     <td class="mas">
                         <input id="gsuite-save" class="mas-save" type="submit" value="Save Changes">
                     </td>
