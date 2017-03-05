@@ -69,7 +69,7 @@ function elegance_referal_init()
 add_action( 'wp', 'elegance_referal_init' );
 
 
-require plugin_dir_path( __FILE__ ) . 'includes/class-makerspace_automation_suite.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite.php';
 
 
 add_action('admin_menu', 'mas_admin_menu_setup');
