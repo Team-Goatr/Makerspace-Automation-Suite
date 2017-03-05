@@ -21,7 +21,7 @@
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       plugin-name
+ * Text Domain:       makerspace-automation-suite
  * Domain Path:       /languages
  */
 
@@ -98,7 +98,7 @@ require plugin_dir_path( __FILE__ ) . 'postable/init.php';
  */
 function run_makerspace_automation_suite() {
 
-	$plugin = new Makerspace_Automation_Suite());
+	$plugin = new Makerspace_Automation_Suite();
 	$plugin->run();
 
 }
