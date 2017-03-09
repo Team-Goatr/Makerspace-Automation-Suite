@@ -53,7 +53,7 @@ if (!empty($stripe_id)) {
 <?php if (!empty($card)) {
                     echo <<<END
                     <br>
-                    <form action="update-card.php" method="POST">
+                    <form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="POST">
                         <label class="mas">Card last 4: $last4</label>
                         <br>
                         <label class="mas">Card Expiration: $exp_month/$exp_year</label>
@@ -61,6 +61,7 @@ if (!empty($stripe_id)) {
                         <label class="mas">Card Brand: $brand</label>
                         <br>
                         <input type="hidden" value="$stripe_id" name="customer-id">
+                        <input type="hidden" name="action" value="update_card">
 END;
                         getStripeUpdateCard($_GET['email']);
                     echo <<<END2
