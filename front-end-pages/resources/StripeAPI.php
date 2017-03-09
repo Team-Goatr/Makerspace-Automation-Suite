@@ -102,6 +102,18 @@ function updateStripeCustomerCard($customer_id, $token) {
 }
 
 /**
+ * Return the card that a Stripe customer has stored
+ * $customer_id: The ID of the customer to query
+ */
+function getStripeCustomerCard($customer_id) {
+    $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+    $cu = \Stripe\Customer::retrieve($customer_id);
+    return $cu->sources->data[0];
+}
+
+/**
  * Returs a Stripe plan
  */
 function retrieveStripePlan($id) {

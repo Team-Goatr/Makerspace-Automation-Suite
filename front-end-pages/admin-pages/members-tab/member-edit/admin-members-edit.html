@@ -5,6 +5,22 @@ include dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 include dirname(__DIR__).'../../../resources/StripeAPI.php';
 
 $user = getUser($_GET['email']);
+$sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
+$stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
+
+$card;
+$last4;
+$exp_month;
+$exp_year;
+$brand;
+
+if (!empty($stripe_id)) {
+    $card = getStripeCustomerCard($stripe_id);
+    $last4 = $card->last4;
+    $exp_month = $card->exp_month;
+    $exp_year = $card->exp_year;
+    $brand = $card->brand;
+}
 
 ?>
 		<table class="mas">
@@ -31,10 +47,10 @@ $user = getUser($_GET['email']);
 					</form>
                     <br>
                     <form action="update-card.php" method="POST">
-                        <input type="hidden" value="<?php 
-                            $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
-                            $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
-                            echo $stripe_id; ?>" name="customer-id">
+                        <label class="mas">Card last 4: <?php echo $last4; ?></label>
+                        <br>
+                        <label class="mas">Card Expiration: <?php echo $exp_month."/".$exp_year; ?></label>
+                        <input type="hidden" value="<?php echo $stripe_id; ?>" name="customer-id">
                         <?php getStripeUpdateCard($_GET['email']); ?>
                     </form>
 				</td>
