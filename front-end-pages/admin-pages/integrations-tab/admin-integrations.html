@@ -1,61 +1,62 @@
-<!DOCTYPE html>
-<html>
-	
-	<head>
-		<?php
-                echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integrations.css', __FILE__ ) . '">' . "\n";
-                ?>
+<?php
+    wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+    wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+    wp_enqueue_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js');
 
-		<title>
-			Integrations Page for Admin
-		</title>
-	</head>
-    
-    <?php
-        include __DIR__ . '/../../resources/GSuiteAPI.php';
-        include __DIR__ . '/../../resources/StripeAPI.php';
-    ?>
-	
-	<body>
+    echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integrations.css', __FILE__ ) . '">' . "\n";
 
-		<table class="mas">
-			<tr class="mas">
-                <form action="<?php echo plugins_url( 'integrations-manager.php', __FILE__ ) ?>" method="post">
-				    <td class="mas">	
-					  <div id="slack">
-					  	<h1 class="mas">Stripe</h1>
-					    <label for="domain" class="mas">Stripe Public Key:</label>
-					    <input type="text" id="stripe-public" name="stripe-public" class="mas" value="<?php echo getStripePublic()?>">
-					    <br>
-					    <label for="key" class="mas">Stripe Private Key:</label>
-					    <input type="text" id="stripe-private" name="stripe-private" class="mas" value="<?php echo getStripeSecret()?>">
-					  </div>
-                    </td>
+    include __DIR__ . '/../../resources/GSuiteAPI.php';
+    include __DIR__ . '/../../resources/StripeAPI.php';
+?>
 
-                    <td class="mas">
-                        <input id="slack-save" class="mas-save" type="submit" value="Save Changes">
-                    </td>
-                </form>
+<body>
+
+	<br>
+
+	<div class="container">
+		<table class="table table-striped table-bordered">
+			<tr>
+				<form action="<?php echo plugins_url( 'integrations-manager.php', __FILE__ ) ?>" method="post">
+					<td>
+						<h3>Slack</h3>
+					</td>
+
+					<td>
+						<div id="slack">
+							<label for="stripe-public">Stripe Public Key:</label>
+							<input type="text" id="stripe-public" name="stripe-public" value="<?php echo getStripePublic()?>">
+
+							<br><br>
+
+							<label for="stripe-private">Stripe Private Key:</label>
+							<input type="text" id="stripe-private" name="stripe-private" value="<?php echo getStripeSecret()?>">							
+						</div>
+					</td>
+
+					<td style="text-align: center">
+						<button class="btn mas-save">Save Changes</button>
+					</td>
+				</form>
 			</tr>
 
-			<tr class="mas">
-                <form action="<?php echo plugins_url( 'integrations-manager.php', __FILE__ ) ?>" method="post">
-                    <td class="mas">
-                        <div id="G Suite">
-                            <h1 class="mas">GSuite for Non-Profits</h1>
-                            <label for="gsuite-json" class="mas">GSuite Access JSON:</label>
-                            <textarea rows="10" cols="60" id="gsuite-json" name="gsuite-json" class="mas"><?php echo  getGSuiteCredentials() ?></textarea>
-                        </div>
+			<tr>
+				<form action="<?php echo plugins_url( 'integrations-manager.php', __FILE__ ) ?>" method="post">
+					<td>
+						<h3>GSuite for <br> Non-Profits</h3>
+					</td>
 
-                    </td>
-                    <td class="mas">
-                        <input id="gsuite-save" class="mas-save" type="submit" value="Save Changes">
-                    </td>
-                </form>
+					<td>
+						<div id="gsuite">
+							<label for="gsuite-json">GSuite Access JSON:</label>
+							<textarea id="gsuite-json" name="gsuite-json" rows="10" cols="60"><?php echo  getGSuiteCredentials() ?></textarea>
+						</div>
+					</td>
+
+					<td style="text-align: center">
+						<button class="btn mas-save">Save Changes</button>
+					</td>
+				</form>
 			</tr>
 		</table>
-	</body>
-
-</html>
-
-<!-- How to populate this? Is there a list of integrations somewhere? I dunno... -->
+	</div>
+</body>
