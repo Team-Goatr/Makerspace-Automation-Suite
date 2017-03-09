@@ -9,49 +9,74 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
 
 $user = getUser($_GET['email']);
+$sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
+$stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
+
+$admin_post = admin_url( 'admin-post.php' );
+
+$card;
+$last4;
+$exp_month;
+$exp_year;
+$brand;
+
+if (!empty($stripe_id)) {
+    $card = getStripeCustomerCard($stripe_id);
+    $last4 = $card->last4;
+    $exp_month = $card->exp_month;
+    $exp_year = $card->exp_year;
+    $brand = $card->brand;
+}
 
 ?>
-		<table class="mas">
-			<tr>
-				<th colspan="3" class="mas">
-					<div id="breadcrumb" class="mas-breadcrumb">
+        <table class="mas">
+            <tr>
+                <th colspan="3" class="mas">
+                    <div id="breadcrumb" class="mas-breadcrumb">
                         <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $user->getName()->getFullName();?>
-					</div>
-				</th>
-			</tr>
+                    </div>
+                </th>
+            </tr>
 
-			<tr>
-				<td class="mas">	
-					<form>
+            <tr>
+                <td class="mas">
+                    <form>
 
-					  <div id="name">
-					    <label for="firstName" class="mas">First Name:</label>
-					    <input type="text" id="firstName" name="firstName" class="mas" value="<?php echo $user->getName()->getGivenName();?>">
-					    <br>
+                      <div id="name">
+                        <label for="firstName" class="mas">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" class="mas" value="<?php echo $user->getName()->getGivenName();?>">
+                        <br>
 
-					    <label class="mas">Last Name:</label>
-					    <input type="text" id="lastName" name="lastName" class="mas" value="<?php echo $user->getName()->getFamilyName();?>">
-					  </div>
-					</form>
-                    <br>
-                    <form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="POST">
-                        <input type="hidden" value="<?php 
-                            $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
-                            $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
-                            echo $stripe_id; ?>" name="customer-id">
-                        <input type="hidden" value="update_card" name="action">
-                        <?php getStripeUpdateCard($_GET['email']); ?>
+                        <label class="mas">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" class="mas" value="<?php echo $user->getName()->getFamilyName();?>">
+                      </div>
                     </form>
-				</td>
 
-				<td class="mas">
-					<?php
-						echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
-					?>
-					<br> 
-					<button class="mas-save" type="submit">Save Changes</button>
-				</td>
-
-			</tr>
-
-		</table>
+<?php if (!empty($card)) {
+                    echo <<<END
+                    <br>
+                    <form action="$admin_post" method="POST">
+                        <label class="mas">Card last 4: $last4</label>
+                        <br>
+                        <label class="mas">Card Expiration: $exp_month/$exp_year</label>
+                        <br>
+                        <label class="mas">Card Brand: $brand</label>
+                        <br>
+                        <input type="hidden" value="$stripe_id" name="customer-id">
+                        <input type="hidden" name="action" value="update_card">
+END;
+                        getStripeUpdateCard($_GET['email']);
+                    echo <<<END2
+                    </form>
+END2;
+} ?>
+                </td>
+                <td class="mas">
+                    <?php
+                        echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
+                    ?>
+                    <br>
+                    <button class="mas-save" type="submit">Save Changes</button>
+                </td>
+            </tr>
+        </table>
