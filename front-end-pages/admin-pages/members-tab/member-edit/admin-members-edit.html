@@ -12,6 +12,8 @@ $user = getUser($_GET['email']);
 $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
 $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
 
+$admin_post = admin_url( 'admin-post.php' );
+
 $card;
 $last4;
 $exp_month;
@@ -53,7 +55,7 @@ if (!empty($stripe_id)) {
 <?php if (!empty($card)) {
                     echo <<<END
                     <br>
-                    <form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="POST">
+                    <form action="$admin_post" method="POST">
                         <label class="mas">Card last 4: $last4</label>
                         <br>
                         <label class="mas">Card Expiration: $exp_month/$exp_year</label>
