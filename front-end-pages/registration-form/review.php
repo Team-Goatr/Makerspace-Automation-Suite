@@ -1,9 +1,6 @@
 <?php
 
-// Preventing loading direct from browser
-defined( 'ABSPATH' ) or die();
-
-include_once dirname(__DIR__).'/resources/StripeAPI.php';
+require_once dirname(__DIR__).'/resources/StripeAPI.php';
 
 //get_header();
 
@@ -28,8 +25,6 @@ $planamount = $plan->amount;
 $planname = $plan->name;
 $plandollars = $planamount/100;
 
-$admin_url = admin_url( 'admin-post.php' );
-
 echo <<<END
         
         <br>
@@ -37,7 +32,7 @@ echo <<<END
         
         <div class="container">
             <div class="row">
-                <form action="$admin_url" method="POST" class="form-horizonal">
+                <form action="?action=submit" method="POST" class="form-horizonal">
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="first" class="control-label">First Name:</label>
@@ -71,8 +66,6 @@ echo <<<END
                         </div>
 
                         <input type="hidden" value="$type" name="type" />
-                        
-                        <input type="hidden" value="register_new" name="action"
 
                         <div class="form-group">
 END;
@@ -83,7 +76,6 @@ echo <<<END
                 </form>
             </div>
         </div>
-        <br>
 
 END;
 

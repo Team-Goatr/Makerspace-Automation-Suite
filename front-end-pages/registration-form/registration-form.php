@@ -1,7 +1,4 @@
 <?php
-    // Preventing loading direct from browser
-    defined( 'ABSPATH' ) or die();
-
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
     wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
@@ -15,8 +12,7 @@
 		<?php
 		switch($_GET['action']) {
 			case 'review': include 'review.php'; break;
-            case 'success': include 'success.html'; break;
-            case 'failure': include 'failure.html'; break;
+			case 'submit': include 'submit.php'; break;
             default: include 'registration-form.html'; break;
 		}
         ?>
