@@ -109,8 +109,15 @@ function getStripeCustomerCard($customer_id) {
     $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
     \Stripe\Stripe::setApiKey($stripe_secret_key);
 
-    $cu = \Stripe\Customer::retrieve($customer_id);
-    return $cu->sources->data[0];
+    try {
+        $cu = \Stripe\Customer::retrieve($customer_id);
+        return $cu->sources->data[0];
+    } catch (Exception $e) {
+        $body = $e->getJsonBody();
+        $err  = $body['error'];
+        echo $err['message'];
+        return NULL;
+    }
 }
 
 /**
