@@ -1,8 +1,12 @@
 <?php
+
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
 echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
 
-include dirname(__DIR__).'../../../resources/GSuiteAPI.php';
-include dirname(__DIR__).'../../../resources/StripeAPI.php';
+include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
 
 $user = getUser($_GET['email']);
 
@@ -30,11 +34,12 @@ $user = getUser($_GET['email']);
 					  </div>
 					</form>
                     <br>
-                    <form action="update-card.php" method="POST">
+                    <form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="POST">
                         <input type="hidden" value="<?php 
                             $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
                             $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
                             echo $stripe_id; ?>" name="customer-id">
+                        <input type="hidden" value="update_card" name="action">
                         <?php getStripeUpdateCard($_GET['email']); ?>
                     </form>
 				</td>

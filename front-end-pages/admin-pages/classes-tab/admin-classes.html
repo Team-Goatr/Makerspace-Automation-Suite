@@ -1,4 +1,7 @@
 <?php
+    // Preventing loading direct from browser
+    defined( 'ABSPATH' ) or die();
+
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
     wp_enqueue_style('font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
