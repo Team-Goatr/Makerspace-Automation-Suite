@@ -64,6 +64,13 @@ function elegance_referal_init()
 		include($dir."front-end-pages/registration-form/registration-form.php");
 		die();
 	}
+    
+    if(is_page('member')){	
+		$dir = plugin_dir_path( __FILE__ );
+		include($dir."member-page.php");
+		die();
+	}
+    
 }
 
 add_action( 'wp', 'elegance_referal_init' );
@@ -80,6 +87,9 @@ function mas_admin_init() {
     $dir = plugin_dir_path( __FILE__ );
     include($dir."front-end-pages/admin-pages/admin-header.php");
 }
+
+
+
 
 
 /**
