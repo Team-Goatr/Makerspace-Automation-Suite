@@ -81,6 +81,8 @@ function mas_admin_init() {
     include($dir."front-end-pages/admin-pages/admin-header.php");
 }
 
+// Registering postable actions and hooks via the init file
+require plugin_dir_path( __FILE__ ) . 'postable/init.php';
 
 /**
  * Begins execution of the plugin.

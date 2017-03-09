@@ -1,8 +1,12 @@
 <?php
+
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
 echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
 
-include dirname(__DIR__).'../../../resources/GSuiteAPI.php';
-include dirname(__DIR__).'../../../resources/StripeAPI.php';
+include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
 
 $user = getUser($_GET['email']);
 $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
