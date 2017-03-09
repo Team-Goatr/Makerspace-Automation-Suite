@@ -45,17 +45,25 @@ if (!empty($stripe_id)) {
 					    <input type="text" id="lastName" name="lastName" class="mas" value="<?php echo $user->getName()->getFamilyName();?>">
 					  </div>
 					</form>
+
+<?php
+                    if (!empty($stripe_id)) {
+                    echo <<<END
                     <br>
                     <form action="update-card.php" method="POST">
-                        <label class="mas">Card last 4: <?php echo $last4; ?></label>
+                        <label class="mas">Card last 4: $last4</label>
                         <br>
-                        <label class="mas">Card Expiration: <?php echo $exp_month."/".$exp_year; ?></label>
+                        <label class="mas">Card Expiration: $exp_month/$exp_year</label>
                         <br>
-                        <label class="mas">Card Brand: <?php echo $brand; ?></label>
+                        <label class="mas">Card Brand: $brand</label>
                         <br>
-                        <input type="hidden" value="<?php echo $stripe_id; ?>" name="customer-id">
-                        <?php getStripeUpdateCard($_GET['email']); ?>
+                        <input type="hidden" value="$stripe_id" name="customer-id">
+END;
+                        getStripeUpdateCard($_GET['email']);
+                    echo <<<END2
                     </form>
+END2;
+} ?>
 				</td>
 
 				<td class="mas">
