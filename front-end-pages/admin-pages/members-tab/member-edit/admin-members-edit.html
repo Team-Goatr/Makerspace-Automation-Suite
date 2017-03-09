@@ -50,6 +50,9 @@ if (!empty($stripe_id)) {
                         <label class="mas">Card last 4: <?php echo $last4; ?></label>
                         <br>
                         <label class="mas">Card Expiration: <?php echo $exp_month."/".$exp_year; ?></label>
+                        <br>
+                        <label class="mas">Card Brand: <?php echo $brand; ?></label>
+                        <br>
                         <input type="hidden" value="<?php echo $stripe_id; ?>" name="customer-id">
                         <?php getStripeUpdateCard($_GET['email']); ?>
                     </form>
