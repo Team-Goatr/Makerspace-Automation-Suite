@@ -76,7 +76,7 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
             'Subscription_Management' => array(
                 'Subscription_Type' => $subcriptionType,
                 'Subscription_Status' => $subscriptionStatus,
-                //'Subscription_Recurring' => $subscriptionRecurring,
+                'Subscription_Recurring' => $subscriptionRecurring,
                 'Subscription_Expiration' => $subscriptionExpiration,
                 'Stripe_ID' => $stripeToken
                 ) 
