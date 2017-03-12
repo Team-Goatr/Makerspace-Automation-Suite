@@ -16,22 +16,26 @@ function sendSlackInvite($email, $firstName, $lastName) {
 
 	$token = getSlackToken();
 
-	$request = new HttpRequest();
-	$request->setUrl('https://slack.com/api/users.admin.invite');
-	$request->setMethod(HTTP_METH_GET);
+	$curl = curl_init();
 
-	$request->setQueryData(array(
-	  'token' => $token,
-	  'email' => $email,
-	  'first_name' => $firstName,
-	  'last_name' => $lastName
+	curl_setopt_array($curl, array(
+		CURLOPT_URL => "https://slack.com/api/users.admin.invite?token=$token&email=$email&first_name=$firstName&last_name=$lastName",
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
 	));
 
-	try {
-	  $response = $request->send();
+	$response = curl_exec($curl);
+	$err = curl_error($curl);
 
-	  error_log($response->getBody());
-	} catch (HttpException $ex) {
-	  error_log("Error sending Slack Invite:". $ex);
+	curl_close($curl);
+
+	if ($err) {
+	  error_log("Error sending Slack Invite - cURL Error #:" . $err);
+	} else {
+	  error_log("Slack response: ". $response);
 	}
 }
