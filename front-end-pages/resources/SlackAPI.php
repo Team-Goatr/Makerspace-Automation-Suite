@@ -19,7 +19,7 @@ function sendSlackInvite($email, $firstName, $lastName) {
 	$curl = curl_init();
 
 	curl_setopt_array($curl, array(
-		CURLOPT_URL => "https://slack.com/api/users.admin.invite?token=$token&email=$email&first_name=$firstName&last_name=$lastName",
+		CURLOPT_URL => "https://slack.com/api/users.admin.invite?token=".$token."&email=".$email."&first_name=".$firstName."&last_name=".$lastName,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => "",
 		CURLOPT_MAXREDIRS => 10,
