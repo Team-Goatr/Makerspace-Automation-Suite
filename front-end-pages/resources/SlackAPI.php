@@ -30,7 +30,7 @@ function sendSlackInvite($email, $firstName, $lastName) {
 	try {
 	  $response = $request->send();
 
-	  echo $response->getBody();
+	  error_log($response->getBody());
 	} catch (HttpException $ex) {
 	  error_log("Error sending Slack Invite:". $ex);
 	}
