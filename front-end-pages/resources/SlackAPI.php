@@ -17,8 +17,6 @@ function sendSlackInvite($email, $firstName, $lastName) {
 	$token = getSlackToken();
 	$url = "https://slack.com/api/users.admin.invite?token=$token&email=$email&first_name=$firstName&last_name=$lastName";
 
-	error_log("Slack URL: ".$url);
-
 	$curl = curl_init();
 
 	curl_setopt_array($curl, array(
@@ -38,7 +36,5 @@ function sendSlackInvite($email, $firstName, $lastName) {
 
 	if ($err) {
 	  error_log("Error sending Slack Invite - cURL Error #:" . $err);
-	} else {
-	  error_log("Slack response: ". $response);
 	}
 }
