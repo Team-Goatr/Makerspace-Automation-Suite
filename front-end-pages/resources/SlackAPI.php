@@ -15,11 +15,14 @@ function getSlackToken() {
 function sendSlackInvite($email, $firstName, $lastName) {
 
 	$token = getSlackToken();
+	$url = "https://slack.com/api/users.admin.invite?token=$token&email=$email&first_name=$firstName&last_name=$lastName";
+
+	error_log("Slack URL: ".$url)
 
 	$curl = curl_init();
 
 	curl_setopt_array($curl, array(
-		CURLOPT_URL => "https://slack.com/api/users.admin.invite?token=$token&email=$email&first_name=$firstName&last_name=$lastName",
+		CURLOPT_URL => $url,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => "",
 		CURLOPT_MAXREDIRS => 10,
