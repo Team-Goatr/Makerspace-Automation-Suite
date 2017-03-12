@@ -46,6 +46,8 @@ try {
 	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
 	createUser($newUser);
 
+    sendSlackInvite($email, $firstname, $lastname);
+
     // If no errors have been thrown, the subscription is successful
     include 'success.html';
     
