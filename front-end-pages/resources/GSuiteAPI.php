@@ -1,4 +1,8 @@
 <?php
+
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 # Constants used for G Suite connection
@@ -72,8 +76,8 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
             'Subscription_Management' => array(
                 'Subscription_Type' => $subcriptionType,
                 'Subscription_Status' => $subscriptionStatus,
-                //'Subscription_Recurring' => $subscriptionRecurring,
-                //'Subscription_Expiration' => $subscriptionExpiration,
+                'Subscription_Recurring' => $subscriptionRecurring,
+                'Subscription_Expiration' => $subscriptionExpiration,
                 'Stripe_ID' => $stripeToken
                 ) 
             )

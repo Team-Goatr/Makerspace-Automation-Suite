@@ -4,8 +4,8 @@ wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bo
 wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
 wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 
-require dirname(__DIR__).'/resources/StripeAPI.php';
-require dirname(__DIR__).'/resources/GSuiteAPI.php';
+require_once dirname(__DIR__).'/resources/StripeAPI.php';
+require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
 
 
 try {
@@ -39,44 +39,18 @@ try {
 
 	$now = new DateTime();
 	$now->modify("+1 month");
-	$expiration = $now->format($DATE_ATOM);
+	$expiration = $now->format("Y-m-d");
 	
 	//Create Customer
 	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
 	createUser($newUser);
 
     // If no errors have been thrown, the subscription is successful
-    echo <<<END
-        <br>
-        <body>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    Success!
-                </div>
-                
-                <div class="panel-body">
-                    <p>Congrats! Your registration has been received. Be on the lookout for an email with your next steps!</p>
-                </div>
-            </div>
-        </body>
-END;
+    include 'success.html';
     
     
 } catch (Exception $e) {
     echo $e->getMessage();
-     echo <<<END
-        <br>
-        <body>
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    Whoops!
-                </div>
-                
-                <div class="panel-body">
-                    <p>It seems that there are some issues on our end. Please try again later.</p>
-                </div>
-            </div>
-        </body>
-END;
+    include 'failure.html';
 }
 

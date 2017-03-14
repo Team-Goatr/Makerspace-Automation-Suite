@@ -1,8 +1,11 @@
 <?php
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
-	
-	echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-table.css', __FILE__ ) . '">' . "\n";
+
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
+echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-table.css', __FILE__ ) . '">' . "\n";
 ?>
 
 <body style="background-color: #EBEBEB">

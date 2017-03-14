@@ -10,7 +10,7 @@
  *
  * @link              http://example.com
  * @since             1.0.0
- * @package           Plugin_Name
+ * @package           Makerspace_Automation_Suite
  *
  * @wordpress-plugin
  * Plugin Name:       Makerspace Automation Suite
@@ -21,7 +21,7 @@
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       plugin-name
+ * Text Domain:       makerspace-automation-suite
  * Domain Path:       /languages
  */
 
@@ -34,22 +34,22 @@ if ( ! defined( 'WPINC' ) ) {
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
  */
-function activate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
-	Plugin_Name_Activator::activate();
+function activate_makerspace_automation_suite() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-activator.php';
+	Makerspace_Automation_Suite_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
-function deactivate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-deactivator.php';
-	Plugin_Name_Deactivator::deactivate();
+function deactivate_makerspace_automation_suite() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-deactivator.php';
+	Makerspace_Automation_Suite_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_plugin_name' );
-register_deactivation_hook( __FILE__, 'deactivate_plugin_name' );
+register_activation_hook( __FILE__, 'activate_makerspace_automation_suite' );
+register_deactivation_hook( __FILE__, 'deactivate_makerspace_automation_suite' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -75,7 +75,10 @@ function elegance_referal_init()
 
 add_action( 'wp', 'elegance_referal_init' );
 
-require plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name.php';
+
+require plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite.php';
+
+
 add_action('admin_menu', 'mas_admin_menu_setup');
 
 function mas_admin_menu_setup() {
@@ -88,6 +91,8 @@ function mas_admin_init() {
     include($dir."front-end-pages/admin-pages/admin-header.php");
 }
 
+// Registering postable actions and hooks via the init file
+require plugin_dir_path( __FILE__ ) . 'postable/init.php';
 
 
 
@@ -101,10 +106,11 @@ function mas_admin_init() {
  *
  * @since    1.0.0
  */
-function run_plugin_name() {
+function run_makerspace_automation_suite() {
 
-	$plugin = new Plugin_Name();
+	$plugin = new Makerspace_Automation_Suite();
 	$plugin->run();
 
 }
-run_plugin_name();
+
+run_makerspace_automation_suite();

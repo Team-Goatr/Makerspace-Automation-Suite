@@ -1,5 +1,9 @@
 <?php
-include dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+
+// Preventing loading direct from browser
+defined( 'ABSPATH' ) or die();
+
+include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 
 $service = getService();
 
