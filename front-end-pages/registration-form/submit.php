@@ -6,6 +6,7 @@ wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/boo
 
 require_once dirname(__DIR__).'/resources/StripeAPI.php';
 require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
+require_once dirname(__DIR__).'/resources/SlackAPI.php';
 
 
 try {
@@ -44,6 +45,8 @@ try {
 	//Create Customer
 	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
 	createUser($newUser);
+
+    sendSlackInvite($email, $firstname, $lastname);
 
     // If no errors have been thrown, the subscription is successful
     include 'success.html';
