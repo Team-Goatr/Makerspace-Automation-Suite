@@ -39,7 +39,7 @@ try {
 
 	$now = new DateTime();
 	$now->modify("+1 month");
-	$expiration = $now->format($DATE_ATOM);
+	$expiration = $now->format("Y-m-d");
 	
 	//Create Customer
 	$newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
