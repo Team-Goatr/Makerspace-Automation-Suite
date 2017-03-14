@@ -4,9 +4,6 @@
     wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js');
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 
-    require_once dirname(__DIR__).'/resources/SlackAPI.php';
-    sendSlackInvite("mrperson1289@gmail.com", "Craig", "O.");
-
     get_header();
 ?>
 <div id="primary" class="content-area">
