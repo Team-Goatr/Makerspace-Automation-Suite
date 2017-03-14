@@ -16,25 +16,18 @@ function sendSlackInvite($email, $firstName, $lastName) {
 
 	$token = getSlackToken();
 	$url = "https://slack.com/api/users.admin.invite?token=$token&email=$email&first_name=$firstName&last_name=$lastName";
+    
+  $args = array(
+    'timeout'     => 30,
+    'redirection' => 10,
+    'httpversion' => '1.1',
+  );
 
-	$curl = curl_init();
+	$response = wp_remote_get($url, $args);
+	
+  $code = wp_remote_retrieve_response_code($response);
 
-	curl_setopt_array($curl, array(
-		CURLOPT_URL => $url,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => "",
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 30,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => "GET",
-	));
-
-	$response = curl_exec($curl);
-	$err = curl_error($curl);
-
-	curl_close($curl);
-
-	if ($err) {
-	  error_log("Error sending Slack Invite - cURL Error #:" . $err);
+	if ($code >= 300) {
+	  error_log("Error sending Slack Invite - HTTP Error:" . $code);
 	}
 }
