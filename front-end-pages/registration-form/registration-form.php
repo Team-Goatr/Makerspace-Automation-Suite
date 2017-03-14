@@ -5,7 +5,7 @@
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 
     require_once dirname(__DIR__).'/resources/SlackAPI.php';
-    sendSlackInvite("mrperson1289@gmail.com", "Craig", "O.")
+    sendSlackInvite("mrperson1289@gmail.com", "Craig", "O.");
 
     get_header();
 ?>
