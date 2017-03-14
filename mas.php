@@ -27,7 +27,7 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	die;
+    die;
 }
 
 /**
@@ -35,8 +35,8 @@ if ( ! defined( 'WPINC' ) ) {
  * This action is documented in includes/class-plugin-name-activator.php
  */
 function activate_makerspace_automation_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-activator.php';
-	Makerspace_Automation_Suite_Activator::activate();
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-activator.php';
+    Makerspace_Automation_Suite_Activator::activate();
 }
 
 /**
@@ -44,8 +44,8 @@ function activate_makerspace_automation_suite() {
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
 function deactivate_makerspace_automation_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-deactivator.php';
-	Makerspace_Automation_Suite_Deactivator::deactivate();
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-deactivator.php';
+    Makerspace_Automation_Suite_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_makerspace_automation_suite' );
@@ -59,18 +59,18 @@ register_deactivation_hook( __FILE__, 'deactivate_makerspace_automation_suite' )
 
 function elegance_referal_init()
 {
-	if(is_page('register')){	
-		$dir = plugin_dir_path( __FILE__ );
-		include($dir."front-end-pages/registration-form/registration-form.php");
-		die();
-	}
-    
-    if(is_page('member')){	
-		$dir = plugin_dir_path( __FILE__ );
-		include($dir."front-end-pages/member-page/member-page.php");
-		die();
-	}
-    
+    if(is_page('register')){
+        $dir = plugin_dir_path( __FILE__ );
+        include($dir."front-end-pages/registration-form/registration-form.php");
+        die();
+    }
+
+    if(is_page('member')){
+        $dir = plugin_dir_path( __FILE__ );
+        include($dir."front-end-pages/member-page/member-page.php");
+        die();
+    }
+
 }
 
 add_action( 'wp', 'elegance_referal_init' );
@@ -94,9 +94,6 @@ function mas_admin_init() {
 // Registering postable actions and hooks via the init file
 require plugin_dir_path( __FILE__ ) . 'postable/init.php';
 
-
-
-
 /**
  * Begins execution of the plugin.
  *
@@ -108,8 +105,8 @@ require plugin_dir_path( __FILE__ ) . 'postable/init.php';
  */
 function run_makerspace_automation_suite() {
 
-	$plugin = new Makerspace_Automation_Suite();
-	$plugin->run();
+    $plugin = new Makerspace_Automation_Suite();
+    $plugin->run();
 
 }
 
