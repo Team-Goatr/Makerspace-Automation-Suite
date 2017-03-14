@@ -62,13 +62,13 @@ function elegance_referal_init()
     if(is_page('register')){
         $dir = plugin_dir_path( __FILE__ );
         include($dir."front-end-pages/registration-form/registration-form.php");
-//        die();
+        die();
     }
 
     if(is_page('member')){
         $dir = plugin_dir_path( __FILE__ );
         include($dir."front-end-pages/member-page/member-page.php");
-//        die();
+        die();
     }
 
 }
