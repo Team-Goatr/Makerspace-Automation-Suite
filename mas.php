@@ -27,7 +27,7 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	die;
+    die;
 }
 
 /**
@@ -35,8 +35,8 @@ if ( ! defined( 'WPINC' ) ) {
  * This action is documented in includes/class-plugin-name-activator.php
  */
 function activate_makerspace_automation_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-activator.php';
-	Makerspace_Automation_Suite_Activator::activate();
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-activator.php';
+    Makerspace_Automation_Suite_Activator::activate();
 }
 
 /**
@@ -44,8 +44,8 @@ function activate_makerspace_automation_suite() {
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
 function deactivate_makerspace_automation_suite() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-deactivator.php';
-	Makerspace_Automation_Suite_Deactivator::deactivate();
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite-deactivator.php';
+    Makerspace_Automation_Suite_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_makerspace_automation_suite' );
@@ -59,11 +59,18 @@ register_deactivation_hook( __FILE__, 'deactivate_makerspace_automation_suite' )
 
 function elegance_referal_init()
 {
-	if(is_page('register')){	
-		$dir = plugin_dir_path( __FILE__ );
-		include($dir."front-end-pages/registration-form/registration-form.php");
-		die();
-	}
+    if(is_page('register')){
+        $dir = plugin_dir_path( __FILE__ );
+        include($dir."front-end-pages/registration-form/registration-form.php");
+        die();
+    }
+
+    if(is_page('member')){
+        $dir = plugin_dir_path( __FILE__ );
+        include($dir."front-end-pages/member-page/member-page.php");
+        die();
+    }
+
 }
 
 add_action( 'wp', 'elegance_referal_init' );
@@ -71,6 +78,30 @@ add_action( 'wp', 'elegance_referal_init' );
 
 require plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite.php';
 
+// Enqueueing the MAS styles
+function mas_enqueue_styles() {
+    // Bootstrap
+    wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+    
+    // Angular Material
+    wp_enqueue_style( 'angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css');
+}
+
+// Enqueueing the MAS scripts
+function mas_enqueue_scripts() {
+    // Bootstrap
+    wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+
+    // Angular
+    wp_enqueue_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js');
+    wp_enqueue_script('angular-animate', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js');
+    wp_enqueue_script('angular-aria', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js');
+    wp_enqueue_script('angular-messages', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js');
+    wp_enqueue_script('angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js');
+}
+
+add_action('admin_enqueue_scripts', 'mas_enqueue_styles');
+add_action('admin_enqueue_scripts', 'mas_enqueue_scripts');
 
 add_action('admin_menu', 'mas_admin_menu_setup');
 
@@ -98,8 +129,8 @@ require plugin_dir_path( __FILE__ ) . 'postable/init.php';
  */
 function run_makerspace_automation_suite() {
 
-	$plugin = new Makerspace_Automation_Suite();
-	$plugin->run();
+    $plugin = new Makerspace_Automation_Suite();
+    $plugin->run();
 
 }
 

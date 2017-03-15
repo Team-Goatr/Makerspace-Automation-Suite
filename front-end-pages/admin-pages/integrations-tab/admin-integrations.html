@@ -1,57 +1,66 @@
 <?php
 
-// Preventing loading direct from browser
-defined( 'ABSPATH' ) or die();
+    // Preventing loading direct from browser
+    defined( 'ABSPATH' ) or die();
 
-echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integrations.css', __FILE__ ) . '">' . "\n";
+    echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-integrations.css', __FILE__ ) . '">' . "\n";
 
-include_once __DIR__ . '/../../resources/GSuiteAPI.php';
-include_once __DIR__ . '/../../resources/StripeAPI.php';
-
+    include_once __DIR__ . '/../../resources/GSuiteAPI.php';
+    include_once __DIR__ . '/../../resources/StripeAPI.php';
 ?>
-	
-	<body>
 
-		<table class="mas">
-			<tr class="mas">
-                <form action="<?php echo admin_url( 'admin-post.php' ); ?>" method="post">
-				    <td class="mas">	
-					  <div id="slack">
-					  	<h1 class="mas">Stripe</h1>
-					    <label for="domain" class="mas">Stripe Public Key:</label>
-					    <input type="text" id="stripe-public" name="stripe-public" class="mas" value="<?php echo getStripePublic()?>">
-					    <br>
-					    <label for="key" class="mas">Stripe Private Key:</label>
-					    <input type="text" id="stripe-private" name="stripe-private" class="mas" value="<?php echo getStripeSecret()?>">
-					  </div>
-                    </td>
-                    <input type="hidden" name="action" value="update_keys">
+<body style="background-color: #EBEBEB">
 
-                    <td class="mas">
-                        <input id="slack-save" class="mas-save" type="submit" value="Save Changes">
-                    </td>
-                </form>
-			</tr>
+    <br>
 
-			<tr class="mas">
+    <div class="container">
+        <table class="table table-striped table-bordered">
+            <tr>
                 <form action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
-                    <td class="mas">
-                        <div id="G Suite">
-                            <h1 class="mas">GSuite for Non-Profits</h1>
-                            <label for="gsuite-json" class="mas">GSuite Access JSON:</label>
-                            <textarea rows="10" cols="60" id="gsuite-json" name="gsuite-json" class="mas"><?php echo  getGSuiteCredentials() ?></textarea>
+                    <td>
+                        <h3>Slack</h3>
+                    </td>
+
+                    <td>
+                        <div id="slack">
+                            <label for="stripe-public">Stripe Public Key:</label>
+                            <input type="text" id="stripe-public" name="stripe-public" value="<?php echo getStripePublic()?>">
+
+                            <br><br>
+
+                            <label for="stripe-private">Stripe Private Key:</label>
+                            <input type="text" id="stripe-private" name="stripe-private" value="<?php echo getStripeSecret()?>">
                         </div>
                     </td>
+
                     <input type="hidden" name="action" value="update_keys">
 
-                    <td class="mas">
-                        <input id="gsuite-save" class="mas-save" type="submit" value="Save Changes">
+                    <td style="text-align: center">
+                        <button class="btn mas-save">Save Changes</button>
                     </td>
                 </form>
-			</tr>
-		</table>
-	</body>
+            </tr>
 
-</html>
+            <tr>
+                <form action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
+                    <td>
+                        <h3>GSuite</h3>
+                    </td>
 
-<!-- How to populate this? Is there a list of integrations somewhere? I dunno... -->
+                    <td>
+                        <div id="gsuite">
+                            <label for="gsuite-json">GSuite Access JSON:</label>
+                            <textarea id="gsuite-json" name="gsuite-json" rows="10" cols="60"><?php echo getGSuiteCredentials() ?></textarea>
+                        </div>
+                    </td>
+
+                    <input type="hidden" name="action" value="update_keys">
+
+                    <td style="text-align: center">
+                        <button class="btn mas-save">Save Changes</button>
+                    </td>
+                </form>
+            </tr>
+        </table>
+    </div>
+</body>
