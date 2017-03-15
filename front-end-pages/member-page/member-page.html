@@ -109,6 +109,10 @@
                       <label>Expiration Date: <?php echo $card->exp_month."/".$card->exp_year; ?></label>
                       <input required type="date" name="expirationDate" ng-model="project.expirationDate" disabled/>
                    </md-input-container>
+                   <md-input-container class="md-block">
+                      <label>Card Type: <?php echo $card->brand; ?></label>
+                      <input required type="brand" name="cardBrand" ng-model="project.cardBrand" disabled/>
+                   </md-input-container>
                    <input type="hidden" value="<?php echo $stripe_id ?>" name="customer-id">
                    <input type="hidden" name="action" value="update_card">
                    <?php getStripeUpdateCard($email); ?>
