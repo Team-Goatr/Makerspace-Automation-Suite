@@ -1,5 +1,22 @@
 <?php
+    defined( 'ABSPATH' ) or die();
     echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'member-page.css', __FILE__ ) . '">' . "\n";
+
+    $admin_post = admin_url( 'admin-post.php' );
+
+    include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+    include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
+
+    $email = 'apb@decaturmakers.org';
+    $user = getUser($email);
+    $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
+    $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
+
+
+    $card;
+    if (!empty($stripe_id)) {
+        $card = getStripeCustomerCard($stripe_id);
+    }
 ?>
 
 
@@ -22,10 +39,10 @@
             });
       </script>
 
-      <div ng-app="memberProfile" ng-controller="DemoCtrl"> 
+      <div ng-app="memberProfile" ng-controller="DemoCtrl">
 
        <div class="mas-title">
-            Welcome, Dana Koutsky!
+           Welcome, <?php echo $user->getName()->getFullName(); ?> !
        </div>
 
        <div layout="row" layout-sm="column">
@@ -84,17 +101,18 @@
              <md-content layout-padding>
                 <form name="paymentInformation">
                    <md-input-container class="md-block">
-                      <label>Card Number</label>
-                      <input required type="card" name="cardNum" ng-model="project.cardNum" disabled/>
+                      <label>Last 4 Digits</label>
+                      <input required type="card" name="cardNum" ng-model="project.cardNum" value="<?php echo $card->last4;?>" disabled/>
                    </md-input-container>
                    <md-input-container class="md-block">
-                      <label>Expiration Date</label>
+                      <label>Expiration Date: <?php echo $card->exp_month."/".$card->exp_year; ?></label>
                       <input required type="date" name="expirationDate" ng-model="project.expirationDate" disabled/>
                    </md-input-container>
+                   <input type="hidden" value="<?php echo $stripe_id ?>" name="customer-id">
+                   <input type="hidden" name="action" value="update_card">
+                   <?php getStripeUpdateCard($email); ?>
                 </form>
              </md-content>
-
-              <button type="edit"  class="btn mas-button">Edit Payment Information</button>
 
           </div>
         </div>
