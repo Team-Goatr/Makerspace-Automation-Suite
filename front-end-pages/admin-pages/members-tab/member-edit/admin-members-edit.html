@@ -6,27 +6,8 @@ defined( 'ABSPATH' ) or die();
 echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-edit.css', __FILE__ ) . '">' . "\n";
 
 include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
-include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
 
 $user = getUser($_GET['email']);
-$sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
-$stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
-
-$admin_post = admin_url( 'admin-post.php' );
-
-$card;
-$last4;
-$exp_month;
-$exp_year;
-$brand;
-
-if (!empty($stripe_id)) {
-    $card = getStripeCustomerCard($stripe_id);
-    $last4 = $card->last4;
-    $exp_month = $card->exp_month;
-    $exp_year = $card->exp_year;
-    $brand = $card->brand;
-}
 
 ?>
         <table class="mas">
@@ -52,24 +33,6 @@ if (!empty($stripe_id)) {
                       </div>
                     </form>
 
-<?php if (!empty($card)) {
-                    echo <<<END
-                    <br>
-                    <form action="$admin_post" method="POST">
-                        <label class="mas">Card last 4: $last4</label>
-                        <br>
-                        <label class="mas">Card Expiration: $exp_month/$exp_year</label>
-                        <br>
-                        <label class="mas">Card Brand: $brand</label>
-                        <br>
-                        <input type="hidden" value="$stripe_id" name="customer-id">
-                        <input type="hidden" name="action" value="update_card">
-END;
-                        getStripeUpdateCard($_GET['email']);
-                    echo <<<END2
-                    </form>
-END2;
-} ?>
                 </td>
                 <td class="mas">
                     <?php
