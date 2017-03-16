@@ -131,6 +131,7 @@ function assertRole($username, $role) {
 
 /**
  * Get stored RFID tag number
+ * Returns RFID number as a String
  */
 function getRfidTag($username) {
     $user = getUser($username);
@@ -141,6 +142,8 @@ function getRfidTag($username) {
 
 /**
  * Set stored RFID tag number
+ * $username can be any UID for the Google Account
+ * $rfidTag can be either an integer or a string
  */
 function setRfidTag($username, $rfidTag) {
     $fields = array(
