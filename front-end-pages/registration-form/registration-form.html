@@ -3,7 +3,9 @@ $admin = 'thomascoe1@gmail.com';
 $subject = 'DecaturMakers New User';
 $message = 'Congratulations! A new user has registered with the Decatur Makerspace. Please submit a background check for user $firstname $lastname.';
 
-$return = wp_mail($admin, $subject, $message);
+$headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
+
+$return = wp_mail($admin, $subject, $message, $headers);
 echo $return;
 ?>
         <br>
