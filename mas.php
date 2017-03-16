@@ -103,9 +103,9 @@ function mas_enqueue_scripts() {
         wp_enqueue_script('angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js');
     }
 }
-
 add_action('wp_enqueue_scripts', 'mas_enqueue_styles');
 add_action('wp_enqueue_scripts', 'mas_enqueue_scripts');
+
 
 // Enqueueing the MAS styles on the admin pages
 function mas_admin_enqueue_styles($hook) {
