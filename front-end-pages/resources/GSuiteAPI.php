@@ -133,8 +133,8 @@ function assertRole($username, $role) {
  */
 function getRfidTag($username) {
     $user = getUser($username);
-    $tag = $user->getCustomSchemas()['roles']['rfid-tag'];
-
+    $tag = $user->getCustomSchemas()['roles'];
+    var_dump($tag);
     return $tag;
 }
 
