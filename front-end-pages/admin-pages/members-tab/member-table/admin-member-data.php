@@ -31,7 +31,7 @@ if (count($results->getUsers()) != 0) {
         $name = $user->getName()->getFullName();
         $email = $user->getPrimaryEmail();
 
-        $rfid_tag = getRfidTag($user);
+        $rfid_tag = getRfidTag($email);
 
         # Print Table Row
         echo <<<END
