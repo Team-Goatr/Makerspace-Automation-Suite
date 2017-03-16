@@ -132,7 +132,10 @@ function assertRole($username, $role) {
  * Get stored RFID tag number
  */
 function getRfidTag($username) {
-    return 123;
+    $user = getUser($username);
+    $tag = $user->getCustomSchemas()['roles']['rfid-tag'];
+
+    return $tag;
 }
 
 /**
