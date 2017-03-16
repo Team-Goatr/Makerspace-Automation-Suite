@@ -28,24 +28,21 @@ if (count($results->getUsers()) != 0) {
         $stripe_id = !empty($sub_mgmt["Stripe_ID"]) ? $sub_mgmt["Stripe_ID"] : '';
 
         # Default Google Fields to use
-        $creation_time = $user->getCreationTime();
         $name = $user->getName()->getFullName();
         $email = $user->getPrimaryEmail();
 
-	# Convert creation time to useful string
-	date_default_timezone_set('EST');
-	$creation_string = date("M d, Y - g:i:s A T", strtotime($creation_time));
+        $rfid_tag = getRfidTag($user);
 
         # Print Table Row
         echo <<<END
-	<tr>
-		<td><a href="admin.php?page=mas-plugin&content=5&email=$email" class="edit">&#9998;</a></td>
-		<td>$name</td>
-		<td>$email</td>
-		<td>$creation_string</td>
-		<td>$type</td>
-		<td>$status</td>
-	</tr>
+    <tr>
+        <td><a href="admin.php?page=mas-plugin&content=5&email=$email" class="edit">&#9998;</a></td>
+        <td>$name</td>
+        <td>$email</td>
+        <td>$rfid_tag</td>
+        <td>$type</td>
+        <td>$status</td>
+    </tr>
 
 END;
     }

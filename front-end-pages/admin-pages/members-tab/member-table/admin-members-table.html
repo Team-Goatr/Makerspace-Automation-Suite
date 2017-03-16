@@ -2,25 +2,23 @@
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 
-// Preventing loading direct from browser
-defined( 'ABSPATH' ) or die();
+    // Preventing loading direct from browser
+    defined( 'ABSPATH' ) or die();
 
-echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-table.css', __FILE__ ) . '">' . "\n";
+    echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-members-table.css', __FILE__ ) . '">' . "\n";
 ?>
 
 <body style="background-color: #EBEBEB">
-	
-	<br>
-
-	<table class="table table-striped table-bordered" style="text-align: center">
-		<tr>
-			<th></th>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Member Since</th>
-			<th>Membership Plan</th>
-			<th>Subscription Status</th>
-		</tr>
-	<?php include 'admin-member-data.php'; ?>
-	</table>
+    <br>
+    <table class="table table-striped table-bordered" style="text-align: center">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>RFID Tag #</th>
+            <th>Membership Plan</th>
+            <th>Subscription Status</th>
+        </tr>
+    <?php include 'admin-member-data.php'; ?>
+    </table>
 </body>

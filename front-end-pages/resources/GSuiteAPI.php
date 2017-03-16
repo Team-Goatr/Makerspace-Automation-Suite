@@ -129,6 +129,20 @@ function assertRole($username, $role) {
 }
 
 /**
+ * Get stored RFID tag number
+ */
+function getRfidTag($username) {
+    return 123;
+}
+
+/**
+ * Set stored RFID tag number
+ */
+function setRfidTag($username, $rfidTag) {
+    return TRUE;
+}
+
+/**
  * Updates the GSuite JSON stored in the credentials path
  */
 function updateGSuiteCredentials($newCredentials) {
