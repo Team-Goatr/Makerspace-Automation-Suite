@@ -95,7 +95,8 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
 
 function updateUser($username, $properties) {
     $service = getService();
-    $service->users->update($user);
+    $fields = new Google_Service_Directory_User($properties);
+    $service->users->update($username, $fields);
 }
 
 function addRole($username, $role) {
@@ -142,7 +143,15 @@ function getRfidTag($username) {
  * Set stored RFID tag number
  */
 function setRfidTag($username, $rfidTag) {
-    return TRUE;
+    $fields = array(
+        "customSchemas" => array (
+            "roles" => array(
+                "rfid-id" => $rfidTag
+            )
+        )
+    );
+
+    updateUser($username, $fields);
 }
 
 /**
