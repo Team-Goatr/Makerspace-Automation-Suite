@@ -46,7 +46,7 @@ try {
 
     // Send email to admin about the new user
     // TODO: Make this admin email configurable somewhere?
-    $adminemail = 'thomascoe1@gmail.com';
+    $adminemail = 'thomas@decaturmakers.org';
     $subject = 'DecaturMakers New User';
     $message = "Congratulations! A new user has registered with the Decatur Makerspace.\n\nName: $firstname $lastname\nEmail: $email\nUsername: $username";
     $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
