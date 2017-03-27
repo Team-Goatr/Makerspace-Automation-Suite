@@ -18,7 +18,7 @@ $user = getUser($_GET['email']);
     </div>
 
     <div layout="row" layout-sm="column">
-        <div flex id="formContainer">
+        <div id="formContainer">
             <form name="editMember">
                 <div class="form-group">
                     <label for="firstName" class="control-label">First Name</label>  
@@ -44,7 +44,7 @@ $user = getUser($_GET['email']);
             </form> 
         </div>
 
-        <div flex id="imageContainer">
+        <div id="imageContainer">
             <div style="text-align:center">
                 <?php
                     echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
