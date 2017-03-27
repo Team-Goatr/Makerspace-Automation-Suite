@@ -1,4 +1,4 @@
-<script type="javascript">
+<script language="javascript">
     angular
         .module('registration-form')
         .controller('registrationCtrl', function($scope){
@@ -38,8 +38,10 @@
 
                 <div class="form-group" ng-class="{'has-error': registration.pw.$invalid && !registration.pw.$pristine">
                     <label for="password" class="control-label" >Password:</label>
-                    <input type="password" style="display: inline;" class="form-control" id="password" name="password" placeholder="" ng-model="pw" required>
+                    <input type="pw" style="display: inline;" class="form-control" id="pw" name="pw" placeholder="" ng-model="pw" required>
                     <p ng-show="registration.pw.$invalid && !registration.pw.$pristine">This is a required field.</p>
+                    <p>Valid = {{registration.pw.$valid}}</p>
+                    <p>Pristine = {{registration.pw.$pristine}}
                 </div>
 
                 <div class="form-group">
