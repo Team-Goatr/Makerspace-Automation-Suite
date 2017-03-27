@@ -9,9 +9,10 @@
 
 <script language="javascript">
     angular
-        .module('registration-form')
+        .module('registrationForm')
         .controller('registrationCtrl', function($scope){
-
+            $scope.password = "";
+            $scope.passwordMatch = "";
         });
 </script>
 
@@ -19,7 +20,7 @@
 
 <h3>Register as Member</h3>
 
-<div class="container">
+<div class="container" ng-app="registrationForm" ng-controller="registrationCtrl">
     <div class="row">
         <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
             <div class="col-sm-4">
