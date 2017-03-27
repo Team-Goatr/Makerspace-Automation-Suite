@@ -1,3 +1,18 @@
+.mas-button { 
+    background-color: #F47B42;
+    color: white;
+    margin-bottom: 10px;
+    display: inline-block;   
+}
+
+.mas-title { 
+    background-color: #0085A7;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 table.mas {
     font-family: arial, sans-serif;
     color: #555;

@@ -10,36 +10,44 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 $user = getUser($_GET['email']);
 
 ?>
-        <table class="mas">
-            <tr>
-                <th colspan="3" class="mas">
-                    <div id="breadcrumb" class="mas-breadcrumb">
-                        <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $user->getName()->getFullName();?>
-                    </div>
-                </th>
-            </tr>
+<div class="container">
+    <div class="mas-title">
+        <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $user->getName()->getFullName();?>        
+    </div>
 
-            <tr>
-                <td class="mas">
-                    <form>
+    <div layout="row" layout-sm="column">
+        <div flex id="formContainer">
+            <form name="editMember">
+                <div class="form-group">
+                    <label for="firstName" class="control-label">First Name</label>  
+                    <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
+                </div>
 
-                      <div id="name">
-                        <label for="firstName" class="mas">First Name:</label>
-                        <input type="text" id="firstName" name="firstName" class="mas" value="<?php echo $user->getName()->getGivenName();?>">
-                        <br>
+                <div class="form-group">
+                    <label for="lastName" class="control-label">Last Name</label>
+                    <input required name="lastName" class="form-control" value="<?php echo $user->getName()->getFamilyName();?>">
+                </div>
 
-                        <label class="mas">Last Name:</label>
-                        <input type="text" id="lastName" name="lastName" class="mas" value="<?php echo $user->getName()->getFamilyName();?>">
-                      </div>
-                    </form>
+                <div class="form-group">
+                    <label for="rfidNumber" class="control-label">RFID Number</label>
+                    <input required name="rfidNumber" class="form-control">
+                </div>
 
-                </td>
-                <td class="mas">
-                    <?php
-                        echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
-                    ?>
-                    <br>
-                    <button class="mas-save" type="submit">Save Changes</button>
-                </td>
-            </tr>
-        </table>
+                <div class="form-group">
+                    <label for="membershipPlan" class="control-label">Membership Plan</label>
+                    <input required name="membershipPlan" class="form-control">
+                </div>
+
+                <button class="mas-save" type="submit">Save Changes</button>
+            </form> 
+        </div>
+
+        <div flex id="imageContainer">
+            <div style="text-align:center">
+                <?php
+                    echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
