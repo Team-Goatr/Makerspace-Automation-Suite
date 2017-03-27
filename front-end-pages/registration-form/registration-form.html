@@ -47,15 +47,17 @@
                     </div>
                 </div>
 
-                <div class="form-group" ng-class="{'has-error': !registration.password.$pristine">
+                <div class="form-group">
                     <label for="password" class="control-label" >Password:</label>
-                    <input type="password" style="display: inline;" class="form-control" id="password" name="password" placeholder="" ng-model="password" ng-minlength="3" required>
-                    <p ng-show="registration.password.$error.$minlength" class="help-block">The password you entered is too short.</p>
+                    <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" required>
+                    <div ng-messages="registration.password.$error">
+                        <div ng-message="required">This is a required field.</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="password-match" class="control-label" >Confirm Password:</label>
-                    <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" placeholder="" ng-model="passwordMatch" required>
+                    <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required>
                 </div>
 
                 <div class="form-group">
