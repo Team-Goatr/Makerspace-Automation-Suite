@@ -10,6 +10,8 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 $user = getUser($_GET['email']);
 
 ?>
+
+<br>
 <!-- <div class="container"> -->
     <div class="mas-title">
         <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >> <?php echo $user->getName()->getFullName();?>        
@@ -20,22 +22,22 @@ $user = getUser($_GET['email']);
             <form name="editMember">
                 <div class="form-group">
                     <label for="firstName" class="control-label">First Name</label>  
-                    <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
+                    <input required name="firstName" class="form-control col-md-6" value="<?php echo $user->getName()->getGivenName();?>">
                 </div>
 
                 <div class="form-group">
                     <label for="lastName" class="control-label">Last Name</label>
-                    <input required name="lastName" class="form-control" value="<?php echo $user->getName()->getFamilyName();?>">
+                    <input required name="lastName" class="form-control col-md-6" value="<?php echo $user->getName()->getFamilyName();?>">
                 </div>
 
                 <div class="form-group">
                     <label for="rfidNumber" class="control-label">RFID Number</label>
-                    <input required name="rfidNumber" class="form-control">
+                    <input required name="rfidNumber" class="form-control col-md-6">
                 </div>
 
                 <div class="form-group">
                     <label for="membershipPlan" class="control-label">Membership Plan</label>
-                    <input required name="membershipPlan" class="form-control">
+                    <input required name="membershipPlan" class="form-control col-md-6">
                 </div>
 
                 <button class="mas-save" type="submit">Save Changes</button>
