@@ -49,9 +49,10 @@
 
                 <div class="form-group">
                     <label for="password" class="control-label" >Password:</label>
-                    <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" required>
+                    <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" ng-minlength="5" ng-maxlength="20" required>
                     <div ng-messages="registration.password.$error">
                         <div ng-message="required">This is a required field.</div>
+                        <div ng-message="minlength">The password you entered is too short.</div>
                     </div>
                 </div>
 
