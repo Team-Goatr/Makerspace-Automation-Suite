@@ -10,7 +10,7 @@ $service = getService();
 $optParams = array(
     'domain' => 'decaturmakers.org',
     'projection' => 'custom',
-    'customFieldMask' => 'Subscription_Management',
+    'customFieldMask' => 'Subscription_Management,roles',
     'orderBy' => 'email',
     #'maxResults' => 10,
 );
@@ -21,6 +21,7 @@ if (count($results->getUsers()) != 0) {
     foreach ($results->getUsers() as $user) {
         # Fields from custom schema
         $sub_mgmt = $user->getCustomSchemas()["Subscription_Management"];
+        $rfid_tag = $user->getCustomSchemas()['roles']['rfid-id'];
         $recurring = !empty($sub_mgmt["Subscription_Recurring"]) ? $sub_mgmt["Subscription_Recurring"] : '';
         $expiration = !empty($sub_mgmt["Subscription_Expiration"]) ? $sub_mgmt["Subscription_Expiration"] : '';
         $status = !empty($sub_mgmt["Subscription_Status"]) ? $sub_mgmt["Subscription_Status"] : '';
@@ -30,8 +31,6 @@ if (count($results->getUsers()) != 0) {
         # Default Google Fields to use
         $name = $user->getName()->getFullName();
         $email = $user->getPrimaryEmail();
-
-        $rfid_tag = getRfidTag($email);
 
         # Print Table Row
         echo <<<END
