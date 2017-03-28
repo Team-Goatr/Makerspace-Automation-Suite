@@ -27,17 +27,17 @@ $user = getUser($_GET['email']);
                                 <label for="firstName" class="control-label">First Name</label>  
                                 <input required name="firstName" class="form-control col-md-6" value="<?php echo $user->getName()->getGivenName();?>">
                             </div>
-
+                            <br>
                             <div class="form-group">
                                 <label for="lastName" class="control-label">Last Name</label>
                                 <input required name="lastName" class="form-control col-md-6" value="<?php echo $user->getName()->getFamilyName();?>">
                             </div>
-
+                            <br>
                             <div class="form-group">
                                 <label for="rfidNumber" class="control-label">RFID Number</label>
                                 <input required name="rfidNumber" class="form-control col-md-6">
                             </div>
-
+                            <br>
                             <div class="form-group">
                                 <label for="membershipPlan" class="control-label">Membership Plan</label>
                                 <input required name="membershipPlan" class="form-control col-md-6">
