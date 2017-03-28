@@ -22,7 +22,7 @@ $user = getUser($_GET['email']);
             <tr>
                 <td>
                     <div id="formContainer">
-                        <form name="editMember" class="form-horzontal">
+                        <form name="editMember" class="form-horizontal">
                             <div class="form-group">
                                 <label for="firstName" class="control-label">First Name</label>  
                                 <input required name="firstName" class="form-control col-md-6" value="<?php echo $user->getName()->getGivenName();?>">
@@ -42,14 +42,12 @@ $user = getUser($_GET['email']);
                                 <label for="membershipPlan" class="control-label">Membership Plan</label>
                                 <input required name="membershipPlan" class="form-control col-md-6">
                             </div>
-
+                            <br>
                             <button class="mas-save" type="submit">Save Changes</button>
                         </form> 
                     </div>
                 </td>
-            </tr>
 
-            <tr>
                 <td>
                     <div id="imageContainer">
                         <div style="text-align:center">
@@ -59,6 +57,7 @@ $user = getUser($_GET['email']);
                         </div>
                     </div>
                 </td>
+
             </tr>
         </table>
     </div>
