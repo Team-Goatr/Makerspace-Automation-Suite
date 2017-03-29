@@ -18,7 +18,7 @@ $user = getUser($_GET['email']);
     <?php echo $user->getName()->getFullName();?>        
 </div>
 
-<div class="form-container col-md-8">
+<div class="form-container col-md-6">
     <form name="editMember" class="form-horizontal">
         <div class="form-group">
             <label for="firstName" class="control-label">First Name</label>  
@@ -48,14 +48,14 @@ $user = getUser($_GET['email']);
 
         <div class="form-group">
             <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
-            <input required name="subscriptionExp" class="form-control">
+            <input required type="date" name="subscriptionExp" class="form-control">
         </div>
 
         <button class="mas-button" type="submit">Save Changes</button>
     </form>
 </div>
 
-<div id="imageContainer col-md-4">
+<div id="imageContainer col-md-6">
     <div style="text-align:center">
         <?php
             echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
