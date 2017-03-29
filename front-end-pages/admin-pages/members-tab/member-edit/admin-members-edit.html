@@ -37,7 +37,13 @@ $user = getUser($_GET['email']);
 
         <div class="form-group">
             <label for="membershipPlan" class="control-label">Membership Plan</label>
-            <input required name="membershipPlan" class="form-control">
+            <select class="form-control" name="membershipPlan" id="membershipPlan">
+                <option value="basic-ind">Individual Basic ($25/mo)</option>
+                <option value="support-ind">Individual Supporter ($40/mo)</option>
+                <option value="basic-fam">Family Basic ($50/mo)</option>
+                <option value="support-fam">Family Supporter ($75/mo)</option>
+                <option value="invalid">Invalid</option>
+            </select>
         </div>
 
         <div class="form-group">
