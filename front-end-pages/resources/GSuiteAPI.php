@@ -95,7 +95,8 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
 
 function updateUser($username, $properties) {
     $service = getService();
-    $service->users->update($user);
+    $fields = new Google_Service_Directory_User($properties);
+    $service->users->update($username, $fields);
 }
 
 function addRole($username, $role) {
@@ -126,6 +127,34 @@ function stripRoles($role) {
 function assertRole($username, $role) {
     $roles = listRoles($username);
     return in_array($role, $roles);
+}
+
+/**
+ * Get stored RFID tag number
+ * Returns RFID number as a String
+ */
+function getRfidTag($username) {
+    $user = getUser($username);
+    $tag = $user->getCustomSchemas()['roles']['rfid-id'];
+
+    return $tag;
+}
+
+/**
+ * Set stored RFID tag number
+ * $username can be any UID for the Google Account
+ * $rfidTag can be either an integer or a string
+ */
+function setRfidTag($username, $rfidTag) {
+    $fields = array(
+        "customSchemas" => array (
+            "roles" => array(
+                "rfid-id" => $rfidTag
+            )
+        )
+    );
+
+    updateUser($username, $fields);
 }
 
 /**
