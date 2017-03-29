@@ -18,57 +18,12 @@ img.mas {
     margin-bottom: 10px;
 }
 
-/*table.mas {
-    font-family: arial, sans-serif;
-    color: #555;
-    border: 0px;
-    width: 100%;
-    border-bottom: 1px solid #ddd !important;
-    border-top: 1px solid #ddd !important;
-    border-left: 1px solid #ddd !important;
-    border-right: 1px solid #ddd !important;
+a.mas {
+    color: white;
+    text-decoration: none;
 }
 
-td.mas {
-    border: 0px;
-    text-align: center;
-    padding: 8px;
-    
-    vertical-align: middle;
-}
-
-tr.mas:nth-child(even) {
-    background-color: #ddd;
-    border: 1px;
-}
-
-tr.mas:nth-child(odd) {
-    background-color: #eee;
-    border: 1px;
-}
-
-h1.mas {
-    font-size: 18px;
-    padding: 0.5em;
-    float: left;
-}
-
-label.mas {
-    display: inline-block;
-    float: left;
-    clear: left;
-    width: 150px;
-    text-align: right;
-    padding-top: 13px;
-}
-
-input.mas {
-    display: inline-block;
-    margin: 0.5em;
-    float: left
-}
-
-.mas-save {
+/*.mas-save {
     background-color: #F47B42;
     margin: auto;
     display: inline-block;
@@ -84,8 +39,3 @@ input.mas {
     color: white !important;
     padding: 3px;
 }*/
-
-a.mas {
-    color: white;
-    text-decoration: none;
-}
