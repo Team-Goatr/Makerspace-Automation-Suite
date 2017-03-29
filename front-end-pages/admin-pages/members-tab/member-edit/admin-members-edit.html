@@ -11,54 +11,58 @@ $user = getUser($_GET['email']);
 
 ?>
 
-<br>
+<body style="background-color: #EBEBEB">
 
-<div class="mas-title">
-    <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >>
-    <?php echo $user->getName()->getFullName();?>        
-</div>
+    <br>
 
-<div class="form-container col-md-6">
-    <form name="editMember" class="form-horizontal">
-        <div class="form-group">
-            <label for="firstName" class="control-label">First Name</label>  
-            <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
-        </div>
-
-        <div class="form-group">
-            <label for="lastName" class="control-label">Last Name</label>
-            <input required name="lastName" class="form-control" value="<?php echo $user->getName()->getFamilyName();?>">
-        </div>
-
-        <div class="form-group">
-            <label for="rfidNumber" class="control-label">RFID Number</label>
-            <input required name="rfidNumber" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <label for="membershipPlan" class="control-label">Membership Plan</label>
-            <select class="form-control" name="membershipPlan" id="membershipPlan">
-                <option value="basic-ind">Individual Basic ($25/mo)</option>
-                <option value="support-ind">Individual Supporter ($40/mo)</option>
-                <option value="basic-fam">Family Basic ($50/mo)</option>
-                <option value="support-fam">Family Supporter ($75/mo)</option>
-                <option value="invalid">Invalid</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
-            <input required type="date" name="subscriptionExp" class="form-control">
-        </div>
-
-        <button class="mas-button" type="submit">Save Changes</button>
-    </form>
-</div>
-
-<div id="imageContainer col-md-6">
-    <div style="text-align:center">
-        <?php
-            echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
-        ?>
+    <div class="mas-title">
+        <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >>
+        <?php echo $user->getName()->getFullName();?>        
     </div>
-</div>
+
+    <div class="form-container col-md-6">
+        <form name="editMember" class="form-horizontal">
+            <div class="form-group">
+                <label for="firstName" class="control-label">First Name</label>  
+                <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName" class="control-label">Last Name</label>
+                <input required name="lastName" class="form-control" value="<?php echo $user->getName()->getFamilyName();?>">
+            </div>
+
+            <div class="form-group">
+                <label for="rfidNumber" class="control-label">RFID Number</label>
+                <input required name="rfidNumber" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="membershipPlan" class="control-label">Membership Plan</label>
+                <select class="form-control" name="membershipPlan" id="membershipPlan">
+                    <option value="basic-ind">Individual Basic ($25/mo)</option>
+                    <option value="support-ind">Individual Supporter ($40/mo)</option>
+                    <option value="basic-fam">Family Basic ($50/mo)</option>
+                    <option value="support-fam">Family Supporter ($75/mo)</option>
+                    <option value="invalid">Invalid</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
+                <input required type="date" name="subscriptionExp" class="form-control">
+            </div>
+
+            <button class="mas-button" type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <div id="imageContainer col-md-6">
+        <div style="text-align:center">
+            <?php
+                echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
+            ?>
+        </div>
+    </div>
+
+</body>
