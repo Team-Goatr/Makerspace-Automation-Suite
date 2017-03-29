@@ -1,12 +1,3 @@
-<!-- ANGULAR -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
-
-<!-- BOOTSTRAP -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
-
-
 <script language="javascript">
     angular
         .module('registrationForm', ['ngMessages'])
@@ -16,75 +7,77 @@
         });
 </script>
 
-<br>
+<body style="background-color: #EBEBEB">
+    <br>
 
-<h3>Register as Member</h3>
+    <h3>Register as Member</h3>
 
-<div class="container" ng-app="registrationForm" ng-controller="registrationCtrl">
-    <div class="row">
-        <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label for="first" class="control-label">First Name:</label>
-                    <input type="text" class="form-control" id="first" name="firstname" placeholder="">
-                </div>
+    <div class="container" ng-app="registrationForm" ng-controller="registrationCtrl">
+        <div class="row">
+            <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="first" class="control-label">First Name:</label>
+                        <input type="text" class="form-control" id="first" name="firstname" placeholder="">
+                    </div>
 
-                <div class="form-group">
-                    <label for="last" class="control-label">Last Name:</label>
-                    <input type="text" class="form-control" id="last" name="lastname" placeholder="">
-                </div>
+                    <div class="form-group">
+                        <label for="last" class="control-label">Last Name:</label>
+                        <input type="text" class="form-control" id="last" name="lastname" placeholder="">
+                    </div>
 
-                <div class="form-group">
-                    <label for="email" class="control-label">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="">
-                </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="">
+                    </div>
 
-                <div class="form-group">
-                    <label for="username" class="control-label" >Username:</label>
-                    <div class="input-group">
-                        <input type="text" style="display: inline;" class="form-control" id="username" name="username" placeholder="">
-                        <div class="input-group-addon">@decaturmakers.org</div>
+                    <div class="form-group">
+                        <label for="username" class="control-label" >Username:</label>
+                        <div class="input-group">
+                            <input type="text" style="display: inline;" class="form-control" id="username" name="username" placeholder="">
+                            <div class="input-group-addon">@decaturmakers.org</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="control-label" >Password:</label>
+                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" ng-minlength="5" ng-maxlength="20" required>
+                        <div ng-messages="registration.password.$error">
+                            <div ng-message="required">This is a required field.</div>
+                            <div ng-message="minlength">The password you entered is too short.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password-match" class="control-label" >Confirm Password:</label>
+                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type" class="control-label" >Membership type:</label>
+                            <select class="form-control" name="type" id="type">
+                                <option value="basic-ind">Individual Basic ($25/mo)</option>
+                                <option value="support-ind">Individual Supporter ($40/mo)</option>
+                                <option value="basic-fam">Family Basic ($50/mo)</option>
+                                <option value="support-fam">Family Supporter ($75/mo)</option>
+                                <option value="invalid">Invalid</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="autorenew" checked> Auto-renew Membership</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="password" class="control-label" >Password:</label>
-                    <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" ng-minlength="5" ng-maxlength="20" required>
-                    <div ng-messages="registration.password.$error">
-                        <div ng-message="required">This is a required field.</div>
-                        <div ng-message="minlength">The password you entered is too short.</div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password-match" class="control-label" >Confirm Password:</label>
-                    <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="type" class="control-label" >Membership type:</label>
-                        <select class="form-control" name="type" id="type">
-                            <option value="basic-ind">Individual Basic ($25/mo)</option>
-                            <option value="support-ind">Individual Supporter ($40/mo)</option>
-                            <option value="basic-fam">Family Basic ($50/mo)</option>
-                            <option value="support-fam">Family Supporter ($75/mo)</option>
-                            <option value="invalid">Invalid</option>
-                        </select>
-                </div>
-
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="autorenew" checked> Auto-renew Membership</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</body>
 
 
 
