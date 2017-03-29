@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '../front-end-pages/resources/StripeAPI.php';
+require_once __DIR__ . '/../front-end-pages/resources/StripeAPI.php';
 
 Stripe\Stripe::setApiKey("sk_test_49SSSUMxAPbpYSmy4Omblrgk");
 
