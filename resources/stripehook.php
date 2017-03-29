@@ -9,5 +9,5 @@ $event = json_decode($input);
 error_log("Webhook event received");
 error_log($event->id);
 
-http_response_code(200);
+http_response_code(400);
 ?>
