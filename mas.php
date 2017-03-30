@@ -153,7 +153,7 @@ END;
                         
                         <tr valign="top">
                         <th scope="row">GSuite Access JSON</th>
-                        <td><textarea name="gsuite-json" rows="10" cols="60" value="$gsuite_json"></textarea></td>
+                        <td><textarea name="gsuite-json" rows="10" cols="60">$gsuite_json</textarea></td>
                         </tr>
                         
                         <tr valign="top">
