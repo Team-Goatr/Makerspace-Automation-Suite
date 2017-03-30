@@ -89,6 +89,11 @@ function mas_enqueue_styles() {
 
 // Enqueueing the MAS scripts
 function mas_enqueue_scripts() {
+    // Load only on ?page=mas-plugin
+    if($hook != 'toplevel_page_mas-plugin') {
+        return;
+    }
+
     // Bootstrap
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
 
