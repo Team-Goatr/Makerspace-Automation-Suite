@@ -147,17 +147,17 @@ END;
                         </tr>
                          
                         <tr valign="top">
-                        <th scope="row">Stripe Public Key</th>
+                        <th scope="row">Stripe Secret Key</th>
                         <td><input type="text" name="stripe-secret" value="$stripe_secret" /></td>
                         </tr>
                         
                         <tr valign="top">
-                        <th scope="row">Stripe Public Key</th>
+                        <th scope="row">GSuite Access JSON</th>
                         <td><textarea type="text" name="gsuite-json" rows="10" cols="60" value="$gsuite_json"></textarea></td>
                         </tr>
                         
                         <tr valign="top">
-                        <th scope="row">Stripe Public Key</th>
+                        <th scope="row">Slack Secret Key</th>
                         <td><input type="text" name="slack-secret" value="$slack_secret" /></td>
                         </tr>
                     </table>
