@@ -19,7 +19,7 @@ function getClient() {
     $client = new Google_Client();
     $client->setApplicationName(APPLICATION_NAME);
     $client->setScopes(SCOPES);
-    $client->setAuthConfig(get_option('gsuite-json'));
+    $client->setAuthConfig(json_decode(get_option('gsuite-json')));
     $client->setSubject('thomas@decaturmakers.org');
     return $client;
 }
