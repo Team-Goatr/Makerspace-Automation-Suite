@@ -104,7 +104,7 @@ add_action('admin_enqueue_scripts', 'mas_enqueue_styles');
 add_action('admin_enqueue_scripts', 'mas_enqueue_scripts');
 
 // Registering the MAS's settings in Wordpress
-if (is_admin()) add_action('admin_init', 'register_mas_settings');
+add_action('admin_init', 'register_mas_settings');
 function register_mas_settings() {
 
     // Registering Stripe Settings
