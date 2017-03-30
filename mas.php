@@ -111,6 +111,7 @@ function mas_enqueue_scripts() {
 // Registering the MAS's settings in Wordpress
 add_action('admin_init', 'register_mas_settings');
 function register_mas_settings() {
+    echo "Registered!";
 
     // Registering Stripe Settings
     register_setting('mas_options-group', 'stripe-secret');
