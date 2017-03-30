@@ -123,16 +123,15 @@ function mas_settings_page() {
         die('You do not have the permissions to edit MAS options.');
     }
 
-    echo '<div>';
-    screen_icon();
-    <<<END
+    echo <<<END
+        <div>
                 <h2>Makerspace Automation Suite Options</h2>
                 <form method="post" action="options.php">
 END;
     settings_fields('mas_options-group');
     do_settings_sections('mas_options-group');
     submit_button();
-    <<<END
+    echo <<<END
                 </form>
             </div>
 END;
