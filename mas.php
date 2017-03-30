@@ -79,7 +79,11 @@ add_action( 'wp', 'elegance_referal_init' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suite.php';
 
 // Enqueueing the MAS styles
-function mas_enqueue_styles() {
+function mas_enqueue_styles($hook) {
+    if($hook != 'toplevel_page_mas-plugin' || !is_page('member') || !is_page('register')) {
+        return;
+    }
+
     // Bootstrap
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
     
@@ -90,7 +94,7 @@ function mas_enqueue_styles() {
 // Enqueueing the MAS scripts
 function mas_enqueue_scripts($hook) {
     // Load only on ?page=mas-plugin
-    if($hook != 'toplevel_page_mas-plugin') {
+    if($hook != 'toplevel_page_mas-plugin' || !is_page('member') || !is_page('register')) {
         return;
     }
 
