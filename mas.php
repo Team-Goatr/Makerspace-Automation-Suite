@@ -105,8 +105,8 @@ function mas_enqueue_scripts() {
     wp_enqueue_script('angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js');
 }
 
-add_action('admin_enqueue_scripts', 'mas_enqueue_styles');
-add_action('admin_enqueue_scripts', 'mas_enqueue_scripts');
+//add_action('admin_enqueue_scripts', 'mas_enqueue_styles');
+//add_action('admin_enqueue_scripts', 'mas_enqueue_scripts');
 
 // Registering the MAS's settings in Wordpress
 add_action('admin_init', 'register_mas_settings');
