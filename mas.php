@@ -111,7 +111,6 @@ function mas_enqueue_scripts() {
 // Registering the MAS's settings in Wordpress
 add_action('admin_init', 'register_mas_settings');
 function register_mas_settings() {
-    echo "Registered!";
 
     // Registering Stripe Settings
     register_setting('mas_options-group', 'stripe-secret');
@@ -131,12 +130,39 @@ function mas_settings_page() {
 
     echo <<<END
         <div>
-                <h2>Makerspace Automation Suite Options</h2>
+            <h2>Makerspace Automation Suite Options</h2>
                 <form method="post" action="options.php">
 END;
     settings_fields('mas_options-group');
     do_settings_sections('mas_options-group');
-    submit_button();
+    $stripe_public = get_option('stripe-public');
+    $stripe_secret = get_option('stripe-secret');
+    $gsuite_json = get_option('gsuite-json');
+    $slack_secret = get_option('slack-secret');
+    echo <<<END
+                    <table class="form-table">
+                        <tr valign="top">
+                        <th scope="row">Stripe Public Key</th>
+                        <td><input type="text" name="stripe-public" value="$stripe_public" /></td>
+                        </tr>
+                         
+                        <tr valign="top">
+                        <th scope="row">Stripe Public Key</th>
+                        <td><input type="text" name="stripe-secret" value="$stripe_secret" /></td>
+                        </tr>
+                        
+                        <tr valign="top">
+                        <th scope="row">Stripe Public Key</th>
+                        <td><textarea type="text" name="gsuite-json" rows="10" cols="60" value="$gsuite_json"></textarea></td>
+                        </tr>
+                        
+                        <tr valign="top">
+                        <th scope="row">Stripe Public Key</th>
+                        <td><input type="text" name="slack-secret" value="$slack_secret" /></td>
+                        </tr>
+                    </table>
+END;
+                    submit_button();
     echo <<<END
                 </form>
             </div>
