@@ -88,7 +88,7 @@ function mas_enqueue_styles() {
 }
 
 // Enqueueing the MAS scripts
-function mas_enqueue_scripts() {
+function mas_enqueue_scripts($hook) {
     // Load only on ?page=mas-plugin
     if($hook != 'toplevel_page_mas-plugin') {
         return;
