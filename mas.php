@@ -103,8 +103,50 @@ function mas_enqueue_scripts() {
 add_action('admin_enqueue_scripts', 'mas_enqueue_styles');
 add_action('admin_enqueue_scripts', 'mas_enqueue_scripts');
 
-add_action('admin_menu', 'mas_admin_menu_setup');
+// Registering the MAS's settings in Wordpress
+if (is_admin()) add_action('admin_init', 'register_mas_settings');
+function register_mas_settings() {
 
+    // Registering Stripe Settings
+    register_setting('mas_options-group', 'stripe-secret');
+    register_setting('mas_options-group', 'stripe-public');
+
+    // Registering GSuite Settings
+    register_setting('mas_options-group', 'gsuite-json');
+
+    // Registering Slack Settings
+    register_setting('mas_options-group', 'slack-secret');
+}
+
+function mas_settings_page() {
+    if (!current_user_can('manage_options')) {
+        die('You do not have the permissions to edit MAS options.');
+    }
+
+    echo '<div>';
+    screen_icon();
+    <<<END
+                <h2>Makerspace Automation Suite Options</h2>
+                <form method="post" action="options.php">
+END;
+    settings_fields('mas_options-group');
+    do_settings_sections('mas_options-group');
+    submit_button();
+    <<<END
+                </form>
+            </div>
+END;
+}
+
+// Registering the MAS Options in the WP Admin settings menu
+add_action('admin_menu', 'mas_settings_menu');
+function mas_settings_menu() {
+    add_options_page('Makerspace Automation Suite Options', 'MAS Options',
+        'manage_options', 'mas_options_identifier', 'mas_settings_page');
+}
+
+// Setting up the root page for the MAS
+add_action('admin_menu', 'mas_admin_menu_setup');
 function mas_admin_menu_setup() {
     add_menu_page('MAS Administration Page', 'Makerspace Automation Suite', 'manage_options', 'mas-plugin', 'mas_admin_init');
 };
