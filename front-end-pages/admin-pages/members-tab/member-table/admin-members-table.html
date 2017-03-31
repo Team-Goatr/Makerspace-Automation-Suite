@@ -6,11 +6,16 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-				$('#member_table').DataTable();
+				$('#member_table').DataTable( {
+                  "columnDefs": [
+                    { "width": "20%", "targets": 0 }
+                  ]
+                } );
 			} );
 		</script>
 	</head>
 	<body  style="background-color: #F1F1F1">
+        <br>
 		<div class="container" width="80%">
 
             <table id="member_table" class="table table-striped table-bordered" width="100%">
