@@ -8,6 +8,7 @@
 		switch($_GET['action']) {
 			case 'review': include 'review.php'; break;
 			case 'submit': include 'submit.php'; break;
+            case 'check': include 'username-check.php'; break;
             default: include 'registration-form.html'; break;
 		}
         ?>
