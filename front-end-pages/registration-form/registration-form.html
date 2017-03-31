@@ -43,16 +43,15 @@
                     </div>
 
                     <script>
-                        jQuery("#username-help-block").hide();
 
                         function showError() {
                             jQuery("#username-group").addClass("has-error");
-                            jQuery("#username-help-block").addClass("hidden");
+                            jQuery("#username-help-block").removeClass("hidden");
                         }
 
                         function clearError() {
                             jQuery("#username-group").removeClass("has-error");
-                            jQuery("#username-help-block").removeClass("hidden");
+                            jQuery("#username-help-block").addClass("hidden");
                         }
 
                         function checkUsername() {
