@@ -34,6 +34,8 @@ try {
     $hashedPassword = sha1($password);
     $status = "Pending";
 
+    error_log("Hashed Password: " . $hashedPassword);
+
     $now = new DateTime();
     $now->modify("+1 month");
     $expiration = $now->format("Y-m-d");
