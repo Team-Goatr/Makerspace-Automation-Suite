@@ -8,6 +8,7 @@ try {
     // Get things submitted to the form
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
+    $password = $_POST['password'];
     $token = $_POST['stripeToken'];
     $email = $_POST['email'];
     $username = $_POST["username"];
@@ -30,7 +31,7 @@ try {
         error_log("Customer $email has been charged for " . $plan->name);
     }
 
-    $password = "ChangeMe";
+    $hashedPassword = password_hash($password);
     $status = "Pending";
 
     $now = new DateTime();
@@ -38,7 +39,7 @@ try {
     $expiration = $now->format("Y-m-d");
 
     //Create Customer in G Suite
-    $newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
+    $newUser = userFactory($username, $email, $firstname, $lastname, $hashedPassword, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
     createUser($newUser);
 
     // Have Slack invite the user
