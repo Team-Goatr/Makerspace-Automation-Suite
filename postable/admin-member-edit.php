@@ -24,7 +24,7 @@ function prefix_admin_update_member() {
 
     //Need to add extra fields
 
-    updateUser($username, $properties);
+    //updateUser($username, $properties);
 
     wp_redirect(admin_url('admin.php?page=mas-plugin'));
     exit("User updated succesfully");
