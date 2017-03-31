@@ -15,11 +15,18 @@
         die();
     }
 
+    ##TESTING
+    $cus = $event->data->object->customer;
+    $user = getUserByStripeID($cus);
+    error_log("User: " . $user->getName()->getFullName());
+    ##TESTING
+
     # Note: event types defined at: https://stripe.com/docs/api#event_types
     if ($event->type == 'invoice.payment_failed') {
         $cus = $event->data->object->customer;
         error_log("Payment failed for customer $cus");
         # TODO: Send email to admin and customer? Update G Suite
+        $user = getUserByStripeID($cus);
     } elseif ($event->type == 'invoice.payment_succeeded') {
         # Customer ID
         $cus = $event->data->object->customer;

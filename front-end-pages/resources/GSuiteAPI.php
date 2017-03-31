@@ -46,6 +46,22 @@ function getUser($email) {
     return $service->users->get($email, $optParams);
 }
 
+function getUserByStripeID($stripe_id) {
+    $service = getService();
+    $optParams = array(
+        'projection' => 'custom',
+        'customFieldMask' => 'Subscription_Management,roles',
+    );
+    # TODO: This is a horrible way to do this. Please tell me there's something better
+    $results = $service->users->listUsers($optParams);
+    foreach ($results->getUsers() as $user) {
+        if ($user->getCustomSchemas()['Subscription_Management']['Stripe_ID'] == $stripe_id) {
+            return $user;
+        }
+    }
+    return NULL;
+}
+
 /**
  * Adds the user-object given to the Google Service Directory
  */
