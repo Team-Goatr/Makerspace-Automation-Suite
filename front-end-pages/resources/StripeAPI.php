@@ -172,7 +172,7 @@ function getStripeEvent($event_id) {
     $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
     \Stripe\Stripe::setApiKey($stripe_secret_key);
 
-    return \Stripe\Event::retrieve($eventjson->id);
+    return \Stripe\Event::retrieve($event_id);
 }
 
 /**
