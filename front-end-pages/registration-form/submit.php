@@ -31,7 +31,7 @@ try {
         error_log("Customer $email has been charged for " . $plan->name);
     }
 
-    $hashedPassword = password_hash($password);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $status = "Pending";
 
     $now = new DateTime();
