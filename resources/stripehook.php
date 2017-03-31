@@ -10,7 +10,7 @@
     $eventjson = json_decode($input);
 
     #TODO: Get the event from Stripe and verify validity
-    $event = \Stripe\Event::retrieve($eventjson->id);
+    $event = getStripeEvent($eventjson->id);
 
     # Note: event types defined at: https://stripe.com/docs/api#event_types
     if ($event->type == 'invoice.payment_failed') {

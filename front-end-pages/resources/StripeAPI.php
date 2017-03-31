@@ -166,6 +166,16 @@ function subscribeStripeCustomer($id, $plan) {
 }
 
 /**
+ * Retrieve a Stripe event
+ */
+function getStripeEvent($event_id) {
+    $stripe_secret_key = trim(file_get_contents(STRIPE_SECRET_KEY_PATH));
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+    return \Stripe\Event::retrieve($eventjson->id);
+}
+
+/**
  * Updates the secret key for Stripe
  */
 function updateStripeSecret($newSecret) {
