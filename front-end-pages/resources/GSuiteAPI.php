@@ -49,8 +49,10 @@ function getUser($email) {
 function getUserByStripeID($stripe_id) {
     $service = getService();
     $optParams = array(
+        'domain' => 'decaturmakers.org',
         'projection' => 'custom',
         'customFieldMask' => 'Subscription_Management,roles',
+        'orderBy' => 'email',
     );
     # TODO: This is a horrible way to do this. Please tell me there's something better
     $results = $service->users->listUsers($optParams);
