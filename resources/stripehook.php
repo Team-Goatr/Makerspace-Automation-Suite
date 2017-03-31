@@ -9,8 +9,6 @@
     $input = @file_get_contents("php://input");
     $eventjson = json_decode($input);
 
-    $id = $eventjson->id;
-
     #TODO: Get the event from Stripe and verify validity
     $event = getStripeEvent($eventjson->id);
 
