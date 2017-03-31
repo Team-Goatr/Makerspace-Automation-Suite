@@ -9,8 +9,12 @@
     $input = @file_get_contents("php://input");
     $eventjson = json_decode($input);
 
-    #TODO: Get the event from Stripe and verify validity
+    # Get the event from Stripe and verify validity
     $event = getStripeEvent($eventjson->id);
+    if (is_null($event)) {
+        http_response_code(500);
+        die();
+    }
 
     # Note: event types defined at: https://stripe.com/docs/api#event_types
     if ($event->type == 'invoice.payment_failed') {
