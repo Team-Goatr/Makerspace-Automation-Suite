@@ -1,15 +1,14 @@
 <?php
     error_log("Webhook event received");
 
-    # TODO: Troubleshoot loading Stripe API
     require_once __DIR__ . '/../front-end-pages/resources/StripeAPI.php';
-    #Stripe\Stripe::setApiKey("sk_test_49SSSUMxAPbpYSmy4Omblrgk");
+    require_once __DIR__ . '/../front-end-pages/resources/GSuiteAPI.php';
 
     # Get POST json data
     $input = @file_get_contents("php://input");
     $eventjson = json_decode($input);
 
-    # Get the event from Stripe and verify validity
+    # Get the event from Stripe to verify validity
     $event = getStripeEvent($eventjson->id);
     if (is_null($event)) {
         http_response_code(500);
