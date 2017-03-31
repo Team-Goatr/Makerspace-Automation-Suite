@@ -2,11 +2,12 @@
 
 defined( 'ABSPATH' ) or die();
 
-include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
-define( 'WP_DEBUG_LOG', true );
-// Adding the keys to the wordpress hooks
+require_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+
+// Adding the action to the wordpress hooks
 add_action('admin_post_update_member', 'prefix_admin_update_member');
 
+/*
 function prefix_admin_update_member() {
     echo "Function Called";
     $username = $_POST['username'];
@@ -21,8 +22,16 @@ function prefix_admin_update_member() {
     	)
     );
 
-    //updateUser($username, $properties);
+    //Need to add extra fields
+
+    updateUser($username, $properties);
 
     wp_redirect(admin_url('admin.php?page=mas-plugin'));
-    exit();
+    exit("User updated succesfully");
+}
+*/
+function prefix_admin_update_member() {
+	status_header(200);
+    die("Server received '{$_REQUEST['data']}' from your browser.");
+    //request handlers should die() when they complete their task
 }
