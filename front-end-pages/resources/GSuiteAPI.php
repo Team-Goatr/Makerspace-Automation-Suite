@@ -46,6 +46,9 @@ function getUser($email) {
     return $service->users->get($email, $optParams);
 }
 
+/**
+ * Returns a Google_Service_Directory_User Object corresponding to the Stripe ID  given
+ */
 function getUserByStripeID($stripe_id) {
     $service = getService();
     $optParams = array(

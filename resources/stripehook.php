@@ -16,24 +16,45 @@
     }
 
     ##TESTING
-    $cus = $event->data->object->customer;
-    $user = getUserByStripeID($cus);
-    error_log("User: " . $user->getName()->getFullName());
+    #$cus = $event->data->object->customer;
+    #$user = getUserByStripeID($cus);
+    #error_log("User: " . $user->getName()->getFullName());
     ##TESTING
 
     # Note: event types defined at: https://stripe.com/docs/api#event_types
     if ($event->type == 'invoice.payment_failed') {
+        # Customer ID from Stripe
         $cus = $event->data->object->customer;
-        error_log("Payment failed for customer $cus");
-        # TODO: Send email to admin and customer? Update G Suite
+
+        # User info from G Suite
         $user = getUserByStripeID($cus);
+        $name = $user->getName()->getFullName();
+        $email = $user->getPrimaryEmail();
+
+        error_log("Payment failed for customer $cus");
+
+        # Send an email to the admin, alerting them that a payment has failed
+        # TODO: Make this admin email configurable somewhere?
+        $adminemail = 'thomas@decaturmakers.org';
+        $subject = 'DecaturMakers Failed Payment';
+        $message = "A user's membership payment has failed!\nName: $name\nEmail: $email\nStripe Customer: $cus";
+        $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
+        wp_mail($adminemail, $subject, $message, $headers);
+
+        # TODO: Send email to customer's original email (not decaturmakers)
+
+        # TODO: Update G suite subscription status
+
     } elseif ($event->type == 'invoice.payment_succeeded') {
         # Customer ID
         $cus = $event->data->object->customer;
         # End of subscription period (UNIX Epoch time)
         $end = $event->data->object->period_end;
+        # G suite user
+        $user = getUserByStripeID($cus);
 
         # TODO: Update G suite subscription expiration date
+
         # TODO: Update G Suite subscription status
     }
 
