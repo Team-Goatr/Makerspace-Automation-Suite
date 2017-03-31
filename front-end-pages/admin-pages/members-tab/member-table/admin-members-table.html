@@ -17,24 +17,20 @@
 		<div class="container">
 
             <table id="example" class="display" cellspacing="0" width="100%">
-                <tr>
-                    <th></th>
-                    <th>NameDana</th>
-                    <th>Email</th>
-                    <th>RFID Tag #</th>
-                    <th>Membership Plan</th>
-                    <th>Subscription Status</th>
-                </tr>
-            <?php include 'admin-member-data.php'; ?>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>NameDana</th>
+                        <th>Email</th>
+                        <th>RFID Tag #</th>
+                        <th>Membership Plan</th>
+                        <th>Subscription Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php include 'admin-member-data.php'; ?>
+                </tbody>
             </table>
-			
 		</div>
-
-<script type="text/javascript">
-	// For demo to fit into DataTables site builder...
-	$('#example')
-		.removeClass( 'display' )
-		.addClass('table table-striped table-bordered');
-</script>
 	</body>
 </html>
