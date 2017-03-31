@@ -31,7 +31,20 @@
                         <input type="email" class="form-control" id="email" name="email" placeholder="">
                     </div>
 
+                    <div id="username-group" class="form-group">
+                        <label for="username" class="control-label" >Username:</label>
+                        <div class="input-group">
+                            <input type="text" style="" onchange="checkUsername()" class="form-control" id="username"
+                                   name="username" placeholder=""
+                                   aria-describedby="username-help-block">
+                            <div class="input-group-addon">@decaturmakers.org</div>
+                        </div>
+                        <span id="username-help-block" class="help-block">This username is already taken.</span>
+                    </div>
+
                     <script>
+                        $("#username-help-block").hide();
+
                         function showError() {
                             $("#username-group").addClass("has-error");
                             $("#username-help-block").show();
@@ -61,17 +74,6 @@
                             });
                         }
                     </script>
-
-                    <div id="username-group" class="form-group has-error">
-                        <label for="username" class="control-label" >Username:</label>
-                        <div class="input-group">
-                            <input type="text" style="" onchange="checkUsername()" class="form-control" id="username"
-                                   name="username" placeholder=""
-                                   aria-describedby="username-help-block">
-                            <div class="input-group-addon">@decaturmakers.org</div>
-                        </div>
-                        <span id="username-help-block" class="help-block">This username is already taken.</span>
-                    </div>
 
                     <div class="form-group">
                         <label for="password" class="control-label" >Password:</label>
