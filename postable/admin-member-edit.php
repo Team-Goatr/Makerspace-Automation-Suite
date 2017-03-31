@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) or die();
 
 include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
-
+define( 'WP_DEBUG', true );
 // Adding the keys to the wordpress hooks
 add_action('admin_post_update_member', 'prefix_admin_update_member');
 
