@@ -106,17 +106,16 @@ function mas_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'mas_enqueue_styles');
 add_action('wp_enqueue_scripts', 'mas_enqueue_scripts');
 
-
 // Enqueueing the MAS styles on the admin pages
 function mas_admin_enqueue_styles($hook) {
     // Load only on ?page=mas-plugin
     if($hook != 'toplevel_page_mas-plugin') {
         return;
     }
-    
+
     // Bootstrap
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-    
+
     // Angular Material
     wp_enqueue_style( 'angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css');
 }
@@ -127,10 +126,10 @@ function mas_admin_enqueue_scripts($hook) {
     if($hook != 'toplevel_page_mas-plugin') {
         return;
     }
-
+  
     // Bootstrap
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'));
-
+  
     // Angular
     wp_enqueue_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js');
     wp_enqueue_script('angular-animate', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js');
@@ -138,12 +137,81 @@ function mas_admin_enqueue_scripts($hook) {
     wp_enqueue_script('angular-messages', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js');
     wp_enqueue_script('angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js');
 }
+
 add_action('admin_enqueue_scripts', 'mas_admin_enqueue_styles');
 add_action('admin_enqueue_scripts', 'mas_admin_enqueue_scripts');
 
+// Registering the MAS's settings in Wordpress
+add_action('admin_init', 'register_mas_settings');
+function register_mas_settings() {
 
+    // Registering Stripe Settings
+    register_setting('mas_options-group', 'stripe-secret');
+    register_setting('mas_options-group', 'stripe-public');
+
+    // Registering GSuite Settings
+    register_setting('mas_options-group', 'gsuite-json');
+
+    // Registering Slack Settings
+    register_setting('mas_options-group', 'slack-secret');
+}
+
+// Creates the page for MAS options in the settings menu
+function mas_settings_page() {
+    if (!current_user_can('manage_options')) {
+        die('You do not have the permissions to edit MAS options.');
+    }
+
+    echo <<<END
+        <div>
+            <h2>Makerspace Automation Suite Options</h2>
+                <form method="post" action="options.php">
+END;
+    settings_fields('mas_options-group');
+    do_settings_sections('mas_options-group');
+    $stripe_public = get_option('stripe-public');
+    $stripe_secret = get_option('stripe-secret');
+    $gsuite_json = get_option('gsuite-json');
+    $slack_secret = get_option('slack-secret');
+    echo <<<END
+                    <table class="form-table">
+                        <tr valign="top">
+                        <th scope="row">Stripe Public Key</th>
+                        <td><input type="text" name="stripe-public" value="$stripe_public" /></td>
+                        </tr>
+                         
+                        <tr valign="top">
+                        <th scope="row">Stripe Secret Key</th>
+                        <td><input type="text" name="stripe-secret" value="$stripe_secret" /></td>
+                        </tr>
+                        
+                        <tr valign="top">
+                        <th scope="row">GSuite Access JSON</th>
+                        <td><textarea name="gsuite-json" rows="10" cols="60">$gsuite_json</textarea></td>
+                        </tr>
+                        
+                        <tr valign="top">
+                        <th scope="row">Slack Secret Key</th>
+                        <td><input type="text" name="slack-secret" value="$slack_secret" /></td>
+                        </tr>
+                    </table>
+END;
+                    submit_button();
+    echo <<<END
+                </form>
+            </div>
+END;
+}
+
+// Registering the MAS Options in the WP Admin settings menu
+add_action('admin_menu', 'mas_settings_menu');
+function mas_settings_menu() {
+    add_options_page('Makerspace Automation Suite Options', 'MAS Options',
+        'manage_options', 'mas_options_identifier', 'mas_settings_page');
+}
+
+// Setting up the root page for the MAS
 add_action('admin_menu', 'mas_admin_menu_setup');
-
 function mas_admin_menu_setup() {
     add_menu_page('MAS Administration Page', 'Makerspace Automation Suite', 'manage_options', 'mas-plugin', 'mas_admin_init');
 };
