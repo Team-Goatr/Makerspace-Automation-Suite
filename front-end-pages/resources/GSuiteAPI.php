@@ -62,7 +62,7 @@ function userFactory($username, $email, $firstName, $lastName, $hashedPassword, 
     $userData = array(
         'kind' => 'admin#directory#user',
         'primaryEmail' => $username,
-        'hashFunction' => 'SHA-1',
+        //'hashFunction' => 'SHA-1',
         'password' => $hashedPassword,
         'name' => array(
             'givenName' => $firstName,
