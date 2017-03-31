@@ -1,4 +1,10 @@
 <?php
+    // Allowing the usernames to be checked via username-check.php file
+    if ($_GET['action'] == "check") {
+        include 'username-check.php';
+        die();
+    }
+
     get_header();
 ?>
 <div id="primary" class="content-area">
@@ -8,7 +14,6 @@
 		switch($_GET['action']) {
 			case 'review': include 'review.php'; break;
 			case 'submit': include 'submit.php'; break;
-            case 'check': include 'username-check.php'; break;
             default: include 'registration-form.html'; break;
 		}
         ?>
