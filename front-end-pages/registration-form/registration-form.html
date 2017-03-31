@@ -43,20 +43,20 @@
                     </div>
 
                     <script>
-                        $("#username-help-block").hide();
+                        jQuery("#username-help-block").hide();
 
                         function showError() {
-                            $("#username-group").addClass("has-error");
-                            $("#username-help-block").addClass("hidden");
+                            jQuery("#username-group").addClass("has-error");
+                            jQuery("#username-help-block").addClass("hidden");
                         }
 
                         function clearError() {
-                            $("#username-group").removeClass("has-error");
-                            $("#username-help-block").removeClass("hidden");
+                            jQuery("#username-group").removeClass("has-error");
+                            jQuery("#username-help-block").removeClass("hidden");
                         }
 
                         function checkUsername() {
-                            $.ajax({
+                            jQuery.ajax({
                                 type: "GET",
                                 url: "register",
                                 data: {
