@@ -20,7 +20,7 @@ function prefix_admin_update_member() {
     	)
     );
 
-    updateUser($username, $properties);
+    //updateUser($username, $properties);
 
     wp_redirect(admin_url('admin.php?page=mas-plugin'));
     exit();
