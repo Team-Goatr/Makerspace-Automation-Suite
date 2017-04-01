@@ -31,6 +31,7 @@
 
         # User info from G Suite
         $user = getUserByStripeID($cus);
+        var_dump($user);
         $name = $user->getName()->getFullName();
         $username = $user->getPrimaryEmail();
         $useremail = $user->emails[0]->address;
