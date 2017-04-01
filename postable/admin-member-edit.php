@@ -34,6 +34,7 @@ function prefix_admin_update_member() {
 
     //Need to add extra fields
 
+    var_dump($properties);
     updateUser($username, $properties);
 
     wp_redirect(admin_url('admin.php?page=mas-plugin'));
