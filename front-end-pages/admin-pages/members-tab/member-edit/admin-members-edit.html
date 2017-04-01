@@ -12,8 +12,6 @@ $user = getUser($_GET['email']);
 $plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
 $expDate = $user->getCustomSchemas()['Subscription_Management']['Subscription_Expiration'];
 
-error_log("Error Log" . $expDate);
-
 function isSelected($option, $target) {
     if ($option == $target) {
         echo "selected";
