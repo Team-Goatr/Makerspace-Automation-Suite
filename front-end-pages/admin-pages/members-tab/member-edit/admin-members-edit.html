@@ -9,6 +9,8 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 
 $user = getUser($_GET['email']);
 
+$plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
+
 ?>
 
 <body style="background-color: #EBEBEB">
@@ -35,16 +37,16 @@ $user = getUser($_GET['email']);
 
             <div class="form-group">
                 <label for="rfidNumber" class="control-label">RFID Number</label>
-                <input required name="rfidNumber" class="form-control">
+                <input required name="rfidNumber" class="form-control" value="<?php echo $user->getCustomSchemas()['roles']['rfid-id'];?>">
             </div>
 
             <div class="form-group">
                 <label for="membershipPlan" class="control-label">Membership Plan</label>
                 <select class="form-control" name="membershipPlan" id="membershipPlan">
-                    <option value="basic-ind">Individual Basic ($25/mo)</option>
-                    <option value="support-ind">Individual Supporter ($40/mo)</option>
-                    <option value="basic-fam">Family Basic ($50/mo)</option>
-                    <option value="support-fam">Family Supporter ($75/mo)</option>
+                    <option value="basic-ind" <?php if($plan == 'basic-ind') echo "selected"?>>Individual Basic ($25/mo)</option>
+                    <option value="support-ind" <?php if($plan == 'support-ind') echo "selected"?>>Individual Supporter ($40/mo)</option>
+                    <option value="basic-fam" <?php if($plan == $basic-fam') echo "selected"?>>Family Basic ($50/mo)</option>
+                    <option value="support-fam" <?php if($plan == 'support-fam') echo "selected"?>>Family Supporter ($75/mo)</option>
                     <option value="invalid">Invalid</option>
                 </select>
             </div>

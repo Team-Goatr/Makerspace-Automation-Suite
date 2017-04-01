@@ -14,11 +14,21 @@ function prefix_admin_update_member() {
 
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
+    $rfidNumber = $_POST['rfidNumber'];
+    $subcriptionType = $_POST['membershipPlan'];
 
     $properties = array(
     	'name' => array(
     		'givenName' => $firstName,
             'familyName' => $lastName
+    	),
+    	'customSchemas' =>  array(
+    		'Subscription_Management' => array(
+                'Subscription_Type' => $subcriptionType
+            ),
+            'roles' => array(
+            	'rfid-id' => $rfidNumber
+            )
     	)
     );
 
