@@ -35,21 +35,28 @@
         $name = $user->getName()->getFullName();
         $username = $user->getPrimaryEmail();
         $useremail = $user->getEmails()[0]['address'];
+        $sub_status = $user->getCustomSchemas()['Subscription_Management']['Subscription_Status'];
 
-        # TODO: Check user's subscription status, only do the following if subscription is active
         error_log("Payment failed for customer $cus ($useremail)");
 
-        # Send an email to the admin, alerting them that a payment has failed
-        # TODO: Make this admin email configurable somewhere?
-        $adminemail = 'thomas@decaturmakers.org';
-        $subject = 'DecaturMakers Failed Payment';
-        $message = "A user's membership payment has failed!\nName: $name\nUsername: $username\nEmail: $useremail\nStripe Customer: $cus";
-        $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
-        mail($adminemail, $subject, $message, $headers);
+        # Check user's subscription status, only do the following if subscription is active
+        if ($sub_status != 'disabled' && $sub_status != 'expired') {
+            # Parameters for sending email
+            $adminemail = 'thomas@decaturmakers.org';
+            $subject = 'DecaturMakers Failed Payment';
+            $headers = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
 
-        # TODO: Send email to customer's original email (not decaturmakers)
+            # Send an email to the admin, alerting them that a payment has failed
+            # TODO: Make this admin email configurable somewhere?
+            $adminmessage = "A user's membership payment has failed!\nName: $name\nUsername: $username\nEmail: $useremail\nStripe Customer: $cus";
+            mail($adminemail, $subject, $adminmessage, $headers);
 
-        # TODO: Update G suite subscription status
+            # Send an email to the user to alert them of their payment failure
+            $usermessage = "Your latest payment to DecaturMakers has failed. Please update your payment information or contact $adminemail for additional instructions.";
+            mail($useremail, $subject, $usermessage, $headers);
+
+            # TODO: Update G suite subscription status to 'expired'
+        }
 
     } elseif ($event->type == 'invoice.payment_succeeded') {
         # Customer ID
@@ -59,9 +66,9 @@
         # G suite user
         $user = getUserByStripeID($cus);
 
-        # TODO: Update G suite subscription expiration date
+        # TODO: Update G suite subscription expiration date to $end
 
-        # TODO: Update G Suite subscription status
+        # TODO: Update G Suite subscription status to 'active'
     }
 
 
