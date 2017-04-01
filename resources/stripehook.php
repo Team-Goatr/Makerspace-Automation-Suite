@@ -34,10 +34,10 @@
         var_dump($user);
         $name = $user->getName()->getFullName();
         $username = $user->getPrimaryEmail();
-        $useremail = $user->emails[0]->address;
+        $useremail = $user->getEmails()[0]->getAddress();
 
         # TODO: Check user's subscription status, only do the following if subscription is active
-        error_log("Payment failed for customer $cus");
+        error_log("Payment failed for customer $cus ($useremail)");
 
         # Send an email to the admin, alerting them that a payment has failed
         # TODO: Make this admin email configurable somewhere?
