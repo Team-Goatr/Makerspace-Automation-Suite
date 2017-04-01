@@ -9,7 +9,10 @@
     $eventjson = json_decode($input);
 
     # Get the event from Stripe to verify validity
-    $event = getStripeEvent($eventjson->id);
+    #$event = getStripeEvent($eventjson->id);
+    ##TESTING
+    $event = $eventjson;
+    ##TESTING
     if (is_null($event)) {
         http_response_code(500);
         die();
@@ -29,15 +32,17 @@
         # User info from G Suite
         $user = getUserByStripeID($cus);
         $name = $user->getName()->getFullName();
-        $email = $user->getPrimaryEmail();
+        $username = $user->getPrimaryEmail();
+        $useremail = $user->emails[0]->address;
 
+        # TODO: Check user's subscription status, only do the following if subscription is active
         error_log("Payment failed for customer $cus");
 
         # Send an email to the admin, alerting them that a payment has failed
         # TODO: Make this admin email configurable somewhere?
         $adminemail = 'thomas@decaturmakers.org';
         $subject = 'DecaturMakers Failed Payment';
-        $message = "A user's membership payment has failed!\nName: $name\nEmail: $email\nStripe Customer: $cus";
+        $message = "A user's membership payment has failed!\nName: $name\nUsername: $username\nEmail: $useremail\nStripe Customer: $cus";
         $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
         wp_mail($adminemail, $subject, $message, $headers);
 
