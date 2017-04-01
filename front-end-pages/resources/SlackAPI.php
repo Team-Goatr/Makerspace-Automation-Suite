@@ -4,17 +4,11 @@
 defined( 'ABSPATH' ) or die();
 
 require_once __DIR__ . '/vendor/autoload.php';
-define('SLACK_TOKEN_PATH', '/home/ubuntu/slack.txt');
-
-
-function getSlackToken() {
-    return trim(file_get_contents(SLACK_TOKEN_PATH));
-}
 
 
 function sendSlackInvite($email, $firstName, $lastName) {
 
-    $token = getSlackToken();
+    $token = get_option('slack-secret');
     $url = "https://slack.com/api/users.admin.invite?token=$token&email=$email&first_name=$firstName&last_name=$lastName";
 
     $args = array(
