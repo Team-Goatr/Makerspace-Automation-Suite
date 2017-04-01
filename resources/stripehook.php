@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) or die();
 function stripe_webhook_listener() {
     if(isset($_GET['webhook-listener']) && $_GET['webhook-listener'] == 'stripe') {
         error_log("Webhook event received");
@@ -33,13 +34,12 @@ function stripe_webhook_listener() {
 
             # User info from G Suite
             $user = getUserByStripeID($cus);
-            var_dump($user);
             $name = $user->getName()->getFullName();
             $username = $user->getPrimaryEmail();
             $useremail = $user->getEmails()[0]['address'];
             $sub_status = $user->getCustomSchemas()['Subscription_Management']['Subscription_Status'];
 
-            error_log("Payment failed for customer $cus ($useremail)");
+            #error_log("Payment failed for customer $cus ($useremail)");
 
             # Check user's subscription status, only do the following if subscription is active
             if ($sub_status != 'disabled' && $sub_status != 'expired') {
@@ -66,7 +66,7 @@ function stripe_webhook_listener() {
                     )
                 );
                 updateUser($username, $fields);
-                error_log("User updated in G Suite");
+                #error_log("User updated in G Suite");
             }
         } elseif ($event->type == 'invoice.payment_succeeded') {
             # Data from Stripe JSON
