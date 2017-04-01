@@ -85,7 +85,7 @@ function stripe_webhook_listener() {
             $fields = array(
                 "customSchemas" => array (
                     "Subscription_Management" => array(
-                        "Subscription_Status" => 'expired',
+                        "Subscription_Status" => 'active',
                         "Subscription_Expiration" => $date
                     )
                 )
@@ -94,6 +94,7 @@ function stripe_webhook_listener() {
         }
 
         http_response_code(200);
+        die();
     }
 }
 add_action('init', 'stripe_webhook_listener');
