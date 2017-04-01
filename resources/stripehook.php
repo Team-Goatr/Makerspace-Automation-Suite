@@ -44,7 +44,7 @@
         $subject = 'DecaturMakers Failed Payment';
         $message = "A user's membership payment has failed!\nName: $name\nUsername: $username\nEmail: $useremail\nStripe Customer: $cus";
         $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
-        wp_mail($adminemail, $subject, $message, $headers);
+        mail($adminemail, $subject, $message, $headers);
 
         # TODO: Send email to customer's original email (not decaturmakers)
 
