@@ -11,6 +11,12 @@ $user = getUser($_GET['email']);
 
 $plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
 
+function isSelected($option, $target) {
+    if ($option == $target) {
+        echo "selected";
+    }
+}
+
 ?>
 
 <body style="background-color: #EBEBEB">
@@ -43,11 +49,11 @@ $plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'
             <div class="form-group">
                 <label for="membershipPlan" class="control-label">Membership Plan</label>
                 <select class="form-control" name="membershipPlan" id="membershipPlan">
-                    <option value="basic-ind" <?php if($plan == 'basic-ind') echo "selected"?>>Individual Basic ($25/mo)</option>
-                    <option value="support-ind" <?php if($plan == 'support-ind') echo "selected"?>>Individual Supporter ($40/mo)</option>
-                    <option value="basic-fam" <?php if($plan == $basic-fam') echo "selected"?>>Family Basic ($50/mo)</option>
-                    <option value="support-fam" <?php if($plan == 'support-fam') echo "selected"?>>Family Supporter ($75/mo)</option>
-                    <option value="invalid">Invalid</option>
+                    <option value="basic-ind" <?php isSelected("basic-ind", $plan)?> >Individual Basic ($25/mo)</option>
+                    <option value="support-ind" <?php isSelected("support-ind", $plan)?> >Individual Supporter ($40/mo)</option>
+                    <option value="basic-fam" <?php isSelected("basic-fam", $plan)?> >Family Basic ($50/mo)</option>
+                    <option value="support-fam" <?php isSelected("support-fam", $plan)?> >Family Supporter ($75/mo)</option>
+                    <option value="invalid">Invalid</option-fam
                 </select>
             </div>
 
