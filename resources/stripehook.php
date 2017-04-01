@@ -34,7 +34,7 @@
         var_dump($user);
         $name = $user->getName()->getFullName();
         $username = $user->getPrimaryEmail();
-        $useremail = $user->getEmails()[0]->getAddress();
+        $useremail = $user->getEmails()[0]['address'];
 
         # TODO: Check user's subscription status, only do the following if subscription is active
         error_log("Payment failed for customer $cus ($useremail)");
