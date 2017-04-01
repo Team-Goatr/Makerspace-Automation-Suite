@@ -10,6 +10,7 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 $user = getUser($_GET['email']);
 
 $plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
+$expDate = $user->getCustomSchemas()['Subscription_Management']['Subscription_Expiration'];
 
 function isSelected($option, $target) {
     if ($option == $target) {
@@ -60,7 +61,7 @@ function isSelected($option, $target) {
 
             <div class="form-group">
                 <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
-                <input required type="date" name="subscriptionExp" class="form-control">
+                <input required type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
             </div>
 
             <button class="mas-button" type="submit">Save Changes</button>
