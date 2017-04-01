@@ -97,7 +97,7 @@ function updateUser($username, $properties) {
     $fields = new Google_Service_Directory_User($$properties);
 
     $service = getService();
-    $service->users->update($username, $properties);
+    $service->users->update($username, $fields);
 }
 
 function addRole($username, $role) {
