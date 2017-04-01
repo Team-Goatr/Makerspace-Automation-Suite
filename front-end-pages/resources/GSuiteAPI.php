@@ -94,7 +94,7 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
  */
 
 function updateUser($username, $properties) {
-    $fields = new Google_Service_Directory_User($$properties);
+    $fields = new Google_Service_Directory_User($properties);
 
     $service = getService();
     $service->users->update($username, $fields);
