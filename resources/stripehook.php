@@ -68,16 +68,18 @@ function stripe_webhook_listener() {
                 updateUser($username, $fields);
                 error_log("User updated in G Suite");
             }
-
         } elseif ($event->type == 'invoice.payment_succeeded') {
-            # Data from Stripe
+            # Data from Stripe JSON
             $cus = $event->data->object->customer;
-            $end = $event->data->object->period_end;
+            $sub_id = $event->data->object->subscription;
 
             # User info from G Suite
             $user = getUserByStripeID($cus);
             $username = $user->getPrimaryEmail();
 
+            # Get new end date of subscription
+            $sub = getStripeSubscription($sub_id);
+            $end = $sub->current_period_end;
             $dt = new DateTime("@$end");
             $date = $dt->format('Y-m-d');
 
