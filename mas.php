@@ -82,6 +82,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suit
 function mas_enqueue_styles() {
     if (is_page('member') || is_page('register')) {
         // Bootstrap
+        wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
         // Angular Material
         wp_enqueue_style( 'angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css');
