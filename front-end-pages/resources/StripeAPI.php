@@ -189,7 +189,7 @@ function getStripeSubscription($sub_id) {
     \Stripe\Stripe::setApiKey($stripe_secret_key);
 
     try {
-        $sub = \Stripe\Subscription::retrieve("$sub_id");
+        $sub = \Stripe\Subscription::retrieve($sub_id);
         return $sub;
     } catch (Exception $e) {
         $body = $e->getJsonBody();
