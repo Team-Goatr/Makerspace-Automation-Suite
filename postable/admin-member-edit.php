@@ -16,6 +16,7 @@ function prefix_admin_update_member() {
     $lastName = $_POST['lastName'];
     $rfidNumber = $_POST['rfidNumber'];
     $subcriptionType = $_POST['membershipPlan'];
+    $subcriptionExpiry = $_POST['subscriptionExp'];
 
     $properties = array(
     	'name' => array(
@@ -24,7 +25,8 @@ function prefix_admin_update_member() {
     	),
     	'customSchemas' =>  array(
     		'Subscription_Management' => array(
-                'Subscription_Type' => $subcriptionType
+                'Subscription_Type' => $subcriptionType,
+                'Subscription_Expiration' => $subcriptionExpiry
             ),
             'roles' => array(
             	'rfid-id' => $rfidNumber
@@ -32,11 +34,11 @@ function prefix_admin_update_member() {
     	)
     );
 
-    //Need to add extra fields
+    
 
     var_dump($properties);
     updateUser($username, $properties);
 
-    wp_redirect(admin_url('admin.php?page=mas-plugin'));
+    //wp_redirect(admin_url('admin.php?page=mas-plugin'));
     exit("User updated succesfully");
 }
