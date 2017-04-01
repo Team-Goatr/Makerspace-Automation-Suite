@@ -1,7 +1,7 @@
 <?php
 
 // Preventing loading direct from browser
-//defined( 'ABSPATH' ) or die();
+defined( 'ABSPATH' ) or die();
 
 require_once __DIR__ . '/vendor/autoload.php';
 
