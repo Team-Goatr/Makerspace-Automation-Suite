@@ -34,11 +34,9 @@ function prefix_admin_update_member() {
     	)
     );
 
-    
 
-    var_dump($properties);
     updateUser($username, $properties);
 
-    //wp_redirect(admin_url('admin.php?page=mas-plugin'));
+    wp_redirect(admin_url('admin.php?page=mas-plugin'));
     exit("User updated succesfully");
 }
