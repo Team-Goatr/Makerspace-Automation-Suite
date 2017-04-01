@@ -55,20 +55,41 @@
             $usermessage = "Your latest payment to DecaturMakers has failed. Please update your payment information or contact $adminemail for additional instructions.";
             mail($useremail, $subject, $usermessage, $headers);
 
-            # TODO: Update G suite subscription status to 'expired'
+            # Update G suite subscription status to 'expired'
+            $fields = array(
+                "customSchemas" => array (
+                    "Subscription_Management" => array(
+                        "Subscription_Status" => 'expired'
+                    )
+                )
+            );
+            updateUser($username, $fields);
+            error_log("User updated in G Suite");
         }
 
     } elseif ($event->type == 'invoice.payment_succeeded') {
-        # Customer ID
+        # Data from Stripe
         $cus = $event->data->object->customer;
-        # End of subscription period (UNIX Epoch time)
         $end = $event->data->object->period_end;
-        # G suite user
+
+        # User info from G Suite
         $user = getUserByStripeID($cus);
+        $username = $user->getPrimaryEmail();
+
+        $dt = new DateTime("@$end");
+        $date = $dt->format('Y-m-d');
 
         # TODO: Update G suite subscription expiration date to $end
-
         # TODO: Update G Suite subscription status to 'active'
+        $fields = array(
+            "customSchemas" => array (
+                "Subscription_Management" => array(
+                    "Subscription_Status" => 'expired',
+                    "Subscription_Expiration" => $date
+                )
+            )
+        );
+        updateUser($username, $fields);
     }
 
 
