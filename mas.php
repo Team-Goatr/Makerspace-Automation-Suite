@@ -144,7 +144,6 @@ add_action('admin_enqueue_scripts', 'mas_admin_enqueue_scripts');
 add_action('admin_init', 'register_mas_settings');
 function register_mas_settings() {
 
-
     // Registering Stripe Settings
     register_setting('mas_options-group', 'stripe-secret');
     register_setting('mas_options-group', 'stripe-public');
