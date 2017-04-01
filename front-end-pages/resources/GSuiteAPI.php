@@ -6,7 +6,6 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 # Constants used for G Suite connection
-define('CREDENTIALS_PATH', '/home/ubuntu/service_account.json');
 define('APPLICATION_NAME', 'Makerspace Automation Suite');
 define('SCOPES', implode(' ', array(
     Google_Service_Directory::ADMIN_DIRECTORY_USER)
@@ -20,7 +19,7 @@ function getClient() {
     $client = new Google_Client();
     $client->setApplicationName(APPLICATION_NAME);
     $client->setScopes(SCOPES);
-    $client->setAuthConfig(CREDENTIALS_PATH);
+    $client->setAuthConfig(json_decode(get_option('gsuite-json'), true));
     $client->setSubject('thomas@decaturmakers.org');
     return $client;
 }
@@ -116,7 +115,8 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
 
 function updateUser($username, $properties) {
     $service = getService();
-    $service->users->update($user);
+    $fields = new Google_Service_Directory_User($properties);
+    $service->users->update($username, $fields);
 }
 
 function addRole($username, $role) {
@@ -150,15 +150,29 @@ function assertRole($username, $role) {
 }
 
 /**
- * Updates the GSuite JSON stored in the credentials path
+ * Get stored RFID tag number
+ * Returns RFID number as a String
  */
-function updateGSuiteCredentials($newCredentials) {
-    file_put_contents(CREDENTIALS_PATH, $newCredentials);
+function getRfidTag($username) {
+    $user = getUser($username);
+    $tag = $user->getCustomSchemas()['roles']['rfid-id'];
+
+    return $tag;
 }
 
 /**
- * Returns the GSuite JSON stored in the credentials path
+ * Set stored RFID tag number
+ * $username can be any UID for the Google Account
+ * $rfidTag can be either an integer or a string
  */
-function getGSuiteCredentials() {
-    return file_get_contents(CREDENTIALS_PATH);
+function setRfidTag($username, $rfidTag) {
+    $fields = array(
+        "customSchemas" => array (
+            "roles" => array(
+                "rfid-id" => $rfidTag
+            )
+        )
+    );
+
+    updateUser($username, $fields);
 }
