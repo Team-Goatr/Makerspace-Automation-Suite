@@ -36,13 +36,13 @@
         The script is all set in this file but needs to be special phped to be accessed correctly.
         Therefore it is also below just for deving.
       -->
-      <script language="javascript">
-         angular
-            .module('memberProfile', ['ngMaterial'])
-            .controller('DemoCtrl', function($scope) {
-                $scope.editing = false;
-            });
-      </script>
+      <!--<script language="javascript">-->
+         <!--angular-->
+            <!--.module('memberProfile', ['ngMaterial'])-->
+            <!--.controller('DemoCtrl', function($scope) {-->
+                <!--$scope.editing = false;-->
+            <!--});-->
+      <!--</script>-->
 
       <div ng-app="memberProfile" ng-controller="DemoCtrl">
 
@@ -80,7 +80,7 @@
                    </md-input-container>
                    <md-input-container class="md-block">
                       <label>Personal Email</label>
-                      <input required type="email" name="userEmail" ng-model="project.userEmail"
+                      <input required type="email" name="personalEmail" ng-model="project.userEmail"
                          minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/"  ng-disabled="!editing"/>
                       <div ng-messages="projectForm.userEmail.$error" role="alert">
                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
