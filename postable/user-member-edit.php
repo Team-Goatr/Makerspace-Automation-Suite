@@ -33,6 +33,6 @@ function prefix_user_update_self() {
 
     updateUser($username, $properties);
 
-    //wp_redirect('member');
+    wp_redirect('member');
     exit("User updated succesfully");
 }
