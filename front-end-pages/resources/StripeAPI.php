@@ -162,3 +162,40 @@ function subscribeStripeCustomer($id, $plan) {
     ));
     $customer->save();
 }
+
+/**
+ * Retrieve a Stripe event
+ */
+function getStripeEvent($event_id) {
+    $stripe_secret_key = get_option('stripe-secret');
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+    try {
+        $event = \Stripe\Event::retrieve($event_id);
+        return $event;
+    } catch (Exception $e) {
+        $body = $e->getJsonBody();
+        $err  = $body['error'];
+        echo $err['message'];
+        return NULL;
+    }
+}
+
+/**
+ * Retrieve a Stripe subscription
+ */
+function getStripeSubscription($sub_id) {
+    $stripe_secret_key = get_option('stripe-secret');
+    \Stripe\Stripe::setApiKey($stripe_secret_key);
+
+    try {
+        $sub = \Stripe\Subscription::retrieve($sub_id);
+        return $sub;
+    } catch (Exception $e) {
+        $body = $e->getJsonBody();
+        $err  = $body['error'];
+        echo $err['message'];
+        return NULL;
+    }
+}
+

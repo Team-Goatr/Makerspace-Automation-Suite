@@ -224,6 +224,9 @@ function mas_admin_init() {
 // Registering postable actions and hooks via the init file
 require plugin_dir_path( __FILE__ ) . 'postable/init.php';
 
+// Register the Stripe webhook listener with wordpress
+require plugin_dir_path( __FILE__ ) . 'resources/stripehook.php';
+
 /**
  * Begins execution of the plugin.
  *

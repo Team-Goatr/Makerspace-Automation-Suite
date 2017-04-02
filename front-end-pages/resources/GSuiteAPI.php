@@ -46,6 +46,27 @@ function getUser($email) {
 }
 
 /**
+ * Returns a Google_Service_Directory_User Object corresponding to the Stripe ID  given
+ */
+function getUserByStripeID($stripe_id) {
+    $service = getService();
+    $optParams = array(
+        'domain' => 'decaturmakers.org',
+        'projection' => 'custom',
+        'customFieldMask' => 'Subscription_Management,roles',
+        'orderBy' => 'email',
+    );
+    # TODO: This is a horrible way to do this. Please tell me there's something better
+    $results = $service->users->listUsers($optParams);
+    foreach ($results->getUsers() as $user) {
+        if ($user->getCustomSchemas()['Subscription_Management']['Stripe_ID'] == $stripe_id) {
+            return $user;
+        }
+    }
+    return NULL;
+}
+
+/**
  * Adds the user-object given to the Google Service Directory
  */
 function createUser($user) {
