@@ -1,26 +1,37 @@
 <script language="javascript">
-'use strict';
-angular.module('myApp', ['myApp.directives']);
-/* Controllers */
-function stageController($scope) {
-    $scope.pw1 = 'password';
-}
-/* Directives */
-angular.module('myApp.directives', [])
-    .directive('pwCheck', [function () {
-    return {
-        require: 'ngModel',
-        link: function (scope, elem, attrs, ctrl) {
-            var firstPassword = '#' + attrs.pwCheck;
-            elem.add(firstPassword).on('keyup', function () {
-                scope.$apply(function () {
-                    // console.info(elem.val() === $(firstPassword).val());
-                    ctrl.$setValidity('pwmatch', elem.val() === $(firstPassword).val());
+var app = angular.module('myApp', []);
+
+app.directive("passwordVerify", function() {
+   return {
+      require: "ngModel",
+      scope: {
+        passwordVerify: '='
+      },
+      link: function(scope, element, attrs, ctrl) {
+        scope.$watch(function() {
+            var combined;
+
+            if (scope.passwordVerify || ctrl.$viewValue) {
+               combined = scope.passwordVerify + '_' + ctrl.$viewValue; 
+            }                    
+            return combined;
+        }, function(value) {
+            if (value) {
+                ctrl.$parsers.unshift(function(viewValue) {
+                    var origin = scope.passwordVerify;
+                    if (origin !== viewValue) {
+                        ctrl.$setValidity("passwordVerify", false);
+                        return undefined;
+                    } else {
+                        ctrl.$setValidity("passwordVerify", true);
+                        return viewValue;
+                    }
                 });
-            });
-        }
-    }
-}]);
+            }
+        });
+     }
+   };
+});
 // (function () {
 //     'use strict';
 //     var directiveId = 'ngMatch';
@@ -98,7 +109,7 @@ angular.module('myApp.directives', [])
 
     <h3>Register as Member</h3>
 
-    <div class="container" ng-app="myApp" ng-contoller="stageController">
+    <div class="container" ng-app="myApp">
         <div class="row">
             <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
                 <div class="col-sm-4">
@@ -126,22 +137,26 @@ angular.module('myApp.directives', [])
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="pw1">Password</label>
+                        <label for="password" class="control-label">Password</label>
                         <div class="input-group">
-                            <input type='password' id='pw1' name='pw1' ng-model='pw1' ng-required/>
+                            <input ng-model='user.password' type="password" name='password' placeholder='password' required>
+                            <div ng-show="register.password.$error.required">
+                                Field required
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="pw2">Confirm</label>
+                        <label for="confirm_password" class="control-label">Confirm Password</label>
                         <div class="input-group">
-                            <input type='password' id='pw2' name='pw2' ng-model='pw2' ng-required pw-check='pw1'/>
+                            <input ng-model='user.password_verify' type="password" name='confirm_password' placeholder='confirm password' required password-verify="user.password">
+                            <div ng-show="register.confirm_password.$error.required">
+                                Field required!
+                            </div>
+                            <div ng-show="form.confirm_password.$error.passwordVerify">
+                                Fields are not equal!
+                            </div>
                         </div>
-                    </div>
-                    <div class='msg-block' ng-show='myForm.$error'>
-                      <span class='msg-error' ng-show='myForm.pw2.$error.pwmatch'>
-                        Passwords don't match.
-                      </span>
                     </div>
 
 <!--                     <div class="form-group" ng-class="{ 'has-error' : !registration.password.$valid }">
