@@ -45,7 +45,7 @@ function isSelected($option, $target) {
 
             <div class="form-group">
                 <label for="rfidNumber" class="control-label">RFID Number</label>
-                <input required name="rfidNumber" class="form-control" value="<?php echo $user->getCustomSchemas()['roles']['rfid-id'];?>">
+                <input name="rfidNumber" class="form-control" value="<?php echo $user->getCustomSchemas()['roles']['rfid-id'];?>">
             </div>
 
             <div class="form-group">
@@ -60,7 +60,7 @@ function isSelected($option, $target) {
 
             <div class="form-group">
                 <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
-                <input required type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
+                <input type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
             </div>
 
             <button class="mas-button" type="submit">Save Changes</button>
@@ -76,5 +76,4 @@ function isSelected($option, $target) {
             ?>
         </div>
     </div>
-
 </body>
