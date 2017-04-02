@@ -1,5 +1,18 @@
 <script language="javascript">
+angular.module('registration', []).controller('registrationCtrl', ['$scope', function($scope) {
 
+        function match(arg1, arg2) {
+            console.log(arg1);
+            console.log(arg2);
+            console.log(arg1 == arg2);
+
+            if (arg1 == arg2) {
+                return true;
+            }
+
+            return false;
+        }
+}]);
 </script>
 
 <body style="background-color: #EBEBEB">
@@ -7,7 +20,7 @@
 
     <h3>Register as Member</h3>
 
-    <div class="container">
+    <div class="container" ng-app="registration" ng-controller="registrationCtrl">
         <div class="row">
             <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
                 <div class="col-sm-4">
@@ -34,14 +47,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group" ng-class="{ 'has-error' : !registration.password.$valid }">
+                    <div class="form-group">
                         <label for="password" class="control-label" >Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" ng-minlength="5" ng-maxlength="20" required>
+                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password"required>
                     </div>
 
-                    <div class="form-group" ng-class="{ 'has-error' : !registration.passwordMatch.$valid }">
+                    <div class="form-group" ng-class="{ 'has-error' : match(register.password, register.passwordMatch)}">
                         <label for="passwordMatch" class="control-label" >Confirm Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" ng-match="password" required>
+                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required>
                     </div>
 
                     <div class="form-group">
