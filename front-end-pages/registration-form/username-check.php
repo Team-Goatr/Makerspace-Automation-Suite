@@ -5,7 +5,7 @@ if (isset($_GET["username"])) {
     try {
     	getUser($username_to_check); //Will fail if username is not in use
     	$result = false; //Username is taken
-    } catch {
+    } catch(Exception $e) {
     	$result = true; //username is available
     }
 
