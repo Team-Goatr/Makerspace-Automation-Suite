@@ -38,7 +38,7 @@ try {
     $expiration = $now->format("Y-m-d");
 
     //Create Customer in G Suite
-    $newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
+    $newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->id, $status, $recurring=='checked', $expiration);
     createUser($newUser);
 
     // Have Slack invite the user
