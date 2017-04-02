@@ -1,4 +1,7 @@
 <?php
+
+require_once require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
+
 if (isset($_GET["username"])) {
     $username_to_check = $_GET["username"];
 
