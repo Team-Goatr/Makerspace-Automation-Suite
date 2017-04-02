@@ -12,7 +12,7 @@
     $user = getUser($email);
     $firstName = $user->getName()->getGivenName();
     $lastName = $user->getName()->getFamilyName();
-    $personalEmail = $user->getEmails()[0]['address']
+    $personalEmail = $user->getEmails()[0]['address'];
     $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
     $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
 
