@@ -23,18 +23,20 @@ function rfid_webhook_listener() {
         # Get data from G Suite
         $name = $user['name']['fullName'];
         $status = $user->getCustomSchemas()['Subscription_Management']['Subscription_Status'];
+        $type = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
         $rfid_tag = $user->getCustomSchemas()['roles']['rfid-id'];
 
         # Don't include data for members who aren't active
-        if ($status != 'Active') {
+        if ($status != 'Active' or empty($rfid_tag)) {
             continue;
         }
 
         # Add data to the array
         $data[] = array(
-            'name' => "$name",
-            'status' => "$status",
-            'rfid_tag' => "$rfid_tag",
+            'name' => $name,
+            'status' => $status,
+            'rfid_tag' => $rfid_tag,
+            'type' => $type
         );
     }
     echo json_encode($data);
