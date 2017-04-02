@@ -1,41 +1,63 @@
 <script language="javascript">
-(function () {
-    'use strict';
-    var directiveId = 'ngMatch';
-    app.directive(directiveId, ['$parse', function ($parse) {
- 
-        var directive = {
-           link: link,
-            restrict: 'A',
-            require: '?ngModel'
-        };
-
-        return directive;
- 
-    function link(scope, elem, attrs, ctrl) {
-       // if ngModel is not defined, we don't need to do anything
-        if (!ctrl) return;
-        if (!attrs[directiveId]) return;
-     
-        var firstPassword = $parse(attrs[directiveId]);
-     
-        var validator = function (value) {
-            var temp = firstPassword(scope),
-            v = value === temp;
-            ctrl.$setValidity('match', v);
-            return value;
+'use strict';
+angular.module('myApp', ['myApp.directives']);
+/* Controllers */
+function stageController($scope) {
+    $scope.pw1 = 'password';
+}
+/* Directives */
+angular.module('myApp.directives', [])
+    .directive('pwCheck', [function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            var firstPassword = '#' + attrs.pwCheck;
+            elem.add(firstPassword).on('keyup', function () {
+                scope.$apply(function () {
+                    // console.info(elem.val() === $(firstPassword).val());
+                    ctrl.$setValidity('pwmatch', elem.val() === $(firstPassword).val());
+                });
+            });
         }
-     
-        ctrl.$parsers.unshift(validator);
-        ctrl.$formatters.push(validator);
-        attrs.$observe(directiveId, function () {
-            validator(ctrl.$viewValue);
-        });
-     
     }
+}]);
+// (function () {
+//     'use strict';
+//     var directiveId = 'ngMatch';
+//     app.directive(directiveId, ['$parse', function ($parse) {
+ 
+//         var directive = {
+//            link: link,
+//             restrict: 'A',
+//             require: '?ngModel'
+//         };
 
-    }]);
-})();
+//         return directive;
+ 
+//     function link(scope, elem, attrs, ctrl) {
+//        // if ngModel is not defined, we don't need to do anything
+//         if (!ctrl) return;
+//         if (!attrs[directiveId]) return;
+     
+//         var firstPassword = $parse(attrs[directiveId]);
+     
+//         var validator = function (value) {
+//             var temp = firstPassword(scope),
+//             v = value === temp;
+//             ctrl.$setValidity('match', v);
+//             return value;
+//         }
+     
+//         ctrl.$parsers.unshift(validator);
+//         ctrl.$formatters.push(validator);
+//         attrs.$observe(directiveId, function () {
+//             validator(ctrl.$viewValue);
+//         });
+     
+//     }
+
+//     }]);
+// })();
     // angular
     //     .module('registrationForm', ['ngMessages'])
     //     .controller('registrationCtrl', function($scope){
@@ -76,7 +98,7 @@
 
     <h3>Register as Member</h3>
 
-    <div class="container">
+    <div class="container" ng-app="myApp">
         <div class="row">
             <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
                 <div class="col-sm-4">
@@ -103,14 +125,24 @@
                         </div>
                     </div>
 
-                    <div class="form-group" ng-class="{ 'has-error' : !registration.password.$valid }">
+<input type='password' id='pw1' name='pw1'
+  ng-model='pw1' ng-required/>
+<input type='password' id='pw2' name='pw2'
+  ng-model='pw2' ng-required pw-check='pw1'/>
+<div class='msg-block' ng-show='myForm.$error'>
+  <span class='msg-error' ng-show='myForm.pw2.$error.pwmatch'>
+    Passwords don't match.
+  </span>
+</div>
+
+<!--                     <div class="form-group" ng-class="{ 'has-error' : !registration.password.$valid }">
                         <label for="password" class="control-label" >Password:</label>
                         <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" ng-minlength="5" ng-maxlength="20" required>
                         <span class="help-block" ng-show="registration.password.$error.required">This is a required field.</span>
-<!--                         <div ng-messages="registration.password.$error">
+                        <div ng-messages="registration.password.$error">
                             <div ng-message="required">This is a required field.</div>
                             <div ng-message="minlength">The password you entered is too short.</div>
-                        </div> -->
+                        </div>
                     </div>
 
                     <div class="form-group" ng-class="{ 'has-error' : !registration.passwordMatch.$valid }">
@@ -118,7 +150,7 @@
                         <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" ng-match="password" required>
                         <span class="help-block" ng-show="registration.passwordMatch.$error.required">This is a required field.</span>
                         <span class="help-block" ng-show="registration.passwordMatch.$error.match">Passwords do not match.</span>
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label for="type" class="control-label" >Membership type:</label>
