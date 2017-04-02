@@ -58,7 +58,8 @@
                     ?>
                     <br>
                       <button type="edit" class="btn mas-button" ng-click="editing = true" ng-show="editing == false">Edit Profile</button>
-                      <button type="save" class="btn mas-button" ng-click="editing = false" ng-show="editing == true">Save Changes</button>
+
+                      <button type="save" class="btn mas-button" ng-click="editing = false; jQuery('.userForm').submit(); console.log('Submitted')" ng-show="editing == true">Save Changes</button>
                     <br>
                       <button type="password" class="btn mas-button">Change Password</button>
                 </div>
