@@ -23,107 +23,63 @@
     }
 ?>
 
-<!--
-      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
--->
+<script type="text/javascript">
+    angular
+        .module('memberProfile', [])
+        .controller('MemberCtrl', function($scope) {
+            $scope.editing = false;
+        });
+</script>
 
-      <!--  <script src="../member-page/member-page.js"></script>
-        The script is all set in this file but needs to be special phped to be accessed correctly.
-        Therefore it is also below just for deving.
-      -->
-      <script language="javascript">
-         angular
-            .module('memberProfile', ['ngMaterial'])
-            .controller('DemoCtrl', function($scope) {
-                $scope.editing = false;
-            });
-      </script>
-
-      <div ng-app="memberProfile" ng-controller="DemoCtrl">
-
-       <div class="mas-title">
-           Welcome, <?php echo $user->getName()->getFullName(); ?>!
-       </div>
-
-       <div layout="row" layout-sm="column">
-          <div flex>
-                <div style="text-align:center">
-                    <?php
-                        echo '<img src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
-                    ?>
-                    <br>
-                      <button type="password" class="btn mas-button">Change Password</button>
-                </div>
-          </div>
-
-          <div flex id="inputContainer" class="inputDemo" ng-cloak>
-             <md-content layout-padding>
-                <form id="userForm" name="projectForm" action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
-                   <md-input-container class="md-block">
-                      <label>First Name</label>
-                      <input required name="firstName" ng-model="project.firstName" ng-disabled="!editing" value="<?php echo $firstName; ?>">
-                      <div ng-messages="projectForm.firstName.$error">
-                         <div ng-message="required">This is required.</div>
-                      </div>
-                   </md-input-container>
-                   <md-input-container class="md-block">
-                      <label>Last Name</label>
-                      <input required name="lastName" ng-model="project.lastName"  ng-disabled="!editing">
-                      <div ng-messages="projectForm.lastName.$error">
-                         <div ng-message="required">This is required.</div>
-                      </div>
-                   </md-input-container>
-                   <md-input-container class="md-block">
-                      <label>Personal Email</label>
-                      <input required type="email" name="personalEmail" ng-model="project.userEmail"
-                         minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/"  ng-disabled="!editing"/>
-                      <div ng-messages="projectForm.userEmail.$error" role="alert">
-                         <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                            Your email must be between 5 and 100 characters long and should be a valid email address.
-                         </div>
-                      </div>
-                   </md-input-container>
-                   <md-input-container class="md-block">
-                      <label>DM Email</label>
-                      <input required type="email" name="dmEmail" ng-model="project.dmEmail" disabled/>
-                   </md-input-container>
-                   <input type="hidden" name="action" value="update_self">
-
-                    <button type="edit" class="btn mas-button" ng-click="editing = true" ng-show="editing == false">Edit Profile</button>
-                    <button type="submit" class="btn mas-button" ng-click="editing = false;" ng-show="editing == true">Save Changes</button>
-                </form>
-             </md-content>
-          </div>
-
-          <div flex style="text-align:center">
-             <div  class="mas-title">
-                Member Payment Information
-             </div>
-             <md-content layout-padding>
-                <form name="paymentInformation">
-                   <md-input-container class="md-block">
-                      <label>Last 4 Digits: <?php echo $card->last4; ?></label>
-                      <input required type="card" name="cardNum" ng-model="project.cardNum" disabled/>
-                   </md-input-container>
-                   <md-input-container class="md-block">
-                      <label>Expiration Date: <?php echo $card->exp_month."/".$card->exp_year; ?></label>
-                      <input required type="date" name="expirationDate" ng-model="project.expirationDate" disabled/>
-                   </md-input-container>
-                   <md-input-container class="md-block">
-                      <label>Card Type: <?php echo $card->brand; ?></label>
-                      <input required type="brand" name="cardBrand" ng-model="project.cardBrand" disabled/>
-                   </md-input-container>
-                   <input type="hidden" value="<?php echo $stripe_id ?>" name="customer-id">
-                   <input type="hidden" name="action" value="update_card">
-                   <?php getStripeUpdateCard($email); ?>
-                </form>
-             </md-content>
-
-          </div>
+<div ng-app="memberProfile" ng-controller="MemberCtrl">
+    <div class="row">
+        <div class="mas-title col-md-12">
+            Welcome, <?php echo $user->getName()->getFullName(); ?>!        
         </div>
-       </div>
+    </div>
+
+    <div class="row">
+        <!-- PICTURE, BUTTONS -->
+        <div style="text-align: center" class="col-md-4">
+            <?php echo '<img src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
+                    ?>
+            <br>
+            <button type="password" class="btn mas-button">Change Password</button>
+        </div>
+
+        <!-- PERSONAL INFO FORM -->
+        <div style="text-align: center" class="col-md-4">
+            <form name="userForm" action="<?php echo admin_url( 'admin-post.php') ?>">
+                <div class="form-group">
+                    <label for="inputEmail" class="control-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </form>
+        </div>
+
+        <!-- PAYMENT INFO -->
+        <div style="text-align: center" class="col-md-4">
+            <form name="payment">
+                <div class="form-group">
+                    <label for="cardNum">Last 4 Digits: <?php echo $card->last4; ?></label>
+                    <input type="card" name="cardNum" ng-model="cardNum" disabled="">
+                </div>
+
+                <div class="form-group">
+                    <label for="expirationDate">Expiration Date: <?php echo $card->exp_month."/".$card->exp_year; ?></label>
+                    <input required type="date" name="expirationDate" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="cardBrand">Card Type: <?php echo $card->brand; ?></label>
+                    <input required type="brand" name="cardBrand" ng-model="project.cardBrand" disabled/>
+                </div>
+
+                <input type="hidden" value="<?php echo $stripe_id ?>" name="customer-id">
+                <input type="hidden" name="action" value="update_card">
+                <?php getStripeUpdateCard($email); ?>
+            </form>
+        </div>
+    </div>
+</div>
