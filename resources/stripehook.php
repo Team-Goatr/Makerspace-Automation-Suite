@@ -11,6 +11,8 @@ function stripe_webhook_listener() {
     $input = @file_get_contents("php://input");
     $eventjson = json_decode($input);
 
+    var_dump $eventjson;
+
     # Get the event from Stripe to verify validity
     $event = getStripeEvent($eventjson->id);
     if (is_null($event)) {
