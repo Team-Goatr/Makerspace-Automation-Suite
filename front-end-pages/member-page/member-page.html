@@ -7,8 +7,7 @@
     include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
     include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
 
-    #TODO: get email from currently logged in wp user
-    $email = 'apb@decaturmakers.org';
+    $email = wp_get_current_user();;
     $user = getUser($email);
     $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
     $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
