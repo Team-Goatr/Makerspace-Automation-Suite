@@ -32,8 +32,8 @@ function stripe_webhook_listener() {
         $useremail = $user->getEmails()[0]['address'];
         $sub_status = $user->getCustomSchemas()['Subscription_Management']['Subscription_Status'];
 
-        # Check user's subscription status, only do the following if subscription is active
-        if ($sub_status != 'disabled' && $sub_status != 'expired') {
+        # Check user's subscription status, only do the following if subscription is Active or Pending
+        if ($sub_status != 'Disabled' && $sub_status != 'Expired') {
             # Parameters for sending email
             $adminemail = 'thomas@decaturmakers.org';
             $subject = 'DecaturMakers Failed Payment';
@@ -48,11 +48,11 @@ function stripe_webhook_listener() {
             $usermessage = "Your latest payment to DecaturMakers has failed. Please update your payment information or contact $adminemail for additional instructions.";
             wp_mail($useremail, $subject, $usermessage, $headers);
 
-            # Update G suite subscription status to 'expired'
+            # Update G suite subscription status to 'Expired'
             $fields = array(
                 "customSchemas" => array (
                     "Subscription_Management" => array(
-                        "Subscription_Status" => 'expired'
+                        "Subscription_Status" => 'Expired'
                     )
                 )
             );
@@ -73,11 +73,11 @@ function stripe_webhook_listener() {
         $dt = new DateTime("@$end");
         $date = $dt->format('Y-m-d');
 
-        # Update G suite subscription expiration date to $end and status to 'active'
+        # Update G suite subscription expiration date to $end and status to 'Active'
         $fields = array(
             "customSchemas" => array (
                 "Subscription_Management" => array(
-                    "Subscription_Status" => 'active',
+                    "Subscription_Status" => 'Active',
                     "Subscription_Expiration" => $date
                 )
             )
