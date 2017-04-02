@@ -33,8 +33,6 @@ function rfid_webhook_listener() {
 
         # Add data to the array
         $data[] = array(
-            'name' => $name,
-            'status' => $status,
             'rfid_tag' => $rfid_tag,
             'type' => $type
         );
