@@ -64,9 +64,9 @@
                                     "username": jQuery('#username').val(),
                                     "action": 'check'
                                 },
-                                dataType: "text json",
+                                //dataType: "text json",
                                 success: function(resultJson) {
-                                    console.log("Test text");
+                                    console.log(resultJson);
                                     if (resultJson['result'] == true) {
                                         clearError();
                                     } else {
