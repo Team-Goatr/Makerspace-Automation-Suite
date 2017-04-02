@@ -112,8 +112,6 @@ function mas_admin_enqueue_styles($hook) {
     if($hook != 'toplevel_page_mas-plugin') {
         return;
     }
-
-
     // Bootstrap
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
@@ -126,11 +124,10 @@ function mas_admin_enqueue_scripts($hook) {
     // Load only on ?page=mas-plugin
     if($hook != 'toplevel_page_mas-plugin') {
         return;
-    }
-
+    }  
     // Bootstrap
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'));
-
+  
     // Angular
     wp_enqueue_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js');
     wp_enqueue_script('angular-animate', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js');
@@ -138,6 +135,7 @@ function mas_admin_enqueue_scripts($hook) {
     wp_enqueue_script('angular-messages', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js');
     wp_enqueue_script('angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js');
 }
+
 add_action('admin_enqueue_scripts', 'mas_admin_enqueue_styles');
 add_action('admin_enqueue_scripts', 'mas_admin_enqueue_scripts');
 
