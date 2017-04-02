@@ -9,6 +9,15 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 
 $user = getUser($_GET['email']);
 
+$plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
+$expDate = $user->getCustomSchemas()['Subscription_Management']['Subscription_Expiration'];
+
+function isSelected($option, $target) {
+    if ($option == $target) {
+        echo "selected";
+    }
+}
+
 ?>
 
 <body style="background-color: #EBEBEB">
@@ -17,13 +26,15 @@ $user = getUser($_GET['email']);
 
     <div class="mas-title">
         <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >>
-        <?php echo $user->getName()->getFullName();?>        
+        <?php echo $user->getName()->getFullName();?>
     </div>
 
     <div class="form-container col-md-6">
-        <form name="editMember" class="form-horizontal">
+        <form name="editMember" class="form-horizontal" action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
+            <input type="hidden" name="username" value="<?php echo $user->getPrimaryEmail();?>">
+
             <div class="form-group">
-                <label for="firstName" class="control-label">First Name</label>  
+                <label for="firstName" class="control-label">First Name</label>
                 <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
             </div>
 
@@ -34,26 +45,27 @@ $user = getUser($_GET['email']);
 
             <div class="form-group">
                 <label for="rfidNumber" class="control-label">RFID Number</label>
-                <input required name="rfidNumber" class="form-control">
+                <input required name="rfidNumber" class="form-control" value="<?php echo $user->getCustomSchemas()['roles']['rfid-id'];?>">
             </div>
 
             <div class="form-group">
                 <label for="membershipPlan" class="control-label">Membership Plan</label>
                 <select class="form-control" name="membershipPlan" id="membershipPlan">
-                    <option value="basic-ind">Individual Basic ($25/mo)</option>
-                    <option value="support-ind">Individual Supporter ($40/mo)</option>
-                    <option value="basic-fam">Family Basic ($50/mo)</option>
-                    <option value="support-fam">Family Supporter ($75/mo)</option>
-                    <option value="invalid">Invalid</option>
+                    <option value="basic-ind" <?php isSelected("basic-ind", $plan)?> >Individual Basic ($25/mo)</option>
+                    <option value="support-ind" <?php isSelected("support-ind", $plan)?> >Individual Supporter ($40/mo)</option>
+                    <option value="basic-fam" <?php isSelected("basic-fam", $plan)?> >Family Basic ($50/mo)</option>
+                    <option value="support-fam" <?php isSelected("support-fam", $plan)?> >Family Supporter ($75/mo)</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
-                <input required type="date" name="subscriptionExp" class="form-control">
+                <input required type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
             </div>
 
             <button class="mas-button" type="submit">Save Changes</button>
+
+            <input type="hidden" name="action" value="update_member">
         </form>
     </div>
 

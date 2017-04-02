@@ -126,10 +126,10 @@ function mas_admin_enqueue_scripts($hook) {
     if($hook != 'toplevel_page_mas-plugin') {
         return;
     }
-  
+
     // Bootstrap
     wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'));
-  
+
     // Angular
     wp_enqueue_script('angular', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js');
     wp_enqueue_script('angular-animate', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js');
@@ -224,6 +224,9 @@ function mas_admin_init() {
 
 // Registering postable actions and hooks via the init file
 require plugin_dir_path( __FILE__ ) . 'postable/init.php';
+
+// Register the Stripe webhook listener with wordpress
+require plugin_dir_path( __FILE__ ) . 'resources/stripehook.php';
 
 /**
  * Begins execution of the plugin.
