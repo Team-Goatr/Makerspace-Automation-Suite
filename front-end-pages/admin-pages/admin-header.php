@@ -7,7 +7,7 @@ include 'admin-header.html';
 
 ?>
 
-<div id="primary" class="content-area">
+<div id="primary" class="content-area" style="background-color: #F1F1F1">
 	<main id="main" class="site-main" role="main">
 		<?php
 		// Start the loop.
