@@ -1,10 +1,44 @@
 <script language="javascript">
-    angular
-        .module('registrationForm', ['ngMessages'])
-        .controller('registrationCtrl', function($scope){
-            $scope.password = "";
-            $scope.passwordMatch = "";
+(function() {
+  "use strict";
+  angular
+    .module('registration', ['ngMessages'])
+    .controller('registrationCtrl', mainCtrl)
+    .directive('passwordVerify', passwordVerify);
+
+  function mainCtrl($scope) {
+    // Some code
+  }
+
+  function passwordVerify() {
+    return {
+      restrict: 'A', // only activate on element attribute
+      require: '?ngModel', // get a hold of NgModelController
+      link: function(scope, elem, attrs, ngModel) {
+        if (!ngModel) return; // do nothing if no ng-model
+
+        // watch own value and re-validate on change
+        scope.$watch(attrs.ngModel, function() {
+          validate();
         });
+
+        // observe the other value and re-validate on change
+        attrs.$observe('passwordVerify', function(val) {
+          validate();
+        });
+
+        var validate = function() {
+          // values
+          var val1 = ngModel.$viewValue;
+          var val2 = attrs.passwordVerify;
+
+          // set validity
+          ngModel.$setValidity('passwordVerify', val1 === val2);
+        };
+      }
+    }
+  }
+})();
 </script>
 
 <body style="background-color: #EBEBEB">
@@ -12,7 +46,7 @@
 
     <h3>Register as Member</h3>
 
-    <div class="container" ng-app="registrationForm" ng-controller="registrationCtrl">
+    <div class="container" ng-app="registration" ng-controller="registrationCtrl">
         <div class="row">
             <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
                 <div class="col-sm-4">
@@ -77,18 +111,21 @@
                         }
                     </script>
 
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{ 'has-error' : register.password.$dirty && register.password.$invalid && register.passwordMatch.$dirty && register.passwordMatch.$invalid}">
                         <label for="password" class="control-label" >Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" ng-minlength="5" ng-maxlength="20" required>
-                        <div ng-messages="registration.password.$error">
-                            <div ng-message="required">This is a required field.</div>
-                            <div ng-message="minlength">The password you entered is too short.</div>
+                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" required ng-model="password" password-verify="{{passwordMatch}}">
+                        <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
+                            <p ng-message="required">This field is required.</p>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password-match" class="control-label" >Confirm Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required>
+                    <div class="form-group" ng-class="{ 'has-error' : register.passwordMatch.$dirty && register.passwordMatch.$invalid }">
+                        <label for="passwordMatch" class="control-label" >Confirm Password:</label>
+                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required password-verify="{{password}}">
+                        <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
+                            <p ng-message="required">This field is required.</p>
+                            <p ng-message="passwordVerify">The fields do not match.</p>
+                        </div>
                     </div>
 
                     <div class="form-group">
