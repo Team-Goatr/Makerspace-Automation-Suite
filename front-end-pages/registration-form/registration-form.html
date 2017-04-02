@@ -65,8 +65,9 @@
                                     "action": 'check'
                                 },
                                 //dataType: "text json",
-                                success: function(resultJson) {
-                                    console.log(resultJson);
+                                success: function(result) {
+                                    console.log(result);
+                                    var resultJson = JSON.parse(result);
                                     if (resultJson['result'] == true) {
                                         clearError();
                                     } else {
