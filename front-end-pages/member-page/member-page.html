@@ -51,9 +51,27 @@
         <div style="text-align: center" class="col-md-4">
             <form name="userForm" action="<?php echo admin_url( 'admin-post.php') ?>">
                 <div class="form-group">
-                    <label for="inputEmail" class="control-label">Email</label>
+                    <label for="firstName">First Name</label>
+                    <input name="firstName" class="form-control" value="<?php echo $firstName; ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input name="lastName" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail" class="control-label">Personal Email</label>
                     <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
                     <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="dmEmail">DM Email</label>
+                    <div class="input-group">
+                        <input type="text" style="display: inline;" class="form-control" id="username" name="username" disabled>
+                        <div class="input-group-addon">@decaturmakers.org</div>
+                    </div>
                 </div>
             </form>
         </div>
