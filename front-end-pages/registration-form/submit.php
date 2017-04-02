@@ -31,17 +31,15 @@ try {
         error_log("Customer $email has been charged for " . $plan->name);
     }
 
-    $hashedPassword = sha1($password);
     $status = "Pending";
 
-    error_log("Hashed Password: " . $hashedPassword);
 
     $now = new DateTime();
     $now->modify("+1 month");
     $expiration = $now->format("Y-m-d");
 
     //Create Customer in G Suite
-    $newUser = userFactory($username, $email, $firstname, $lastname, $hashedPassword, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
+    $newUser = userFactory($username, $email, $firstname, $lastname, $password, $customer->id, $plan->name, $status, $recurring=='checked', $expiration);
     createUser($newUser);
 
     // Have Slack invite the user
