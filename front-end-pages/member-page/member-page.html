@@ -15,6 +15,7 @@
     $personalEmail = $user->getEmails()[0]['address'];
     $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
     $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
+    $dm_email = $user->getPrimaryEmail();
 
 
     $card;
@@ -57,47 +58,52 @@
 
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input name="lastName" class="form-control">
+                    <input name="lastName" class="form-control" value="<?php echo $lastName; ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail" class="control-label">Personal Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
-                    <div class="help-block with-errors"></div>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
                 </div>
 
                 <div class="form-group">
                     <label class="dmEmail">DM Email</label>
-                    <div class="input-group">
-                        <input type="text" style="display: inline;" class="form-control" id="username" name="username" disabled>
-                        <div class="input-group-addon">@decaturmakers.org</div>
-                    </div>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $dm_email; ?>" disabled>
                 </div>
+
+                <button type="submit" class="btn mas-button">Update Info</button>
             </form>
         </div>
 
         <!-- PAYMENT INFO -->
-        <div style="text-align: center" class="col-md-4">
-            <form name="payment">
-                <div class="form-group">
-                    <label for="cardNum">Last 4 Digits: <?php echo $card->last4; ?></label>
-                    <input type="card" name="cardNum" ng-model="cardNum" disabled="">
-                </div>
+        <div style="text-align: center" class="panel panel-default col-md-4">
 
-                <div class="form-group">
-                    <label for="expirationDate">Expiration Date: <?php echo $card->exp_month."/".$card->exp_year; ?></label>
-                    <input required type="date" name="expirationDate" disabled/>
-                </div>
+            <div class="panel-heading">
+                <h3 class="panel-title">Class Details</h3>
+            </div>
 
-                <div class="form-group">
-                    <label for="cardBrand">Card Type: <?php echo $card->brand; ?></label>
-                    <input required type="brand" name="cardBrand" ng-model="project.cardBrand" disabled/>
-                </div>
+            <div class="panel-body">
+                <form name="payment">
+                    <div class="form-group">
+                        <label for="cardNum">Last 4 Digits:</label>
+                        <input type="card" name="cardNum" class="form-control" disabled value="<?php echo $card->last4; ?>">
+                    </div>
 
-                <input type="hidden" value="<?php echo $stripe_id ?>" name="customer-id">
-                <input type="hidden" name="action" value="update_card">
-                <?php getStripeUpdateCard($email); ?>
-            </form>
+                    <div class="form-group">
+                        <label for="expirationDate">Expiration Date:</label>
+                        <input required type="date" name="expirationDate" class="form-control" disabled value="<?php echo $card->exp_month."/".$card->exp_year; ?>" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardBrand">Card Type:</label>
+                        <input required type="brand" name="cardBrand" class="form-control" disabled value=" <?php echo $card->brand; ?>" />
+                    </div>
+
+                    <input type="hidden" value="<?php echo $stripe_id ?>" name="customer-id">
+                    <input type="hidden" name="action" value="update_card">
+                    <?php getStripeUpdateCard($email); ?>
+                </form>
+            </div>
         </div>
     </div>
 </div>
