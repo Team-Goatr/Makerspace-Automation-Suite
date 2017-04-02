@@ -5,6 +5,7 @@ function rfid_webhook_listener() {
     error_log("RFID webhook event received");
     require_once __DIR__ . '/../front-end-pages/resources/GSuiteAPI.php';
 
+    # Query G Suite for user info
     $service = getService();
     $optParams = array(
         'domain' => 'decaturmakers.org',
@@ -14,7 +15,22 @@ function rfid_webhook_listener() {
     );
     $results = $service->users->listUsers($optParams);
     $users = $results->getUsers();
-    var_dump($users);
+    #var_dump($users);
+
+    # Build an array of the data we want to return
+    $data = array();
+    foreach ($users as $user) {
+        $name = $user['name']['fullName'];
+        $status = $user->getCustomSchemas()['Subscription_Management']['Subscription_Status'];
+        $rfid_tag = $user->getCustomSchemas()['roles']['rfid-id'];
+        $newdata = array(
+            'name' => "$name",
+            'status' => "$status",
+            'rfid_tag' => "$rfid_tag",
+        );
+        $data[] = $newdata;
+    }
+    var_dump($data);
 
     http_response_code(200);
     die();
