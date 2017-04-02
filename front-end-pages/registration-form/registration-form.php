@@ -1,4 +1,10 @@
 <?php
+    // Allowing the usernames to be checked via username-check.php file
+    if ($_GET['action'] == "check") {
+        include 'username-check.php';
+        die();
+    }
+
     get_header();
 ?>
 <div id="primary" class="content-area">
