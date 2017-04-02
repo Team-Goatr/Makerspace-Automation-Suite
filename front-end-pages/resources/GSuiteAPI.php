@@ -58,12 +58,11 @@ function createUser($user) {
  * Returns a Google_Service_Directory_User that can be used to make a new user
  */
 
-function userFactory($username, $email, $firstName, $lastName, $hashedPassword, $stripeToken, $subcriptionType, $subscriptionStatus, $subscriptionRecurring, $subscriptionExpiration) {
+function userFactory($username, $email, $firstName, $lastName, $password, $stripeToken, $subcriptionType, $subscriptionStatus, $subscriptionRecurring, $subscriptionExpiration) {
     $userData = array(
         'kind' => 'admin#directory#user',
         'primaryEmail' => $username,
-        //'hashFunction' => 'SHA-1',
-        'password' => $hashedPassword,
+        'password' => $password,
         'name' => array(
             'givenName' => $firstName,
             'familyName' => $lastName
