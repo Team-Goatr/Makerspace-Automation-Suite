@@ -11,6 +11,7 @@ $email = $_POST["email"];
 $username = $_POST["username"] . "@decaturmakers.org";
 $type = $_POST['type'];
 $checked = empty($_POST["autorenew"]) ? "" : "checked";
+$password = $_POST["password"];
 
 // TODO: Check G suite if this username already exists. If so, print warning and don't allow user to continue
 
@@ -66,6 +67,7 @@ echo <<<END
                         </div>
 
                         <input type="hidden" value="$type" name="type" />
+                        <input type="hidden" value="$password" name="password" />
 
                         <div class="form-group">
 END;
