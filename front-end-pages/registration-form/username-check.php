@@ -10,10 +10,10 @@ if (isset($_GET["username"])) {
 
     try {
     	getUser($email); //Will fail if username is not in use
-    	$result = false; //Username is taken
+    	$result = FALSE; //Username is taken
     	error_log("end of Try");
     } catch(Exception $e) {
-    	$result = true; //username is available
+    	$result = TRUE; //username is available
     }
 
     error_log("Result: " . $result);
