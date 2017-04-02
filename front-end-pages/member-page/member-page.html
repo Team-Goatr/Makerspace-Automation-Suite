@@ -42,7 +42,7 @@
 
         <!-- PERSONAL INFO FORM -->
         <div style="text-align: center" class="col-md-4">
-            <form name="userForm" action="<?php echo admin_url( 'admin-post.php') ?>">
+            <form name="userForm" method="POST" action="<?php echo admin_url( 'admin-post.php') ?>">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input name="firstName" class="form-control" value="<?php echo $firstName; ?>">
@@ -55,12 +55,12 @@
 
                 <div class="form-group">
                     <label for="inputEmail" class="control-label">Personal Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required value="<?php echo $personalEmail; ?>">
+                    <input type="email" name="personalEmail" class="form-control" id="inputEmail" placeholder="Email" required value="<?php echo $personalEmail; ?>">
                 </div>
 
                 <div class="form-group">
                     <label class="dmEmail">DM Email</label>
-                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $dm_email; ?>" disabled>
+                    <input type="text" class="form-control" id="username" value="<?php echo $dm_email; ?>" disabled>
                 </div>
 
                 <button type="submit" class="btn mas-button">Update Info</button>
@@ -93,7 +93,7 @@
 
                     <input type="hidden" value="<?php echo $stripe_id ?>" name="customer-id">
                     <input type="hidden" name="action" value="update_card">
-                    <?php getStripeUpdateCard($email); ?>
+                    <?php getStripeUpdateCard($personalEmail); ?>
                 </form>
             </div>
         </div>
