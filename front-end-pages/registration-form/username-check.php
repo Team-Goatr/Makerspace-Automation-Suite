@@ -18,5 +18,5 @@ if (isset($_GET["username"])) {
 
     error_log("Result: " . $result);
 
-    echo '{ result: ' + $result + '}';
+    echo '{ result: ' . $result . '}';
 }
