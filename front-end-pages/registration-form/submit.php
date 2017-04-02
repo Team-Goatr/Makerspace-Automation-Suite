@@ -8,6 +8,7 @@ try {
     // Get things submitted to the form
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
+    $password = $_POST['password'];
     $token = $_POST['stripeToken'];
     $email = $_POST['email'];
     $username = $_POST["username"];
@@ -30,7 +31,6 @@ try {
         error_log("Customer $email has been charged for " . $plan->name);
     }
 
-    $password = "ChangeMe";
     $status = "Pending";
 
     $now = new DateTime();
