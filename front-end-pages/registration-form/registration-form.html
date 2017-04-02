@@ -1,37 +1,74 @@
 <script language="javascript">
-    angular
-        .module('registrationForm', ['ngMessages'])
-        .controller('registrationCtrl', function($scope){
-            var directiveId = 'ngMatch';
-        })
-        .directive(directiveId, ['$parse', function($parse) {
-            var directive = {
-                link: link,
-                restrict: 'A',
-                require: '?ngModel'
-            };
-            return directive;
+(function () {
+    'use strict';
+    var directiveId = 'ngMatch';
+    app.directive(directiveId, ['$parse', function ($parse) {
+ 
+        var directive = {
+           link: link,
+            restrict: 'A',
+            require: '?ngModel'
+        };
 
-            function link(scope, elem, attrs, ctrl) {
-                if (!ctrl) return;
-                if (!attrs[directiveId]) return;
+        return directive;
+ 
+    function link(scope, elem, attrs, ctrl) {
+       // if ngModel is not defined, we don't need to do anything
+        if (!ctrl) return;
+        if (!attrs[directiveId]) return;
+     
+        var firstPassword = $parse(attrs[directiveId]);
+     
+        var validator = function (value) {
+            var temp = firstPassword(scope),
+            v = value === temp;
+            ctrl.$setValidity('match', v);
+            return value;
+        }
+     
+        ctrl.$parsers.unshift(validator);
+        ctrl.$formatters.push(validator);
+        attrs.$observe(directiveId, function () {
+            validator(ctrl.$viewValue);
+        });
+     
+    }
+    
+    }]);
+})();
+    // angular
+    //     .module('registrationForm', ['ngMessages'])
+    //     .controller('registrationCtrl', function($scope){
+    //         var directiveId = 'ngMatch';
+    //     })
+    //     .directive(directiveId, ['$parse', function($parse) {
+    //         var directive = {
+    //             link: link,
+    //             restrict: 'A',
+    //             require: '?ngModel'
+    //         };
+    //         return directive;
 
-                var firstPassword = $parse(attrs[directiveId]);
+    //         function link(scope, elem, attrs, ctrl) {
+    //             if (!ctrl) return;
+    //             if (!attrs[directiveId]) return;
 
-                var validator = function (value) {
-                    var temp = firstPassword(scope),
-                    v = value == temp;
-                    ctrl.$setValidity('match', v);
-                    return value;
-                }
+    //             var firstPassword = $parse(attrs[directiveId]);
 
-                ctrl.$parsers.unshift(validator);
-                ctrl.$formatters.push(validator);
-                attrs.$observe(directiveId, function () {
-                    validator(ctrl.$viewValue);
-                });
-            }
-        }]);
+    //             var validator = function (value) {
+    //                 var temp = firstPassword(scope),
+    //                 v = value == temp;
+    //                 ctrl.$setValidity('match', v);
+    //                 return value;
+    //             }
+
+    //             ctrl.$parsers.unshift(validator);
+    //             ctrl.$formatters.push(validator);
+    //             attrs.$observe(directiveId, function () {
+    //                 validator(ctrl.$viewValue);
+    //             });
+    //         }
+    //     }]);
 </script>
 
 <body style="background-color: #EBEBEB">
