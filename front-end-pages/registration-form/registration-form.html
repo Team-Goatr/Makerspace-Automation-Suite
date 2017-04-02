@@ -1,74 +1,5 @@
 <script language="javascript">
-(function () {
-    'use strict';
-    var directiveId = 'ngMatch';
-    app.directive(directiveId, ['$parse', function ($parse) {
- 
-        var directive = {
-           link: link,
-            restrict: 'A',
-            require: '?ngModel'
-        };
 
-        return directive;
- 
-    function link(scope, elem, attrs, ctrl) {
-       // if ngModel is not defined, we don't need to do anything
-        if (!ctrl) return;
-        if (!attrs[directiveId]) return;
-     
-        var firstPassword = $parse(attrs[directiveId]);
-     
-        var validator = function (value) {
-            var temp = firstPassword(scope),
-            v = value === temp;
-            ctrl.$setValidity('match', v);
-            return value;
-        }
-     
-        ctrl.$parsers.unshift(validator);
-        ctrl.$formatters.push(validator);
-        attrs.$observe(directiveId, function () {
-            validator(ctrl.$viewValue);
-        });
-     
-    }
-
-    }]);
-})();
-    // angular
-    //     .module('registrationForm', ['ngMessages'])
-    //     .controller('registrationCtrl', function($scope){
-    //         var directiveId = 'ngMatch';
-    //     })
-    //     .directive(directiveId, ['$parse', function($parse) {
-    //         var directive = {
-    //             link: link,
-    //             restrict: 'A',
-    //             require: '?ngModel'
-    //         };
-    //         return directive;
-
-    //         function link(scope, elem, attrs, ctrl) {
-    //             if (!ctrl) return;
-    //             if (!attrs[directiveId]) return;
-
-    //             var firstPassword = $parse(attrs[directiveId]);
-
-    //             var validator = function (value) {
-    //                 var temp = firstPassword(scope),
-    //                 v = value == temp;
-    //                 ctrl.$setValidity('match', v);
-    //                 return value;
-    //             }
-
-    //             ctrl.$parsers.unshift(validator);
-    //             ctrl.$formatters.push(validator);
-    //             attrs.$observe(directiveId, function () {
-    //                 validator(ctrl.$viewValue);
-    //             });
-    //         }
-    //     }]);
 </script>
 
 <body style="background-color: #EBEBEB">
@@ -76,7 +7,7 @@
 
     <h3>Register as Member</h3>
 
-    <div class="container" ng-app="myApp">
+    <div class="container">
         <div class="row">
             <form name="register" action="?action=review" method="POST" class="form-horizonal" novalidate>
                 <div class="col-sm-4">
@@ -106,18 +37,11 @@
                     <div class="form-group" ng-class="{ 'has-error' : !registration.password.$valid }">
                         <label for="password" class="control-label" >Password:</label>
                         <input type="password" style="display: inline;" class="form-control" id="password" name="password" ng-model="password" ng-minlength="5" ng-maxlength="20" required>
-                        <span class="help-block" ng-show="registration.password.$error.required">This is a required field.</span>
-                        <div ng-messages="registration.password.$error">
-                            <div ng-message="required">This is a required field.</div>
-                            <div ng-message="minlength">The password you entered is too short.</div>
-                        </div>
                     </div>
 
                     <div class="form-group" ng-class="{ 'has-error' : !registration.passwordMatch.$valid }">
                         <label for="passwordMatch" class="control-label" >Confirm Password:</label>
                         <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" ng-match="password" required>
-                        <span class="help-block" ng-show="registration.passwordMatch.$error.required">This is a required field.</span>
-                        <span class="help-block" ng-show="registration.passwordMatch.$error.match">Passwords do not match.</span>
                     </div>
 
                     <div class="form-group">
