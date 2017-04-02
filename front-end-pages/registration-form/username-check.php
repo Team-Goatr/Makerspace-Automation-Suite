@@ -3,7 +3,7 @@ if (isset($_GET["username"])) {
     $username_to_check = $_GET["username"];
 
     try {
-    	getUser($username_to_check) //Will fail if username is not in use
+    	getUser($username_to_check); //Will fail if username is not in use
     	$result = false; //Username is taken
     } catch {
     	$result = true; //username is available
