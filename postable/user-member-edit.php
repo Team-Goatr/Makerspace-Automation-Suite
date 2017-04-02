@@ -29,8 +29,6 @@ function prefix_user_update_self() {
         )
     );
 
-    var_dump($properties);
-
     updateUser($username, $properties);
 
     wp_redirect('member');
