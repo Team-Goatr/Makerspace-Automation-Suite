@@ -16,3 +16,7 @@ button:hover {
     background-color: #0085A7;
     color: black;
 }
+
+#wpcontent {
+    background-color: #F1F1F1;
+}
