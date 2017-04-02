@@ -7,7 +7,7 @@
     include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
     include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
 
-    $email = wp_get_current_user();
+    $email = wp_get_current_user()->user_email;
     echo $email;
     $user = getUser($email);
     $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
