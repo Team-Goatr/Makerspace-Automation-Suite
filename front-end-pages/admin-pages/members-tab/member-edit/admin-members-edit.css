@@ -1,3 +1,28 @@
+img.mas {
+ height: 250px !important;
+ margin-bottom: 10px;
+}
+
+.mas-button { 
+    background-color: #F47B42;
+    color: white;
+    margin-bottom: 10px;
+    display: inline-block;   
+}
+
+.mas-title { 
+    background-color: #0085A7;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+a.mas {
+    color: white;
+    text-decoration: none;
+}
+
 table.mas {
     font-family: arial, sans-serif;
     color: #555;
@@ -63,13 +88,4 @@ input.mas {
     background-color: #F47B42 !important;
     color: white !important;
     padding: 3px;
-}
-
-a.mas {
-    color: white;
-    text-decoration: none;
-}
-
-img.mas {
-    height: 30%;
 }
