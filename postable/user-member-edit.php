@@ -14,14 +14,19 @@ function prefix_user_update_self() {
 
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
-    //$personalEmail = $_POST['personalEmail'];
+    $personalEmail = $_POST['personalEmail'];
 
 
     $properties = array(
     	'name' => array(
     		'givenName' => $firstName,
             'familyName' => $lastName
-    	)
+    	),
+        'emails' => array(
+            array(
+                'address' => $personalEmail
+            )
+        )
     );
 
 
