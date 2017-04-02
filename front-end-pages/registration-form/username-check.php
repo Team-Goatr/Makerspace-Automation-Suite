@@ -5,6 +5,7 @@ require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
 if (isset($_GET["username"])) {
     $username_to_check = $_GET["username"];
 
+    error_log("Username to check: ". $username_to_check);
 
     try {
     	getUser($username_to_check); //Will fail if username is not in use
