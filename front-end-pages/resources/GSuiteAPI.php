@@ -1,7 +1,7 @@
 <?php
 
 // Preventing loading direct from browser
-//defined( 'ABSPATH' ) or die();
+defined( 'ABSPATH' ) or die();
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -82,7 +82,6 @@ function userFactory($username, $email, $firstName, $lastName, $password, $strip
                 ) 
             )
     );
-    var_dump($userData);
     
     $user = new Google_Service_Directory_User($userData);
     return $user;
