@@ -1,3 +1,11 @@
+<script language="javascript">
+    angular
+        .module('registrationForm', ['ngMessages'])
+        .controller('registrationCtrl', function($scope){
+
+        });
+</script>
+
 <body style="background-color: #EBEBEB">
     <br>
 
@@ -39,7 +47,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" ng-class="{ 'has-error' : !register.passwordMatch.$pristine && register.passwordMatch != register.password">
+                    <div class="form-group" ng-class="{ 'has-error' : !register.passwordMatch.$pristine }">
                         <label for="passwordMatch" class="control-label" >Confirm Password:</label>
                         <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required>
                     </div>
