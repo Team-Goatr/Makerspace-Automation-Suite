@@ -9,7 +9,7 @@ add_action('admin_post_update_member', 'prefix_admin_update_member');
 
 
 function prefix_admin_update_member() {
-    error_log("Function Called");
+    
     $username = $_POST['username'];
 
     $firstName = $_POST['firstName'];

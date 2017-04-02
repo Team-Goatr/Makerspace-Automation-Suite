@@ -7,3 +7,4 @@ defined( 'ABSPATH' ) or die();
 include_once plugin_dir_path( __FILE__ ) . 'integrations-manager.php';
 include_once plugin_dir_path( __FILE__ ) . 'update-card.php';
 include_once plugin_dir_path( __FILE__ ) . 'admin-member-edit.php';
+include_once plugin_dir_path( __FILE__ ) . 'user-member-edit.php';

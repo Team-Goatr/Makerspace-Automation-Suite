@@ -4,11 +4,11 @@
 
     $admin_post = admin_url( 'admin-post.php' );
 
-    include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
-    include_once dirname(__DIR__).'../../../resources/StripeAPI.php';
+    require_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+    require_once dirname(__DIR__).'../../../resources/StripeAPI.php';
 
     $email = wp_get_current_user()->user_email;
-    echo $email;
+
     $user = getUser($email);
     $sub_mgmt = $user->getCustomSchemas()['Subscription_Management'];
     $stripe_id = !empty($sub_mgmt['Stripe_ID']) ? $sub_mgmt['Stripe_ID'] : '';
@@ -63,7 +63,7 @@
 
           <div flex id="inputContainer" class="inputDemo" ng-cloak>
              <md-content layout-padding>
-                <form name="projectForm">
+                <form id="userForm" name="projectForm" action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
                    <md-input-container class="md-block">
                       <label>First Name</label>
                       <input required name="firstName" ng-model="project.firstName" ng-disabled="!editing">
@@ -81,7 +81,7 @@
                    <md-input-container class="md-block">
                       <label>Personal Email</label>
                       <input required type="email" name="userEmail" ng-model="project.userEmail"
-                         minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"  ng-disabled="!editing"/>
+                         minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/"  ng-disabled="!editing"/>
                       <div ng-messages="projectForm.userEmail.$error" role="alert">
                          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
                             Your email must be between 10 and 100 characters long and should be a valid email address.
@@ -92,6 +92,7 @@
                       <label>DM Email</label>
                       <input required type="email" name="dmEmail" ng-model="project.dmEmail" disabled/>
                    </md-input-container>
+                   <input type="hidden" name="action" value="update_self">
                 </form>
              </md-content>
           </div>
