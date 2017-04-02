@@ -26,15 +26,15 @@ function isSelected($option, $target) {
 
     <div class="mas-title">
         <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >>
-        <?php echo $user->getName()->getFullName();?>
+        <?php echo $user->getName()->getFullName();?>        
     </div>
 
     <div class="form-container col-md-6">
         <form name="editMember" class="form-horizontal" action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
             <input type="hidden" name="username" value="<?php echo $user->getPrimaryEmail();?>">
-
+            
             <div class="form-group">
-                <label for="firstName" class="control-label">First Name</label>
+                <label for="firstName" class="control-label">First Name</label>  
                 <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
             </div>
 

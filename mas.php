@@ -137,7 +137,6 @@ function mas_admin_enqueue_scripts($hook) {
     wp_enqueue_script('angular-messages', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js');
     wp_enqueue_script('angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js');
 }
-
 add_action('admin_enqueue_scripts', 'mas_admin_enqueue_styles');
 add_action('admin_enqueue_scripts', 'mas_admin_enqueue_scripts');
 
