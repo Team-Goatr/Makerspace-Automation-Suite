@@ -14,5 +14,5 @@ if (isset($_GET["username"])) {
     	$result = "true"; //username is available
     }
 
-    echo '{ result: ' . $result . '}';
+    echo '{ "result": ' . $result . '}';
 }
