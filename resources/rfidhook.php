@@ -30,7 +30,7 @@ function rfid_webhook_listener() {
         );
         $data[] = $newdata;
     }
-    var_dump($data);
+    var_dump(json_encode($data));
 
     http_response_code(200);
     die();
