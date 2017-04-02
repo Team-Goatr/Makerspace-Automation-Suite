@@ -39,8 +39,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password-match" class="control-label" >Confirm Password:</label>
+                    <div class="form-group" ng-class="{ 'has-error' : !register.passwordMatch.$pristine && register.passwordMatch != register.password">
+                        <label for="passwordMatch" class="control-label" >Confirm Password:</label>
                         <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required>
                     </div>
 
