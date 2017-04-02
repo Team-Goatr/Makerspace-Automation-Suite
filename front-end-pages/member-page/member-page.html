@@ -57,10 +57,6 @@
                         echo '<img src="' . plugins_url( '../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
                     ?>
                     <br>
-                      <button type="edit" class="btn mas-button" ng-click="editing = true" ng-show="editing == false">Edit Profile</button>
-
-                      <button type="save" class="btn mas-button" ng-click="editing = false;" ng-show="editing == true">Save Changes</button>
-                    <br>
                       <button type="password" class="btn mas-button">Change Password</button>
                 </div>
           </div>
@@ -68,9 +64,6 @@
           <div flex id="inputContainer" class="inputDemo" ng-cloak>
              <md-content layout-padding>
                 <form id="userForm" name="projectForm" action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
-                  <button type="edit" class="btn mas-button" ng-click="editing = true" ng-show="editing == false">Edit Profile</button>
-                  <button type="submit" class="btn mas-button" ng-click="editing = false;" ng-show="editing == true">Save Changes</button>
-
                    <md-input-container class="md-block">
                       <label>First Name</label>
                       <input required name="firstName" ng-model="project.firstName" ng-disabled="!editing" value="<?php echo $firstName; ?>">
@@ -100,6 +93,9 @@
                       <input required type="email" name="dmEmail" ng-model="project.dmEmail" disabled/>
                    </md-input-container>
                    <input type="hidden" name="action" value="update_self">
+
+                    <button type="edit" class="btn mas-button" ng-click="editing = true" ng-show="editing == false">Edit Profile</button>
+                    <button type="submit" class="btn mas-button" ng-click="editing = false;" ng-show="editing == true">Save Changes</button>
                 </form>
              </md-content>
           </div>
