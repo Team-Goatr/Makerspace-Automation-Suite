@@ -33,7 +33,6 @@ try {
 
     $status = "Pending";
 
-
     $now = new DateTime();
     $now->modify("+1 month");
     $expiration = $now->format("Y-m-d");
