@@ -5,10 +5,11 @@ require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
 if (isset($_GET["username"])) {
     $username_to_check = $_GET["username"];
 
-    error_log("Username to check: ". $username_to_check);
+    $email = $username_to_check . "@decaturmakers.org";
+    error_log("Username to check: ". $email);
 
     try {
-    	getUser($username_to_check); //Will fail if username is not in use
+    	getUser($email); //Will fail if username is not in use
     	$result = false; //Username is taken
     } catch(Exception $e) {
     	$result = true; //username is available
