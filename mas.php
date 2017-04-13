@@ -200,7 +200,7 @@ END;
                         
                         <tr valign="top">
                         <th scope="row">Admin Email Addresses (Comma Separated)</th>
-                        <td><input type="text" name="admin-email-addresses" value="$admin_email_addresses" /></td>
+                        <td><textarea name="admin-email-addresses" rows="10" cols="60">$admin_email_addresses</textarea></td>
                         </tr>
                     </table>
 END;
