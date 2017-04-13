@@ -44,13 +44,17 @@ try {
     // Have Slack invite the user
     sendSlackInvite($email, $firstname, $lastname);
 
-    // Send email to admin about the new user
-    // TODO: Make this admin email configurable somewhere?
-    $adminemail = 'thomas@decaturmakers.org';
-    $subject = 'DecaturMakers New User';
-    $message = "Congratulations! A new user has registered with the Decatur Makerspace.\n\nName: $firstname $lastname\nEmail: $email\nUsername: $username";
-    $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
-    wp_mail($adminemail, $subject, $message, $headers);
+    // Send email to each admin about the new user
+    $admin_email_string = get_option("admin-email-addresses");
+    $admin_addresses = explode(',', $admin_email_string);
+
+    foreach ($admin_addresses as $admin_address) {
+        $admin_address = trim($admin_address);
+        $subject = 'DecaturMakers New User';
+        $message = "Congratulations! A new user has registered with the Decatur Makerspace.\n\nName: $firstname $lastname\nEmail: $email\nUsername: $username";
+        $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
+        wp_mail($admin_address, $subject, $message, $headers);
+    }
 
     // If no errors have been thrown, the subscription is successful
     include 'success.html';
