@@ -49,8 +49,8 @@ try {
     $admin_addresses = explode(',', $admin_email_string);
 
     foreach ($admin_addresses as $admin_address) {
-        error_log("Sending email to ". $admin_address);
         $admin_address = trim($admin_address);
+        error_log("Sending email to " . $admin_address);
         $subject = 'DecaturMakers New User';
         $message = "Congratulations! A new user has registered with the Decatur Makerspace.\n\nName: $firstname $lastname\nEmail: $email\nUsername: $username";
         $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
