@@ -47,7 +47,6 @@ function stripe_webhook_listener() {
             foreach ($admin_addresses as $admin_address) {
                 $admin_address = trim($admin_address);
                 error_log("Sending webhook email to " . $admin_address);
-                $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
                 wp_mail($admin_address, $subject, $adminmessage, $headers);
             }
 
