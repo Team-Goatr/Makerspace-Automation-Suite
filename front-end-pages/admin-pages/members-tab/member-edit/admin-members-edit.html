@@ -9,6 +9,10 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 
 $user = getUser($_GET['email']);
 
+$creation_time = $user->getCreationTime();
+date_default_timezone_set('EST');
+$creation_string = date("M d, Y - g:i:s A T", strtotime($creation_time));
+
 $plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
 $expDate = $user->getCustomSchemas()['Subscription_Management']['Subscription_Expiration'];
 
@@ -69,11 +73,16 @@ function isSelected($option, $target) {
         </form>
     </div>
 
-    <div id="imageContainer col-md-6">
-        <div style="text-align:center">
-            <?php
-                echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
-            ?>
+    <div id="panel panel-default col-md-6">
+        <div style="text-align:center" class="panel-heading">
+            <h3 class="panel-title mas-title">User Details</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="firstName">Member Since</label>
+                <input class="form-control" value="<?php echo $creation_time; ?>" disabled>
+            </div>
         </div>
     </div>
 </body>
