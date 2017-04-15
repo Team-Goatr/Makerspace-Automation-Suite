@@ -22,18 +22,18 @@ function prefix_admin_update_member() {
     	'name' => array(
     		'givenName' => $firstName,
             'familyName' => $lastName
-    	),
-    	'customSchemas' =>  array(
-    		'Subscription_Management' => array(
-                'Subscription_Type' => $subcriptionType,
-                'Subscription_Expiration' => $subcriptionExpiry
-            ),
-            'roles' => array(
-            	'rfid-id' => $rfidNumber
-            )
     	)
     );
 
+    if (!empty($subscriptionType)) {
+        $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
+    }
+    if (!empty($subscriptionExpiry)) {
+        $properties['customSchemas']['Subscription_Management']['Subscription_Expiry'] = $subscriptionExpiry;
+    }
+    if (!empty($rfidNumber)) {
+        $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
+    }
 
     updateUser($username, $properties);
 
