@@ -18,6 +18,10 @@ function prefix_admin_update_member() {
     $subscriptionType = $_POST['membershipPlan'];
     $subscriptionExpiry = $_POST['subscriptionExp'];
 
+    if ($subscriptionType === 'none') {
+        $subscriptionType = '';
+    }
+
     $properties = array(
     	'name' => array(
     		'givenName' => $firstName,
@@ -25,9 +29,7 @@ function prefix_admin_update_member() {
     	)
     );
 
-    if (!empty($subscriptionType) && !($subscriptionType === 'none')) {
-        $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
-    }
+    $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
     if (!empty($subscriptionExpiry)) {
         $properties['customSchemas']['Subscription_Management']['Subscription_Expiry'] = $subscriptionExpiry;
     }
