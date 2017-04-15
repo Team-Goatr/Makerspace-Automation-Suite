@@ -30,7 +30,7 @@
 
 <div>
     <div class="row">
-        <div class="mas-title col-md-12">
+        <div class="mas-title col-md-12" style="padding-left: 20px;">
             Welcome, <?php echo $user->getName()->getFullName(); ?>!        
         </div>
     </div>
@@ -69,13 +69,13 @@
     </div>
 
         <!-- PAYMENT INFO -->
-        <div style="text-align: center" class="panel panel-default col-md-4">
+        <div style="text-align: center" class="col-md-4">
 
-            <div class="panel-heading">
-                <h3 class="panel-title mas-title">Card Details</h3>
+            <div>
+                <h3 class="mas-title">Card Details</h3>
             </div>
 
-            <div class="panel-body">
+            <div>
                 <form name="payment">
                     <div class="form-group">
                         <label for="cardNum">Last 4 Digits:</label>
