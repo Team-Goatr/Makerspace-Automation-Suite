@@ -14,11 +14,8 @@ img {
 	background-color: #0085A7;
 	color: white;
     font-weight: bold;
+    font-size: 14px;
     padding: 10px;
     margin-bottom: 10px;
 }
 
-.panel-info .panel-heading {
-	color: white !important;
-	background-color: #0085A7 !important;
-}
