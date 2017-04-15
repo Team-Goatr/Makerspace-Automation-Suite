@@ -15,8 +15,8 @@ function prefix_admin_update_member() {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $rfidNumber = $_POST['rfidNumber'];
-    $subcriptionType = $_POST['membershipPlan'];
-    $subcriptionExpiry = $_POST['subscriptionExp'];
+    $subscriptionType = $_POST['membershipPlan'];
+    $subscriptionExpiry = $_POST['subscriptionExp'];
 
     $properties = array(
     	'name' => array(
@@ -25,7 +25,7 @@ function prefix_admin_update_member() {
     	)
     );
 
-    if (!empty($subscriptionType)) {
+    if (!empty($subscriptionType) && !($subscriptionType === 'none')) {
         $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
     }
     if (!empty($subscriptionExpiry)) {
