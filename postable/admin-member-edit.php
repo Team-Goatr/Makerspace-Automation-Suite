@@ -30,8 +30,10 @@ function prefix_admin_update_member() {
     );
 
     $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
-    $properties['customSchemas']['Subscription_Management']['Subscription_Expiration'] = $subscriptionExpiry;
     $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
+    if (!empty($subscriptionExpiry)) {
+        $properties['customSchemas']['Subscription_Management']['Subscription_Expiration'] = $subscriptionExpiry;
+    }
 
     updateUser($username, $properties);
 
