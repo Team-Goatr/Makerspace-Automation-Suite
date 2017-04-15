@@ -66,6 +66,7 @@ function isSelected($option, $target) {
                         <div class="form-group">
                             <label for="membershipPlan" class="control-label">Membership Plan</label>
                             <select class="form-control" name="membershipPlan" id="membershipPlan">
+                                <option value="none">None</option>
                                 <option value="basic-ind" <?php isSelected("basic-ind", $plan)?> >Individual Basic ($25/mo)</option>
                                 <option value="support-ind" <?php isSelected("support-ind", $plan)?> >Individual Supporter ($40/mo)</option>
                                 <option value="basic-fam" <?php isSelected("basic-fam", $plan)?> >Family Basic ($50/mo)</option>
