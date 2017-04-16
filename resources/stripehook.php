@@ -38,9 +38,17 @@ function stripe_webhook_listener() {
             $headers[] = 'From: Makerspace Automation Suite <noreply@decaturmakers.org>';
 
             # Send an email to the admin, alerting them that a payment has failed
-            # TODO: Make this admin email configurable somewhere?
             $adminmessage = "A user's membership payment has failed!\nName: $name\nUsername: $username\nEmail: $useremail\nStripe Customer: $cus";
-            wp_mail($adminemail, $subject, $adminmessage, $headers);
+
+            // Get administrator email addresses
+            $admin_email_string = get_option("admin-email-addresses");
+            $admin_addresses = explode(',', $admin_email_string);
+
+            foreach ($admin_addresses as $admin_address) {
+                $admin_address = trim($admin_address);
+                error_log("Sending webhook email to " . $admin_address);
+                wp_mail($admin_address, $subject, $adminmessage, $headers);
+            }
 
             # Send an email to the user to alert them of their payment failure
             $usermessage = "Your latest payment to DecaturMakers has failed. Please update your payment information or contact $adminemail for additional instructions.";

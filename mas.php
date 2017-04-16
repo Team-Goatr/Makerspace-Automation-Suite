@@ -161,6 +161,9 @@ function register_mas_settings() {
 
     // Registering Slack Settings
     register_setting('mas_options-group', 'slack-secret');
+
+    // Registering Admin Email Settings
+    register_setting('mas_options-group', 'admin-email-addresses');
 }
 
 // Creates the page for MAS options in the settings menu
@@ -180,6 +183,7 @@ END;
     $stripe_secret = get_option('stripe-secret');
     $gsuite_json = get_option('gsuite-json');
     $slack_secret = get_option('slack-secret');
+    $admin_email_addresses = get_option('admin-email-addresses');
     echo <<<END
                     <table class="form-table">
                         <tr valign="top">
@@ -200,6 +204,11 @@ END;
                         <tr valign="top">
                         <th scope="row">Slack Secret Key</th>
                         <td><input type="text" name="slack-secret" value="$slack_secret" /></td>
+                        </tr>
+                        
+                        <tr valign="top">
+                        <th scope="row">Admin Email Addresses (Comma Separated)</th>
+                        <td><textarea name="admin-email-addresses" rows="10" cols="60">$admin_email_addresses</textarea></td>
                         </tr>
                     </table>
 END;
