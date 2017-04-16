@@ -2,8 +2,6 @@
     defined( 'ABSPATH' ) or die();
     echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'member-page.css', __FILE__ ) . '">' . "\n";
 
-    $admin_post = admin_url( 'admin-post.php' );
-
     require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
     require_once dirname(__DIR__).'/resources/StripeAPI.php';
 
@@ -77,7 +75,7 @@
             </div>
 
             <div class="panel-body">
-                <form name="payment">
+                <form name="payment" method="POST" action="<?php echo admin_url( 'admin-post.php') ?>">
                     <div class="form-group">
                         <label for="cardNum">Last 4 Digits:</label>
                         <input type="card" name="cardNum" class="form-control" disabled value="****-****-****-<?php echo $card->last4; ?>">
