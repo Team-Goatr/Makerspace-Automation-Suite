@@ -9,8 +9,17 @@ include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
 
 $user = getUser($_GET['email']);
 
+$creation_time = $user->getCreationTime();
+date_default_timezone_set('EST');
+$creation_string = date("M d, Y - g:i:s A T", strtotime($creation_time));
+
 $plan = $user->getCustomSchemas()['Subscription_Management']['Subscription_Type'];
+$status = $user->getCustomSchemas()['Subscription_Management']['Subscription_Status'];
 $expDate = $user->getCustomSchemas()['Subscription_Management']['Subscription_Expiration'];
+$stripeID = $user->getCustomSchemas()['Subscription_Management']['Stripe_ID'];
+
+$personalEmail = $user->getEmails()[0]['address'];
+$dm_email = $user->getPrimaryEmail();
 
 function isSelected($option, $target) {
     if ($option == $target) {
@@ -23,57 +32,85 @@ function isSelected($option, $target) {
 <body style="background-color: #EBEBEB">
 
     <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="mas-title">
+                <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >>
+                <?php echo $user->getName()->getFullName();?>
+            </div>
+        </div>
 
-    <div class="mas-title">
-        <a href="admin.php?page=mas-plugin&content=1" class="mas">Members</a> >>
-        <?php echo $user->getName()->getFullName();?>        
-    </div>
+        <div class="row">
+            <div class="panel panel-default col-md-4">
+                <div style="text-align:center" class="panel-heading">
+                    <h3 class="panel-title mas-title">Update Member</h3>
+                </div>
 
-    <div class="form-container col-md-6">
-        <form name="editMember" class="form-horizontal" action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
-            <input type="hidden" name="username" value="<?php echo $user->getPrimaryEmail();?>">
-            
-            <div class="form-group">
-                <label for="firstName" class="control-label">First Name</label>  
-                <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
+                <div class="panel-body">
+                    <form name="editMember" class="form-horizontal" action="<?php echo admin_url( 'admin-post.php') ?>" method="post">
+                        <div class="form-group">
+                            <label for="firstName" class="control-label">First Name</label>
+                            <input required name="firstName" class="form-control" value="<?php echo $user->getName()->getGivenName();?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName" class="control-label">Last Name</label>
+                            <input required name="lastName" class="form-control" value="<?php echo $user->getName()->getFamilyName();?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rfidNumber" class="control-label">RFID Number</label>
+                            <input required name="rfidNumber" class="form-control" value="<?php echo $user->getCustomSchemas()['roles']['rfid-id'];?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="membershipPlan" class="control-label">Membership Plan</label>
+                            <select class="form-control" name="membershipPlan" id="membershipPlan">
+                                <option value="none">None</option>
+                                <option value="basic-ind" <?php isSelected("basic-ind", $plan)?> >Individual Basic ($25/mo)</option>
+                                <option value="support-ind" <?php isSelected("support-ind", $plan)?> >Individual Supporter ($40/mo)</option>
+                                <option value="basic-fam" <?php isSelected("basic-fam", $plan)?> >Family Basic ($50/mo)</option>
+                                <option value="support-fam" <?php isSelected("support-fam", $plan)?> >Family Supporter ($75/mo)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
+                            <input type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
+                        </div>
+
+                        <input type="hidden" name="action" value="update_member">
+                        <input type="hidden" name="username" value="<?php echo $user->getPrimaryEmail();?>">
+
+                        <button class="mas-button" type="submit">Save Changes</button>
+                    </form>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="lastName" class="control-label">Last Name</label>
-                <input required name="lastName" class="form-control" value="<?php echo $user->getName()->getFamilyName();?>">
+            <div class="panel panel-default col-md-4">
+                <div style="text-align:center" class="panel-heading">
+                    <h3 class="panel-title mas-title">Member Details</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="firstName">DecaturMakers Email</label>
+                        <input class="form-control" value="<?php echo $dm_email; ?>" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Member Since</label>
+                        <input class="form-control" value="<?php echo $creation_time; ?>" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Stripe ID</label>
+                        <input class="form-control" value="<?php echo $stripeID; ?>" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Personal Email</label>
+                        <input class="form-control" value="<?php echo $personalEmail; ?>" disabled>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="rfidNumber" class="control-label">RFID Number</label>
-                <input name="rfidNumber" class="form-control" value="<?php echo $user->getCustomSchemas()['roles']['rfid-id'];?>">
-            </div>
-
-            <div class="form-group">
-                <label for="membershipPlan" class="control-label">Membership Plan</label>
-                <select class="form-control" name="membershipPlan" id="membershipPlan">
-                    <option value="basic-ind" <?php isSelected("basic-ind", $plan)?> >Individual Basic ($25/mo)</option>
-                    <option value="support-ind" <?php isSelected("support-ind", $plan)?> >Individual Supporter ($40/mo)</option>
-                    <option value="basic-fam" <?php isSelected("basic-fam", $plan)?> >Family Basic ($50/mo)</option>
-                    <option value="support-fam" <?php isSelected("support-fam", $plan)?> >Family Supporter ($75/mo)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
-                <input type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
-            </div>
-
-            <button class="mas-button" type="submit">Save Changes</button>
-
-            <input type="hidden" name="action" value="update_member">
-        </form>
-    </div>
-
-    <div id="imageContainer col-md-6">
-        <div style="text-align:center">
-            <?php
-                echo '<img class="mas" src="' . plugins_url( '../../../images/female-placeholder.png', __FILE__ ) . '" id="profilePic" alt="Profile Picture">' . "\n";
-            ?>
         </div>
     </div>
 </body>

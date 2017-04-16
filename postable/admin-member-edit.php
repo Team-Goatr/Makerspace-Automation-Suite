@@ -15,25 +15,25 @@ function prefix_admin_update_member() {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $rfidNumber = $_POST['rfidNumber'];
-    $subcriptionType = $_POST['membershipPlan'];
-    $subcriptionExpiry = $_POST['subscriptionExp'];
+    $subscriptionType = $_POST['membershipPlan'];
+    $subscriptionExpiry = $_POST['subscriptionExp'];
+
+    if ($subscriptionType === 'none') {
+        $subscriptionType = '';
+    }
 
     $properties = array(
     	'name' => array(
     		'givenName' => $firstName,
             'familyName' => $lastName
-    	),
-    	'customSchemas' =>  array(
-    		'Subscription_Management' => array(
-                'Subscription_Type' => $subcriptionType,
-                'Subscription_Expiration' => $subcriptionExpiry
-            ),
-            'roles' => array(
-            	'rfid-id' => $rfidNumber
-            )
     	)
     );
 
+    $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
+    $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
+    if (!empty($subscriptionExpiry)) {
+        $properties['customSchemas']['Subscription_Management']['Subscription_Expiration'] = $subscriptionExpiry;
+    }
 
     updateUser($username, $properties);
 
