@@ -33,7 +33,7 @@
             $("#Error").html("Passwords match.");
     }
 
-    $(document).ready(function () {
+    jQuery(document).ready(function () {
        $("#confirmpw").keyup(checkPasswordMatch);
     });    
 </script>
@@ -139,7 +139,7 @@
                     <div class="form-group">
                         <label for="confirmpw">Confirm New Password</label>
                         <input type="password" name="confirmpw" id="confirmpw" class="form-control" onchange="checkPasswordMatch();">
-                        <div id="Error" class="help-block">Help Block!</div>
+                        <div id="Error" class="help-block"></div>
                     </div>
 
                     <button type="submit" class="btn mas-button">Update Password</button>                    
