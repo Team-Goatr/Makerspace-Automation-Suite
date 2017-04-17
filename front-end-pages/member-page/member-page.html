@@ -28,10 +28,10 @@
         var confirmPassword = jQuery("#confirmpw").val();
 
         if (password != confirmPassword) {
-            jQuery("#error-group").addClass("has-error");
+            jQuery("#errorGroup").addClass("has-error");
             jQuery("#Error").html("Passwords do not match!");
         } else {
-            jQuery("#error-group").removeClass("has-error");
+            jQuery("#errorGroup").removeClass("has-error");
             jQuery("#Error").html("");
         }
     }
@@ -134,7 +134,7 @@
                         <input type="password" name="currpw" id="currpw" class="form-control">
                     </div>
 
-                    <div class="error-group">
+                    <div id="errorGroup">
                         <div class="form-group">
                             <label for="newpw">New Password</label>
                             <input type="password" name="newpw" id="newpw" class="form-control">
