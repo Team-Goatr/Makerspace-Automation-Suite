@@ -37,8 +37,6 @@ if (count($results->getUsers()) != 0) {
         $creation_string = date("m-d-Y", $creation_time);
 
         $founding_bool = boolval($user->getCustomSchemas()['roles']['founding-member']);
-
-        error_log( (!boolval($_GET["founding"])) ? "Truey" : "Falsey");
         
         $founding_member = $founding_bool ? 
             '<i class="fa fa-check" aria-hidden="true"><span style="display: none">1</span></i>' : '<i class="fa fa-times" aria-hidden="true"><span style="display: none">0</span></i>';
@@ -47,8 +45,7 @@ if (count($results->getUsers()) != 0) {
             (!isset($_GET["before"]) || $creation_time <= strtotime($_GET["before"])) &&
             (!isset($_GET["since"]) || $creation_time >= strtotime($_GET["since"])) &&
 
-            (!isset($_GET["founding"]) || (boolval($_GET["founding"]) && $founding_bool)
-                || (!boolval($_GET["founding"]) && !$founding_bool)) &&
+            (!isset($_GET["founding"]) || (strtolower($_GET["founding"]) == ($founding_bool ? "true" : "false"))) &&
 
             (!isset($_GET["type"]) || $_GET["type"] == $type) &&
             (!isset($_GET["status"]) || $_GET["status"] == $status);
