@@ -22,18 +22,42 @@
     }
 ?>
 
+<script type="text/javascript">
+    function checkPasswordMatch() {
+        var password = jQuery("#newpw").val();
+        var confirmPassword = jQuery("#confirmpw").val();
+
+        if (password != confirmPassword) {
+            jQuery("#errorGroup").addClass("has-error");
+            jQuery("#Error").html("Passwords do not match!");
+        } else {
+            jQuery("#errorGroup").removeClass("has-error");
+            jQuery("#Error").html("");
+        }
+    }
+
+    jQuery(document).ready(function () {
+       jQuery("#confirmpw").keyup(checkPasswordMatch);
+    });    
+</script>
+
+<style type="text/css">
+   body { background: #F2F2F2 !important; } /* PHP doesnt call the file well enough to override Bootstrap */
+</style>
+
 <div class="container-fluid">
     <div class="row">
-        <div class="mas-title">
+        <div class="mas-title col-md-12">
             Welcome, <?php echo $user->getName()->getFullName(); ?>!        
         </div>
     </div>
 
     <div class="row">
         <!-- PERSONAL INFO FORM -->
-        <div style="text-align: center" class="panel panel-default col-md-4">
-            <div class="panel-heading">
-                <h3 class="panel-title mas-title">User Details</h3>
+        <div style="text-align: center" class="col-md-4">
+
+            <div>
+                <h3 class="mas-title" style="font-size: 18px !important;">Personal Information</h3>
             </div>
 
             <div class="panel-body">
@@ -66,10 +90,10 @@
         </div>
 
         <!-- PAYMENT INFO -->
-        <div style="text-align: center" class="panel panel-default col-md-4">
+        <div style="text-align: center" class="col-md-4">
 
-            <div class="panel-heading">
-                <h3 class="panel-title mas-title">Card Details</h3>
+            <div>
+                <h3 class="mas-title" style="font-size: 18px !important;">Card Details</h3>
             </div>
 
             <div class="panel-body">
@@ -97,13 +121,37 @@
         </div>
 
         <!-- PASSWORD -->
-        <div style="text-align: center" class="panel panel-default col-md-4">
-            <div class="panel-heading">
-                <h3 class="panel-title mas-title">Password</h3>
+        <div style="text-align: center" class="col-md-4">
+
+            <div>
+                <h3 class="mas-title" style="font-size: 18px !important;">Change Password</h3>
             </div>
 
             <div class="panel-body">
-                <button type="password" class="btn mas-button">Change Password</button>
+                <form method=POST action="<?php echo admin_url( 'admin-post.php') ?>" name="password">
+                    <!-- Currently not necessary -->
+                    <!--<div class="form-group">
+                        <label for="currpw">Current Password</label>
+                        <input type="password" name="currpw" id="currpw" class="form-control">
+                    </div>-->
+
+                    <div id="errorGroup">
+                        <div class="form-group">
+                            <label for="newpw">New Password</label>
+                            <input type="password" name="newPassword" id="newpw" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmpw">Confirm New Password</label>
+                            <input type="password" id="confirmpw" class="form-control" onchange="checkPasswordMatch();">
+                            <div id="Error" class="help-block"></div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="action" value="update_self_password">
+
+                    <button type="submit" class="btn mas-button">Update Password</button>                    
+                </form>
             </div>
         </div>
     </div>
