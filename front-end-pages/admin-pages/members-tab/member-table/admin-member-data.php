@@ -38,7 +38,7 @@ if (count($results->getUsers()) != 0) {
 
         $founding_bool = boolval($user->getCustomSchemas()['roles']['founding-member']);
 
-        echo $founding_bool;
+        error_log($founding_bool);
         
         $founding_member = $founding_bool ? 
             '<i class="fa fa-check" aria-hidden="true"><span style="display: none">1</span></i>' : '<i class="fa fa-times" aria-hidden="true"><span style="display: none">0</span></i>';
