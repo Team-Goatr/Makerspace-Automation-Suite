@@ -24,13 +24,11 @@
 
 <script type="text/javascript">
     function checkPasswordMatch() {
-        var password = $("#newpw").val();
-        var confirmPassword = $("#confirmpw").val();
+        var password = jQuery("#newpw").val();
+        var confirmPassword = jQuery("#confirmpw").val();
 
         if (password != confirmPassword)
-            $("#Error").html("Passwords do not match!");
-        else
-            $("#Error").html("Passwords match.");
+            jQuery("#Error").html("Passwords do not match!");
     }
 
     jQuery(document).ready(function () {
