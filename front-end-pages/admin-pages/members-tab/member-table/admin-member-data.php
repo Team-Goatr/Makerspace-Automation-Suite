@@ -35,14 +35,14 @@ if (count($results->getUsers()) != 0) {
         $creation_time = strtotime($user->getCreationTime());
 
         $pass_filter =
-            !isset($_GET["member-before"]) || $creation_time <= strtotime($_GET["member-before"]) &&
-            !isset($_GET["member-since"]) || $creation_time >= strtotime($_GET["member-since"]) &&
+            !isset($_GET["before"]) || $creation_time <= strtotime($_GET["before"]) &&
+            !isset($_GET["since"]) || $creation_time >= strtotime($_GET["since"]) &&
 
             // TODO Add founding member check
-            !isset($_GET["founding-member"]) || true &&
+            !isset($_GET["founding"]) || true &&
 
-            !isset($_GET["subscription-type"]) || $_GET["subscription-type"] == $type &&
-            !isset($_GET["subscription-status"]) || $_GET["subscription-status"] == $status;
+            !isset($_GET["type"]) || $_GET["type"] == $type &&
+            !isset($_GET["status"]) || $_GET["status"] == $status;
 
         if ($pass_filter) {
             # Print Table Row
