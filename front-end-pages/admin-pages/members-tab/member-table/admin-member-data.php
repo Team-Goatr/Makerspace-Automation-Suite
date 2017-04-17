@@ -32,11 +32,19 @@ if (count($results->getUsers()) != 0) {
         $name = $user->getName()->getFullName();
         $email = $user->getPrimaryEmail();
 
-        function checkFilters() {
-            return true;
-        }
+        $creation_time = strtotime($user->getCreationTime());
 
-        if (checkFilters()) {
+        $pass_filter =
+            !isset($GLOBALS["member-before"]) || $creation_time <= strtotime($GLOBALS["member-before"]) &&
+            !isset($GLOBALS["member-after"]) || $creation_time >= strtotime($GLOBALS["member-after"]) &&
+
+            // TODO Add founding member check
+            !isset($GLOBALS["founding-member"]) || true &&
+
+            !isset($GLOBALS["subscription-type"]) || $GLOBALS["subscription-type"] == $type &&
+            !isset($GLOBALS["subscription-status"]) || $GLOBALS["subscription-status"] == $status;
+
+        if ($pass_filter) {
             # Print Table Row
             echo <<<END
                 <tr>
