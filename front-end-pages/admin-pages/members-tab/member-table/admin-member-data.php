@@ -45,8 +45,7 @@ if (count($results->getUsers()) != 0) {
             (!isset($_GET["before"]) || $creation_time <= strtotime($_GET["before"])) &&
             (!isset($_GET["since"]) || $creation_time >= strtotime($_GET["since"])) &&
 
-            (!isset($_GET["founding"]) || ((boolval($_GET["founding"]) && $founding_bool)
-                || (!boolval($_GET["founding"]) && !$founding_bool))) &&
+            (!isset($_GET["founding"]) || boolval($_GET["founding"]) == $founding_bool) &&
 
             (!isset($_GET["type"]) || $_GET["type"] == $type) &&
             (!isset($_GET["status"]) || $_GET["status"] == $status);
