@@ -33,6 +33,8 @@ if (count($results->getUsers()) != 0) {
         $email = $user->getPrimaryEmail();
 
         $creation_time = strtotime($user->getCreationTime());
+        date_default_timezone_set('EST');
+        $creation_string = date("M d, Y - g:i:s A T", strtotime($creation_time));
 
         $pass_filter =
             (!isset($_GET["before"]) || $creation_time <= strtotime($_GET["before"])) &&
@@ -53,6 +55,7 @@ if (count($results->getUsers()) != 0) {
                     <td>$rfid_tag</td>
                     <td>$type</td>
                     <td>$status</td>
+                    <td>$creation_string</td>
                 </tr>
 END;
         }
