@@ -121,6 +121,9 @@ function mas_admin_enqueue_styles($hook) {
         return;
     }
 
+    // FontAwesome
+    wp_enqueue_style( 'fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
     // Bootstrap
     wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
