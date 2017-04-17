@@ -38,16 +38,20 @@ function prefix_user_update_self() {
 
 function user_update_password() {
 
-    $username = wp_get_current_user()->user_email;
+    try {
+        $username = wp_get_current_user()->user_email;
 
-    $password = $_POST['newPassword'];
+        $password = $_POST['newPassword'];
 
-    $properties = array(
-        'password' => $password
-    );
+        $properties = array(
+            'password' => $password
+        );
 
-    updateUser($username, $properties);
+        updateUser($username, $properties);
 
-    wp_redirect('member');
-    exit("User updated successfully");
+        wp_redirect('member');
+        exit("User updated successfully");
+    } catch (Exception $e) {
+        exit($e["error"]["message"]);
+    }
 }
