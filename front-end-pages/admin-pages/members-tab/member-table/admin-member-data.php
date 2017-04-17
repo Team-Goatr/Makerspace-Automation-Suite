@@ -44,6 +44,8 @@ if (count($results->getUsers()) != 0) {
             !isset($_GET["type"]) || $_GET["type"] == $type &&
             !isset($_GET["status"]) || $_GET["status"] == $status;
 
+        echo $pass_filter;
+
         if ($pass_filter) {
             # Print Table Row
             echo <<<END
