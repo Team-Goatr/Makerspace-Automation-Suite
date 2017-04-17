@@ -27,12 +27,13 @@
         var password = jQuery("#newpw").val();
         var confirmPassword = jQuery("#confirmpw").val();
 
-        if (password != confirmPassword)
+        if (password != confirmPassword) {
             jQuery("#error-group").addClass("has-error");
             jQuery("#Error").html("Passwords do not match!");
-        else
+        } else {
             jQuery("#error-group").removeClass("has-error");
             jQuery("#Error").html();
+        }
     }
 
     jQuery(document).ready(function () {
