@@ -11,20 +11,6 @@ include 'admin-header.html';
 	<main id="main" class="site-main" role="main">
 		<?php
 
-        function setGlobal($var) {
-		    if (isset($_GET[$var])) {
-		        $GLOBALS[$var] = $_GET[$var];
-            } else {
-                unset($GLOBALS[$var]);
-            }
-        }
-
-        setGlobal("member-before");
-        setGlobal("member-since");
-		setGlobal("founding-member");
-        setGlobal("subscription-type");
-        setGlobal("subscription-status");
-
 		// changes the html in the div based on button click
 		switch($_GET['content']) {
 			case 1: include 'members-tab/member-table/admin-members-table.html'; break;
