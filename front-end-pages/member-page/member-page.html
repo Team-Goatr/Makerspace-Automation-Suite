@@ -22,6 +22,22 @@
     }
 ?>
 
+<script type="text/javascript">
+    function checkPasswordMatch() {
+        var password = $("#newpw").val();
+        var confirmPassword = $("#confirmpw").val();
+
+        if (password != confirmPassword)
+            $("#divCheckPasswordMatch").html("Passwords do not match!");
+        else
+            $("#divCheckPasswordMatch").html("Passwords match.");
+    }
+
+    $(document).ready(function () {
+       $("#confirmpw").keyup(checkPasswordMatch);
+    });    
+</script>
+
 <style type="text/css">
    body { background: #F2F2F2 !important; } /* PHP doesnt call the file well enough to override Bootstrap */
 </style>
@@ -111,16 +127,16 @@
             <div class="panel-body">
                 <form name="password">
                     <div class="form-group">
-                        <label for="firstName">Current Password</label>
-                        <input type="password" name="firstName" class="form-control">
+                        <label for="currpw">Current Password</label>
+                        <input type="password" name="currpw" id="currpw" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="firstName">New Password</label>
-                        <input type="password" name="firstName" class="form-control">
+                        <label for="newpw">New Password</label>
+                        <input type="password" name="newpw" id="newpw" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="firstName">Confirm New Password</label>
-                        <input type="password" name="firstName" class="form-control">
+                        <label for="confirmpw">Confirm New Password</label>
+                        <input type="password" name="confirmpw" id="confirmpw" class="form-control" onchange="checkPasswordMatch()">
                     </div>
 
                     <button type="submit" class="btn mas-button">Update Password</button>                    
