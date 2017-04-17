@@ -21,6 +21,11 @@ $stripeID = $user->getCustomSchemas()['Subscription_Management']['Stripe_ID'];
 $personalEmail = $user->getEmails()[0]['address'];
 $dm_email = $user->getPrimaryEmail();
 
+$founding_bool = boolval($user->getCustomSchemas()['roles']['founding-member']);
+
+$founding_true_check = $founding_bool ? 'checked="checked"' : '';
+$founding_false_check = !$founding_bool ? 'checked="checked"' : '';
+
 function isSelected($option, $target) {
     if ($option == $target) {
         echo "selected";
@@ -77,6 +82,12 @@ function isSelected($option, $target) {
                         <div class="form-group">
                             <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
                             <input type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foundingTrue" class="control-label">Founding Member</label>
+                            <input type="radio" id="foundingTrue" <?php echo $founding_true_check ?> value="true" name="founding"> True<br>
+                            <input type="radio" id="foundingFalse" <?php echo $founding_false_check ?> value="false" name="founding"> False
                         </div>
 
                         <input type="hidden" name="action" value="update_member">
