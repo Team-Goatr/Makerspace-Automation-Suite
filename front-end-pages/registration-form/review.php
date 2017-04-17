@@ -27,6 +27,9 @@ $planname = $plan->name;
 $plandollars = $planamount/100;
 
 echo <<<END
+        <style type="text/css">
+           body { background: #F2F2F2 !important; } /* PHP doesnt call the file well enough to override Bootstrap */
+        </style>
         
         <br>
         <h3>Registration Confirmation Page</h3>
