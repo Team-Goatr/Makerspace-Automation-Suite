@@ -32,17 +32,33 @@ if (count($results->getUsers()) != 0) {
         $name = $user->getName()->getFullName();
         $email = $user->getPrimaryEmail();
 
-        # Print Table Row
-        echo <<<END
-    <tr>
-        <td><a href="admin.php?page=mas-plugin&content=5&email=$email" class="edit">&#9998; $name</a></td>
-        <td>$email</td>
-        <td>$rfid_tag</td>
-        <td>$type</td>
-        <td>$status</td>
-    </tr>
+        $creation_time = strtotime($user->getCreationTime());
+        date_default_timezone_set('EST');
+        $creation_string = date("m-d-Y", $creation_time);
 
+        $pass_filter =
+            (!isset($_GET["before"]) || $creation_time <= strtotime($_GET["before"])) &&
+            (!isset($_GET["since"]) || $creation_time >= strtotime($_GET["since"])) &&
+
+            // TODO Add founding member check
+            (!isset($_GET["founding"]) || true) &&
+
+            (!isset($_GET["type"]) || $_GET["type"] == $type) &&
+            (!isset($_GET["status"]) || $_GET["status"] == $status);
+
+        if ($pass_filter) {
+            # Print Table Row
+            echo <<<END
+                <tr>
+                    <td><a href="admin.php?page=mas-plugin&content=5&email=$email" class="edit">&#9998; $name</a></td>
+                    <td>$email</td>
+                    <td>$rfid_tag</td>
+                    <td>$type</td>
+                    <td>$status</td>
+                    <td>$creation_string</td>
+                </tr>
 END;
+        }
     }
 }
 
