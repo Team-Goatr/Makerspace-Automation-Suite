@@ -32,7 +32,7 @@ function prefix_admin_update_member() {
 
     $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
     $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
-    $properties['customSchemas']['roles']['founding-member'] = boolval($founding_member);
+    $properties['customSchemas']['roles']['founding-member'] = $founding_member == "true";
     if (!empty($subscriptionExpiry)) {
         $properties['customSchemas']['Subscription_Management']['Subscription_Expiration'] = $subscriptionExpiry;
     }
