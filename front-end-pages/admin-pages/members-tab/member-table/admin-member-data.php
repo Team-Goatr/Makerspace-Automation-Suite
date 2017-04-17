@@ -34,7 +34,7 @@ if (count($results->getUsers()) != 0) {
 
         $creation_time = strtotime($user->getCreationTime());
         date_default_timezone_set('EST');
-        $creation_string = date("M/D/Y", $creation_time);
+        $creation_string = date("m/d/Y", $creation_time);
 
         $pass_filter =
             (!isset($_GET["before"]) || $creation_time <= strtotime($_GET["before"])) &&
