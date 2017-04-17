@@ -2,8 +2,6 @@
     defined( 'ABSPATH' ) or die();
     echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'member-page.css', __FILE__ ) . '">' . "\n";
 
-    $admin_post = admin_url( 'admin-post.php' );
-
     require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
     require_once dirname(__DIR__).'/resources/StripeAPI.php';
 
@@ -36,37 +34,40 @@
     </div>
 
     <div class="row">
-       <button type="password" class="btn mas-button">Change Password</button>
-    </div>
-
-    <!-- PERSONAL INFO FORM -->
-    <div style="text-align: center" class="col-md-4">
-        <form name="userForm" method="POST" action="<?php echo admin_url( 'admin-post.php') ?>">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input name="firstName" class="form-control" value="<?php echo $firstName; ?>">
+        <!-- PERSONAL INFO FORM -->
+        <div style="text-align: center" class="panel panel-default col-md-4">
+            <div class="panel-heading">
+                <h3 class="panel-title mas-title">User Details</h3>
             </div>
 
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input name="lastName" class="form-control" value="<?php echo $lastName; ?>">
+            <div class="panel-body">
+                <form name="userForm" method="POST" action="<?php echo admin_url( 'admin-post.php') ?>">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input name="firstName" class="form-control" value="<?php echo $firstName; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input name="lastName" class="form-control" value="<?php echo $lastName; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="control-label">Personal Email</label>
+                        <input type="email" name="personalEmail" class="form-control" id="inputEmail" placeholder="Email" required value="<?php echo $personalEmail; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="dmEmail">DM Email</label>
+                        <input type="text" class="form-control" id="username" value="<?php echo $dm_email; ?>" disabled>
+                    </div>
+
+                    <input type="hidden" name="action" value="update_self">
+
+                    <button type="submit" class="btn mas-button">Update Info</button>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="inputEmail" class="control-label">Personal Email</label>
-                <input type="email" name="personalEmail" class="form-control" id="inputEmail" placeholder="Email" required value="<?php echo $personalEmail; ?>">
-            </div>
-
-            <div class="form-group">
-                <label class="dmEmail">DM Email</label>
-                <input type="text" class="form-control" id="username" value="<?php echo $dm_email; ?>" disabled>
-            </div>
-
-            <input type="hidden" name="action" value="update_self">
-
-            <button type="submit" class="btn mas-button">Update Info</button>
-        </form>
-    </div>
+        </div>
 
         <!-- PAYMENT INFO -->
         <div style="text-align: center" class="col-md-4">
@@ -75,8 +76,8 @@
                 <h3 class="mas-title" style="font-size: 18px !important;">Card Details</h3>
             </div>
 
-            <div>
-                <form name="payment" style="width: 80%; text-align: center;">
+            <div class="panel-body">
+                <form name="payment" method="POST" action="<?php echo admin_url( 'admin-post.php') ?>">
                     <div class="form-group">
                         <label for="cardNum">Last 4 Digits:</label>
                         <input type="card" name="cardNum" class="form-control" disabled value="****-****-****-<?php echo $card->last4; ?>">
@@ -96,6 +97,17 @@
                     <input type="hidden" name="action" value="update_card">
                     <?php getStripeUpdateCard($personalEmail); ?>
                 </form>
+            </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div style="text-align: center" class="panel panel-default col-md-4">
+            <div class="panel-heading">
+                <h3 class="panel-title mas-title">Password</h3>
+            </div>
+
+            <div class="panel-body">
+                <button type="password" class="btn mas-button">Change Password</button>
             </div>
         </div>
     </div>

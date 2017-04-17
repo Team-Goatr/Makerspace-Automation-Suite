@@ -80,18 +80,22 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-makerspace-automation-suit
 
 // Enqueueing the MAS styles on the user profile and registration pages
 function mas_enqueue_styles() {
-    if (is_page('member') || is_page('register')) {
+    if (is_page('register')) {
         // Bootstrap
         wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 
         // Angular Material
         wp_enqueue_style( 'angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css');
     }
+    if (is_page('member')) {
+        // Bootstrap
+        wp_enqueue_style( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+    }
 }
 
 // Enqueueing the MAS scripts on the user profile and registration pages
 function mas_enqueue_scripts() {
-    if (is_page("member") || is_page('register')) {
+    if (is_page('register')) {
         // Bootstrap
         wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'));
 
@@ -101,6 +105,10 @@ function mas_enqueue_scripts() {
         wp_enqueue_script('angular-aria', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js');
         wp_enqueue_script('angular-messages', '//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js');
         wp_enqueue_script('angular-material', '//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js');
+    }
+    if (is_page('member')) {
+        // Bootstrap
+        wp_enqueue_script('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array('jquery'));
     }
 }
 add_action('wp_enqueue_scripts', 'mas_enqueue_styles');
@@ -153,6 +161,9 @@ function register_mas_settings() {
 
     // Registering Slack Settings
     register_setting('mas_options-group', 'slack-secret');
+
+    // Registering Admin Email Settings
+    register_setting('mas_options-group', 'admin-email-addresses');
 }
 
 // Creates the page for MAS options in the settings menu
@@ -172,6 +183,7 @@ END;
     $stripe_secret = get_option('stripe-secret');
     $gsuite_json = get_option('gsuite-json');
     $slack_secret = get_option('slack-secret');
+    $admin_email_addresses = get_option('admin-email-addresses');
     echo <<<END
                     <table class="form-table">
                         <tr valign="top">
@@ -192,6 +204,11 @@ END;
                         <tr valign="top">
                         <th scope="row">Slack Secret Key</th>
                         <td><input type="text" name="slack-secret" value="$slack_secret" /></td>
+                        </tr>
+                        
+                        <tr valign="top">
+                        <th scope="row">Admin Email Addresses (Comma Separated)</th>
+                        <td><textarea name="admin-email-addresses" rows="10" cols="60">$admin_email_addresses</textarea></td>
                         </tr>
                     </table>
 END;

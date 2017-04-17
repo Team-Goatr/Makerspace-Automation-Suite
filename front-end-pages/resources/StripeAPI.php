@@ -48,6 +48,7 @@ function getStripeUpdateCard($email) {
         data-name="Decatur Makerspace"
         data-panel-label="Update Card Details"
         data-label="Update Card Details"
+        data-zip-code="true"
         data-allow-remember-me=false
         data-locale="auto">
     </script>
