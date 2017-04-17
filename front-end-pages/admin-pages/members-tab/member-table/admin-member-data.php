@@ -36,9 +36,7 @@ if (count($results->getUsers()) != 0) {
         date_default_timezone_set('EST');
         $creation_string = date("m-d-Y", $creation_time);
 
-        $founding_bool = !empty($user->getCustomSchemas()['roles']['founding-member']) ?
-            boolval($user->getCustomSchemas()['roles']['founding-member']) : false;
-        echo $founding_bool;
+        $founding_bool = boolval($user->getCustomSchemas()['roles']['founding-member']);
         
         $founding_member = $founding_bool ? 
             '<i class="fa fa-check" aria-hidden="true"><span style="display: none">1</span></i>' : '<i class="fa fa-times" aria-hidden="true"><span style="display: none">0</span></i>';
