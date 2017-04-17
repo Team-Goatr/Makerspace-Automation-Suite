@@ -28,7 +28,11 @@
         var confirmPassword = jQuery("#confirmpw").val();
 
         if (password != confirmPassword)
+            jQuery("#error-group").addClass("has-error");
             jQuery("#Error").html("Passwords do not match!");
+        else
+            jQuery("#error-group").removeClass("has-error");
+            jQuery("#Error").html();
     }
 
     jQuery(document).ready(function () {
@@ -129,15 +133,17 @@
                         <input type="password" name="currpw" id="currpw" class="form-control">
                     </div>
 
-                    <div class="form-group">
-                        <label for="newpw">New Password</label>
-                        <input type="password" name="newpw" id="newpw" class="form-control">
-                    </div>
+                    <div class="error group">
+                        <div class="form-group">
+                            <label for="newpw">New Password</label>
+                            <input type="password" name="newpw" id="newpw" class="form-control">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="confirmpw">Confirm New Password</label>
-                        <input type="password" name="confirmpw" id="confirmpw" class="form-control" onchange="checkPasswordMatch();">
-                        <div id="Error" class="help-block"></div>
+                        <div class="form-group">
+                            <label for="confirmpw">Confirm New Password</label>
+                            <input type="password" name="confirmpw" id="confirmpw" class="form-control" onchange="checkPasswordMatch();">
+                            <div id="Error" class="help-block"></div>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn mas-button">Update Password</button>                    
