@@ -35,13 +35,17 @@ if (count($results->getUsers()) != 0) {
         $creation_time = strtotime($user->getCreationTime());
         date_default_timezone_set('EST');
         $creation_string = date("m-d-Y", $creation_time);
+        
+        $founding_bool = boolval($user->getCustomSchemas()['roles']['founding-member']);
+        
+        $founding_member = $founding_bool ? 
+            '<i class="fa fa-check" aria-hidden="true"><span style="display: none">1</span></i>' : '<i class="fa fa-times" aria-hidden="true"><span style="display: none">0</span></i>';
 
         $pass_filter =
             (!isset($_GET["before"]) || $creation_time <= strtotime($_GET["before"])) &&
             (!isset($_GET["since"]) || $creation_time >= strtotime($_GET["since"])) &&
 
-            // TODO Add founding member check
-            (!isset($_GET["founding"]) || true) &&
+            (!isset($_GET["founding"]) || (boolval($_GET["founding"]) && $founding_bool) || (!boolval($_GET["founding"]) && !$founding_bool)) &&
 
             (!isset($_GET["type"]) || $_GET["type"] == $type) &&
             (!isset($_GET["status"]) || $_GET["status"] == $status);
@@ -56,6 +60,7 @@ if (count($results->getUsers()) != 0) {
                     <td>$type</td>
                     <td>$status</td>
                     <td>$creation_string</td>
+                    <td>$founding_member</td>
                 </tr>
 END;
         }
