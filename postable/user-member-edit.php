@@ -52,7 +52,7 @@ function user_update_password() {
         wp_redirect('member');
         exit("User updated successfully");
     } catch (Google_Service_Exception $e) {
-        echo $e->getErrors();
+        echo $e->getErrors()["error"];
         exit();
     }
 }
