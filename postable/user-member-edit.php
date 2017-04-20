@@ -2,7 +2,7 @@
 
 defined( 'ABSPATH' ) or die();
 
-require_once dirname(__DIR__).'/front-end-pages/resources/GSuiteAPI.php';
+require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
 
 // Adding the actions to the Wordpress hooks
 add_action('admin_post_update_self', 'prefix_user_update_self');

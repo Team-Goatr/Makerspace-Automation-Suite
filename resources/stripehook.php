@@ -4,8 +4,8 @@ defined( 'ABSPATH' ) or die();
 function stripe_webhook_listener() {
     error_log("Stripe webhook event received");
 
-    require_once __DIR__ . '/../front-end-pages/resources/StripeAPI.php';
-    require_once __DIR__ . '/../front-end-pages/resources/GSuiteAPI.php';
+    require_once __DIR__ . '/StripeAPI.php';
+    require_once __DIR__ . '/GSuiteAPI.php';
 
     # Get POST json data
     $input = @file_get_contents("php://input");

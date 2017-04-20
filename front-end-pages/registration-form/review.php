@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__DIR__).'/resources/StripeAPI.php';
+require_once dirname(__DIR__).'/../resources/StripeAPI.php';
 
 //get_header();
 
