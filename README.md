@@ -8,7 +8,7 @@
 * Members can manage their credit card information through a profile page.
 * Administrators are notified of new member creation as well as payment failures.
 * Administrators can view and edit all members from the Makerspace Automation Suite page.
-* RFID Tag Numbers and corellating subscription levels are available via a webhook located at: *Base Domain*/?webhook-listener?=rfid
+* RFID Tag Numbers and corellating subscription levels are available via a webhook located at: *Base Domain*/?webhook-listener=rfid
 
 ### Bugfixes
 * Because this is the first release, there are currently no bugfixes.
