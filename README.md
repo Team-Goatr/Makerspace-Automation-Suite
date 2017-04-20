@@ -6,8 +6,9 @@ Orange: #F47B42
 
 ## Installation Steps
 
-1. Install Required Libraries
-    * Run 'resources/install.sh' to install PHP libraries to support the plugin
+0. Install the Makerspace Automation Suite plugin in Wordpress
+1. Install Required PHP Libraries on the Server
+    * From within the plugin's directory, run 'resources/install.sh' to install required PHP libraries
     * This script installs composer (https://getcomposer.org), and runs it to install the library dependencies
 2. Update Keys
     * Log into Wordpress as an admin
@@ -17,3 +18,7 @@ Orange: #F47B42
     * Populate the Slack Secret Key (used for sending slack invites)
 3. Populate Admin Emails
     * From the MAS Options page, fill in the Admin Email Addresses (used for new member emails and failed payment emails)
+4. Update the Wordpress Website to Refer to User Pages the Plugin Created
+    * Add a 'Member' tab that points to /member/
+        * This is the member profile page
+    * Add links to /register/ where the user is expected to enter the registration process
