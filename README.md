@@ -4,10 +4,16 @@ Colors:
 Blue: #0085A7
 Orange: #F47B42
 
-## Dependencies
+## Installation Steps
 
 1. Install Required Libraries
-    * Install composer in the front-end-pages/admin-pages/resources folder (https://getcomposer.org/download/)
-    * Run 'php composer.phar install' in the front-end-pages/admin-pages/resources folder to install the required dependencies
-2. Update G Suite Service Account Key
-    * You must update the file front-end-pages/admin-pages/resources/GSuiteAPI.php to point to the service account key. The constant CREDENTIALS_PATH should point to the location of the service_account.json file (which should be kept in a private, safe location)
+    * Run 'resources/install.sh' to install PHP libraries to support the plugin
+    * This script installs composer (https://getcomposer.org), and runs it to install the library dependencies
+2. Update Keys
+    * Log into Wordpress as an admin
+    * Under the Settings panel, select 'MAS Options'
+    * Populate the G Suite access JSON key (must be a service account with domain-wide delegation)
+    * Populate the Stripe Public and Secret Keys (supports test mode and production mode)
+    * Populate the Slack Secret Key (used for sending slack invites)
+3. Populate Admin Emails
+    * From the MAS Options page, fill in the Admin Email Addresses (used for new member emails and failed payment emails)
