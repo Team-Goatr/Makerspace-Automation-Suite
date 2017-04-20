@@ -42,3 +42,8 @@
     * [Download Link](https://wordpress.org/plugins/miniorange-google-apps-login/)
     * Follow the configuration steps provided with the plugin.
     * Replace "Login" instances on website with a link to the new GSuite login.
+
+## Troubleshooting
+1. If the website fails to load after the plugin has been installed (i.e. a white page), check the server's PHP logs to see if a dependency was not installed correctly.
+2. If the Makerspace Automation Suite displays error text but the rest of the website still loads, check the validity of the API keys under the "MAS Options" page in the Administrator settings page.
+3. If the Makerspace Automation Suite is not visible in the administrator dashboard, check to ensure that you are an administrator who can edit settings.
