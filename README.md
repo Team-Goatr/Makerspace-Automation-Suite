@@ -28,6 +28,9 @@ Orange: #F47B42
     * Passwords aren't validated per G Suites requirements (#107)
     * If you navigate to the member page without being logged in via Google, PHP error is shown (#97)
     * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
+    * Old admin pages still need to be cleaned up
+    * No email alerts are sent to non-recurring members when membership expires
+    * Non-recurring members don't have their subscription status automatically updated when they expire
 
 ### v0.5 2017-04-02 Initial Release
 * **New Features**
