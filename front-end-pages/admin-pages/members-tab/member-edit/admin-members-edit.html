@@ -85,6 +85,17 @@ function isSelected($option, $target) {
                         </div>
 
                         <div class="form-group">
+                            <label for="subscriptionStatus" class="control-label">Subscription Status</label>
+                            <select class="form-control" name="subscriptionStatus" id="subscriptionStatus">
+                                <option value="none"></option>
+                                <option value="Pending" <?php isSelected("Pending", $status)?> >Pending</option>
+                                <option value="Active" <?php isSelected("Active", $status)?> >Active</option>
+                                <option value="Expired" <?php isSelected("Expired", $status)?> >Expired</option>
+                                <option value="Disabled" <?php isSelected("Disabled", $status)?> >Disabled</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="subscriptionExp" class="control-label">Subscription Expiration Date</label>
                             <input type="date" name="subscriptionExp" class="form-control" value= <?php echo $expDate; ?> >
                         </div>
