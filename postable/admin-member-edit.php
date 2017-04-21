@@ -35,8 +35,13 @@ function prefix_admin_update_member() {
     );
 
     $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
+
+    if (!empty($rfidNumber)) {
+        $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
+    } else {
+        $properties['customSchemas']['roles']['rfid-id'] = 0;
+    }
     $properties['customSchemas']['Subscription_Management']['Subscription_Status'] = $subscriptionStatus;
-    $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
     $properties['customSchemas']['roles']['founding-member'] = $founding_member == "true";
     if (!empty($subscriptionExpiry)) {
         $properties['customSchemas']['Subscription_Management']['Subscription_Expiration'] = $subscriptionExpiry;

@@ -28,6 +28,11 @@ if (count($results->getUsers()) != 0) {
         $type = !empty($sub_mgmt["Subscription_Type"]) ? $sub_mgmt["Subscription_Type"] : '';
         $stripe_id = !empty($sub_mgmt["Stripe_ID"]) ? $sub_mgmt["Stripe_ID"] : '';
 
+        # Treat 0 as "empty" value, since deleting the rfid_id from G Suite doesn't work
+        if ($rfid_tag == 0) {
+            $rfid_tag = "";
+        }
+
         # Default Google Fields to use
         $name = $user->getName()->getFullName();
         $email = $user->getPrimaryEmail();
