@@ -1,4 +1,5 @@
-# Makerspace-Automation-Suite
+# Makerspace Automation Suite
+The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decatur Makers](https://www.decaturmakers.org/) by Team Goatr, a team of students from Georgia Tech. The Makerspace Automation Suite automates the onboarding process of creating accounts and sending email invitations to new members who register for the makerspace. MAS integrates with a G Suite account, using the G Suite directory as a master data store for user information and accounts. MAS also integrates with Stripe for online payment processing and subscription management. MAS provides a registration process UI, member profile page UI, admin member table UI, and admin member edit UI.
 
 Decatur Makers Colors:
 Blue: #0085A7
@@ -78,3 +79,11 @@ Orange: #F47B42
 1. If the website fails to load after the plugin has been installed (i.e. a white page), check the server's PHP logs to see if a dependency was not installed correctly.
 2. If the Makerspace Automation Suite displays error text but the rest of the website still loads, check the validity of the API keys under the "MAS Options" page in the Administrator settings page.
 3. If the Makerspace Automation Suite is not visible in the administrator dashboard, check to ensure that you are an administrator who can edit settings.
+
+## Authors
+* Team Goatr
+    * [Craig](https://github.com/cmowenby)
+    * [Dana](https://github.com/danaalyse)
+    * [Jasmine](https://github.com/jmbrown864)
+    * [Ryan](https://github.com/ryanstrat)
+    * [Thomas](https://github.com/thomascoe)
