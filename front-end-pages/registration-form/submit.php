@@ -1,8 +1,8 @@
 <?php
 
-require_once dirname(__DIR__).'/resources/StripeAPI.php';
-require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
-require_once dirname(__DIR__).'/resources/SlackAPI.php';
+require_once dirname(__DIR__).'/../resources/StripeAPI.php';
+require_once dirname(__DIR__).'/../resources/GSuiteAPI.php';
+require_once dirname(__DIR__).'/../resources/SlackAPI.php';
 
 try {
     // Get things submitted to the form

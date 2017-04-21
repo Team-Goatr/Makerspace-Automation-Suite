@@ -3,7 +3,7 @@
 // Preventing loading direct from browser
 defined( 'ABSPATH' ) or die();
 
-include_once dirname(__DIR__).'/front-end-pages/resources/StripeAPI.php';
+include_once dirname(__DIR__).'/resources/StripeAPI.php';
 
 // Adding the keys to the wordpress hooks
 add_action('admin_post_update_card', 'prefix_admin_update_card');

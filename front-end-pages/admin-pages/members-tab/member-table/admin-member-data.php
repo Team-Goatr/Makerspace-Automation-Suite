@@ -3,7 +3,7 @@
 // Preventing loading direct from browser
 defined( 'ABSPATH' ) or die();
 
-include_once dirname(__DIR__).'../../../resources/GSuiteAPI.php';
+include_once dirname(__DIR__).'../../../../resources/GSuiteAPI.php';
 
 $service = getService();
 

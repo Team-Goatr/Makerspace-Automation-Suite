@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) or die();
 
 function rfid_webhook_listener() {
     error_log("RFID webhook event received");
-    require_once __DIR__ . '/../front-end-pages/resources/GSuiteAPI.php';
+    require_once __DIR__ . '/GSuiteAPI.php';
 
     # Send header specifying JSON type
     header('Content-type:application/json;charset=utf-8');
