@@ -34,7 +34,7 @@ function prefix_admin_update_member() {
     if (!empty($rfidNumber)) {
         $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
     } else {
-        $properties['customSchemas']['roles']['rfid-id'] = null;
+        $properties['customSchemas']['roles']['rfid-id'] = 0;
     }
     $properties['customSchemas']['roles']['founding-member'] = $founding_member == "true";
     if (!empty($subscriptionExpiry)) {
