@@ -16,11 +16,15 @@ function prefix_admin_update_member() {
     $lastName = $_POST['lastName'];
     $rfidNumber = $_POST['rfidNumber'];
     $subscriptionType = $_POST['membershipPlan'];
+    $subscriptionStatus = $_POST['subscriptionStatus'];
     $subscriptionExpiry = $_POST['subscriptionExp'];
     $founding_member = $_POST['founding'];
 
     if ($subscriptionType === 'none') {
         $subscriptionType = '';
+    }
+    if ($subscriptionStatus === 'none') {
+        $subscriptionStatus = '';
     }
 
     $properties = array(
@@ -31,6 +35,7 @@ function prefix_admin_update_member() {
     );
 
     $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;
+    $properties['customSchemas']['Subscription_Management']['Subscription_Status'] = $subscriptionStatus;
     $properties['customSchemas']['roles']['rfid-id'] = $rfidNumber;
     $properties['customSchemas']['roles']['founding-member'] = $founding_member == "true";
     if (!empty($subscriptionExpiry)) {
