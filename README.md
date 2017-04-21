@@ -16,10 +16,10 @@ Decatur Makers Colors:
     * Member change password functionality
     * Admin emails are now configurable in the MAS Options admin page
 * **Bug Fixes**
-    * Fix update card functionality on member page
-    * ZIP code prompt added to update card popup
+    * Fix update card functionality on member page (#111)
+    * ZIP code prompt added to update card popup (#109)
     * Member page formatting fixed by removing Angular and using Bootstrap container-fluid
-    * Background color fix on member profile, registration review, and registration submit pages
+    * Background color fix on member profile, registration review, and registration submit pages (#117)
 * **Known Bugs and Defects**
     * Registration form still allows you to submit when username field is red (#130)
     * Registration form still allows you to submit when passwords are mismatched
@@ -29,7 +29,7 @@ Decatur Makers Colors:
     * If you navigate to the member page without being logged in via Google, PHP error is shown (#97)
     * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
     * Old admin pages still need to be cleaned up
-    * No email alerts are sent to non-recurring members when membership expires
+    * No email alerts are sent to non-recurring members when membership expires (#23)
     * Non-recurring members don't have their subscription status automatically updated when they expire
 
 ### v0.5 2017-04-02 Initial Release
