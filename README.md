@@ -5,7 +5,7 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
 
 ### v0.7 2017-04-24
 * **Bug Fixes**
-
+    * Admin edit page now allows edit of subscription status (#113) and blank RFID (#110)
 * **Known Bugs and Defects**
 
 ### v0.6 2017-04-17
@@ -58,11 +58,11 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
 ## Install Guide
 1. Download the ZIP file of the MAS Plugin from the releases section.
 1. Install the Makerspace Automation Suite Plugin via the Upload ZIP Folder option.
-1. Install the following packages:
+1. Install the following packages on the server:
     * php-curl
     * sendmail
 1. Install Required PHP Libraries on the Server.
-    * NOTE: The website will not be functional if the plugin is active and the dependencies have not been installed.
+    * **NOTE: The website will not be functional if the plugin is active and the dependencies have not been installed.**
     * From within the plugin's directory, run 'resources/install.sh' to install required PHP libraries.
     * This script installs composer (https://getcomposer.org), and runs it to install the library dependencies.
 1. Update Keys.
