@@ -116,6 +116,7 @@
                         <input type="password" style="display: inline;" class="form-control" id="password" name="password" required ng-model="password" password-verify="{{passwordMatch}}" ng-minlength="8">
                         <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
                             <p ng-message="required">This field is required.</p>
+                            <p ng-message="minlength">Must be 8 characters.</p>
                         </div>
                     </div>
 
@@ -125,6 +126,7 @@
                         <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
                             <p ng-message="required">This field is required.</p>
                             <p ng-message="passwordVerify">The fields do not match.</p>
+                            <p ng-message="minlength">Must be 8 characters.</p>
                         </div>
                     </div>
 
