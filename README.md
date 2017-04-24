@@ -1,11 +1,13 @@
 # Makerspace Automation Suite
 The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decatur Makers](https://www.decaturmakers.org/) by Team Goatr, a team of students from Georgia Tech. The Makerspace Automation Suite automates the onboarding process of creating accounts and sending email invitations to new members who register for the makerspace. MAS integrates with a G Suite account, using the G Suite directory as a master data store for user information and accounts. MAS also integrates with Stripe for online payment processing and subscription management. MAS provides a registration process UI, member profile page UI, admin member table UI, and admin member edit UI.
 
-Decatur Makers Colors:
-   * Blue: #0085A7
-   * Orange: #F47B42
-
 ## Release Notes
+
+### v0.7 2017-04-24
+* **Bug Fixes**
+    * Admin edit page now allows edit of subscription status (#113) and blank RFID (#110)
+    * Navigating to Member page when logged out redirects to /login (#97)
+* **Known Bugs and Defects**
 
 ### v0.6 2017-04-17
 * **New Features**
@@ -56,32 +58,38 @@ Decatur Makers Colors:
 
 ## Install Guide
 1. Download the ZIP file of the MAS Plugin from the releases section.
-2. Install the Makerspace Automation Suite Plugin via the Upload ZIP Folder option.
-3. Install Required PHP Libraries on the Server.
-    * NOTE: The website will not be functional if the plugin is active and the dependencies have not been installed.
+1. Install the Makerspace Automation Suite Plugin via the Upload ZIP Folder option.
+1. Install the following packages on the server:
+    * php-curl
+    * sendmail
+1. Install Required PHP Libraries on the Server.
+    * **NOTE: The website will not be functional if the plugin is active and the dependencies have not been installed.**
     * From within the plugin's directory, run 'resources/install.sh' to install required PHP libraries.
     * This script installs composer (https://getcomposer.org), and runs it to install the library dependencies.
-4. Update Keys.
+1. Update Keys.
+
     * Log into Wordpress as an admin
     * Under the Settings panel, select 'MAS Options'
     * Populate the G Suite access JSON key (must be a service account with domain-wide delegation)
     * Populate the Stripe Public and Secret Keys (supports test mode and production mode)
     * Populate the Slack Secret Key (used for sending slack invites)
-5. Populate Admin Emails.
+
+1. Populate Admin Emails.
     * From the MAS Options page, fill in the Admin Email Addresses (used for new member emails and failed payment emails)
-6. Update the Wordpress Website to Refer to User Pages the Plugin Created.
+1. Update the Wordpress Website to Refer to User Pages the Plugin Created.
     * Add a 'Member' tab that points to /member/
         * This is the member profile page
     * Add links to /register/ where the user is expected to enter the registration process
-7. Install the GSuite Login Plugin to enable GSuite SAML.
-    * [Download Link](https://wordpress.org/plugins/miniorange-google-apps-login/)
+1. Install the Google Apps Login plugin.
+    * [Download Link](https://wordpress.org/plugins/google-apps-login/)
     * Follow the configuration steps provided with the plugin.
-    * Replace "Login" instances on website with a link to the new GSuite login.
+    * Configure the plugin to automatically redirect to Google Login
 
 ## Troubleshooting
 1. If the website fails to load after the plugin has been installed (i.e. a white page), check the server's PHP logs to see if a dependency was not installed correctly.
-2. If the Makerspace Automation Suite displays error text but the rest of the website still loads, check the validity of the API keys under the "MAS Options" page in the Administrator settings page.
-3. If the Makerspace Automation Suite is not visible in the administrator dashboard, check to ensure that you are an administrator who can edit settings.
+1. If the Makerspace Automation Suite displays error text but the rest of the website still loads, check the validity of the API keys under the "MAS Options" page in the Administrator settings page.
+1. If the Makerspace Automation Suite is not visible in the administrator dashboard, check to ensure that you are an administrator who can edit settings.
+
 
 ## Authors
 * Team Goatr
