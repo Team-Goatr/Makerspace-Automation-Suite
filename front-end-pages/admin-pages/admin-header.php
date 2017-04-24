@@ -8,8 +8,8 @@ echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'admin-heade
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
         <?php switch($_GET['mas-action']) {
-            case 'edit': include 'members-tab/member-edit/admin-members-edit.html'; break;
-            default: include 'members-tab/member-table/admin-members-table.html'; break;
+            case 'edit': include 'member-edit/admin-members-edit.html'; break;
+            default: include 'member-table/admin-members-table.html'; break;
         } ?>
     </main><!-- .site-main -->
 </div>
