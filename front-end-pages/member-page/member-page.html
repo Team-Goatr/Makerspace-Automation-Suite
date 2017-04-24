@@ -27,7 +27,7 @@
         var password = jQuery("#newpw").val();
         var confirmPassword = jQuery("#confirmpw").val();
 
-        if (password.length >= 8) {
+        if (password.length < 8) {
             jQuery("#Error").html("Passwords must be 8 characters");
         } else if (password != confirmPassword) {
             jQuery("#errorGroup").addClass("has-error");
