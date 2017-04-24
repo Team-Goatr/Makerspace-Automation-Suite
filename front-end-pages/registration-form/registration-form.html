@@ -123,7 +123,7 @@
                     <div class="form-group" ng-class="{ 'has-error' : register.passwordMatch.$dirty && register.passwordMatch.$invalid }">
                         <label for="passwordMatch" class="control-label" >Confirm Password:</label>
                         <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required password-verify="{{password}}">
-                        <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
+                        <div class="help-block" ng-messages="register.passwordMatch.$error" ng-if="register.passwordMatch.$dirty">
                             <p ng-message="required">This field is required.</p>
                             <p ng-message="passwordVerify">The fields do not match.</p>
                         </div>
