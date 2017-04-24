@@ -9,7 +9,7 @@
 
     //redirect if not logged in
     if ($wp_user->ID == 0) {
-        wp_safe_redirect(home_url());
+        wp_redirect('member');
         exit('Redirected logged out user');
     }
 
