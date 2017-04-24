@@ -57,6 +57,16 @@ if (count($results->getUsers()) != 0) {
             );
             updateUser($email, $fields);
         }
+        if ($status == 'Expired') {
+            $fields = array(
+                "customSchemas" => array (
+                    "Subscription_Management" => array(
+                        "Subscription_Status" => ''
+                    )
+                )
+            );
+            updateUser($email, $fields);
+        }
 
         $founding_bool = boolval($user->getCustomSchemas()['roles']['founding-member']);
         $founding_member = $founding_bool ?
