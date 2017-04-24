@@ -9,7 +9,8 @@
 
     //redirect if not logged in
     if ($wp_user->ID == 0) {
-        wp_redirect('/login');
+        wp_redirect('login');
+        exit('Redirected logged out user');
     }
 
     $email = $wp_user->user_email;
