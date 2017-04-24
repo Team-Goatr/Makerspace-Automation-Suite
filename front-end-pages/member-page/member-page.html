@@ -7,8 +7,10 @@
 
     $wp_user = wp_get_current_user();
 
-    if ($wp_user == 0) {
+    //redirect if not logged in
+    if ($wp_user->ID == 0) {
         wp_redirect('/login');
+        die();
     }
 
     $email = $wp_user->user_email;
