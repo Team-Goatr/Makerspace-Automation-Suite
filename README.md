@@ -12,12 +12,11 @@ The Detailed Design Document containing the initial specifications of this plugi
     * Navigating to Member page when logged out redirects to /login (#97)
     * Registration form now doesn't allow submit if passwords are bad (#107)
     * Removed unused admin pages
-    * Fixed issue where site is broken when plugin first loaded because of no dependencies
+    * Fixed issue where site is broken when plugin is first loaded because of no installed dependencies
 * **Known Bugs and Defects**
     * No email alerts are sent to non-recurring members when membership expires (#135)
     * Non-recurring members don't have their subscription status automatically updated when they expire
     * Registration form still allows you to submit when username field is red (#130)
-    * If you navigate to the member page without being logged in, redirects to wp login instead of Google login (#97)
     * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
 
 ### v0.6 2017-04-17
