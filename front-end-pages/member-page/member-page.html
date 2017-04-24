@@ -5,7 +5,13 @@
     require_once dirname(__DIR__).'/../resources/GSuiteAPI.php';
     require_once dirname(__DIR__).'/../resources/StripeAPI.php';
 
-    $email = wp_get_current_user()->user_email;
+    $wp_user = wp_get_current_user();
+
+    if ($wp_user == 0) {
+        wp_redirect('/login');
+    }
+
+    $email = $wp_user->user_email;
 
     $user = getUser($email);
     $firstName = $user->getName()->getGivenName();
