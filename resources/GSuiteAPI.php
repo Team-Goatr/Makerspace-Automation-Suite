@@ -48,7 +48,7 @@ function getUser($email) {
     } catch (Google_Service_Exception $e) {
         $user = NULL;
     }
-    return NULL;
+    return $user;
 }
 
 /**
