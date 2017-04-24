@@ -82,12 +82,14 @@
                         function showError() {
                             jQuery("#username-group").addClass("has-error");
                             jQuery("#username-help-block").removeClass("hidden");
+                            jQuery("#submit-button").prop("disabled", true);
                             //TODO Add submission blocker
                         }
 
                         function clearError() {
                             jQuery("#username-group").removeClass("has-error");
                             jQuery("#username-help-block").addClass("hidden");
+                            jQuery("#submit-button").prop("disabled", false);
                         }
 
                         function checkUsername() {
