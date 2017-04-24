@@ -16,6 +16,8 @@ $optParams = array(
 );
 $results = $service->users->listUsers($optParams);
 
+date_default_timezone_set('EST');
+
 if (count($results->getUsers()) != 0) {
     # Loop through each user, printing a row in the table
     foreach ($results->getUsers() as $user) {
@@ -38,8 +40,10 @@ if (count($results->getUsers()) != 0) {
         $email = $user->getPrimaryEmail();
 
         $creation_time = strtotime($user->getCreationTime());
-        date_default_timezone_set('EST');
-        $creation_string = date("m-d-Y", $creation_time);
+        $creation_string = date("Y-m-d", $creation_time);
+
+        $expiration_time = strtotime($expiration);
+        $now = time();
 
         $founding_bool = boolval($user->getCustomSchemas()['roles']['founding-member']);
         $founding_member = $founding_bool ?
@@ -63,7 +67,7 @@ if (count($results->getUsers()) != 0) {
                     <td>$rfid_tag</td>
                     <td>$type</td>
                     <td>$status</td>
-                    <td>$expiration</td>
+                    <td>$expiration_time</td>
                     <td>$creation_string</td>
                     <td>$founding_member</td>
                 </tr>
