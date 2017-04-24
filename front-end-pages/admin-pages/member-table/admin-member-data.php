@@ -46,22 +46,12 @@ if (count($results->getUsers()) != 0) {
 
         # Set user to expired if they aren't already and their expiration date has passed
         $expiration_time = strtotime($expiration);
-        if ($status != 'Disabled' && $status != 'Expired' && $now > $expiration_time) {
+        if ($status != 'Disabled' && $status != 'Expired' && !empty($expiration) && $now > $expiration_time) {
             # TODO: Send email
             $fields = array(
                 "customSchemas" => array (
                     "Subscription_Management" => array(
                         "Subscription_Status" => 'Expired'
-                    )
-                )
-            );
-            updateUser($email, $fields);
-        }
-        if ($status == 'Expired') {
-            $fields = array(
-                "customSchemas" => array (
-                    "Subscription_Management" => array(
-                        "Subscription_Status" => ''
                     )
                 )
             );
