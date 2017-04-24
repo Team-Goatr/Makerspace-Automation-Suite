@@ -113,7 +113,7 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : register.password.$dirty && register.password.$invalid && register.passwordMatch.$dirty && register.passwordMatch.$invalid}">
                         <label for="password" class="control-label" >Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" required ng-model="password" password-verify="{{passwordMatch}}">
+                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" required ng-model="password" password-verify="{{passwordMatch}}" ng-minlength="8">
                         <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
                             <p ng-message="required">This field is required.</p>
                         </div>
@@ -121,7 +121,7 @@
 
                     <div class="form-group" ng-class="{ 'has-error' : register.passwordMatch.$dirty && register.passwordMatch.$invalid }">
                         <label for="passwordMatch" class="control-label" >Confirm Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required password-verify="{{password}}">
+                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required password-verify="{{password}}" ng-minlength="8">
                         <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
                             <p ng-message="required">This field is required.</p>
                             <p ng-message="passwordVerify">The fields do not match.</p>
