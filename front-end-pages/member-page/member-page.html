@@ -30,10 +30,11 @@
         if (password != confirmPassword) {
             jQuery("#errorGroup").addClass("has-error");
             jQuery("#Error").html("Passwords do not match!");
+        } else if (password.length == 8) {
+            jQuery("#Error").html("Passwords must be 8 characters");
         } else {
             jQuery("#errorGroup").removeClass("has-error");
             jQuery("#Error").html("");
-            jQuery("#submit-button").prop("disabled", false);
             jQuery("#submit-button").prop("disabled", false);
         }
     }
