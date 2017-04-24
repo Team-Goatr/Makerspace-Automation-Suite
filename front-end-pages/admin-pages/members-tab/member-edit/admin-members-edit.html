@@ -18,6 +18,11 @@ $status = $user->getCustomSchemas()['Subscription_Management']['Subscription_Sta
 $expDate = $user->getCustomSchemas()['Subscription_Management']['Subscription_Expiration'];
 $stripeID = $user->getCustomSchemas()['Subscription_Management']['Stripe_ID'];
 
+$rfid = $user->getCustomSchemas()['roles']['rfid-id'];
+if ($rfid == 0) {
+    $rfid = "";
+}
+
 $personalEmail = $user->getEmails()[0]['address'];
 $dm_email = $user->getPrimaryEmail();
 
@@ -65,7 +70,7 @@ function isSelected($option, $target) {
 
                         <div class="form-group">
                             <label for="rfidNumber" class="control-label">RFID Number</label>
-                            <input required name="rfidNumber" class="form-control" value="<?php echo $user->getCustomSchemas()['roles']['rfid-id'];?>">
+                            <input name="rfidNumber" class="form-control" value="<?php echo $rfid;?>">
                         </div>
 
                         <div class="form-group">
@@ -76,6 +81,17 @@ function isSelected($option, $target) {
                                 <option value="support-ind" <?php isSelected("support-ind", $plan)?> >Individual Supporter ($40/mo)</option>
                                 <option value="basic-fam" <?php isSelected("basic-fam", $plan)?> >Family Basic ($50/mo)</option>
                                 <option value="support-fam" <?php isSelected("support-fam", $plan)?> >Family Supporter ($75/mo)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subscriptionStatus" class="control-label">Subscription Status</label>
+                            <select class="form-control" name="subscriptionStatus" id="subscriptionStatus">
+                                <option value="none"></option>
+                                <option value="Pending" <?php isSelected("Pending", $status)?> >Pending</option>
+                                <option value="Active" <?php isSelected("Active", $status)?> >Active</option>
+                                <option value="Expired" <?php isSelected("Expired", $status)?> >Expired</option>
+                                <option value="Disabled" <?php isSelected("Disabled", $status)?> >Disabled</option>
                             </select>
                         </div>
 

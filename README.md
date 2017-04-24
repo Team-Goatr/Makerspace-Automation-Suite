@@ -67,11 +67,13 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
     * From within the plugin's directory, run 'resources/install.sh' to install required PHP libraries.
     * This script installs composer (https://getcomposer.org), and runs it to install the library dependencies.
 1. Update Keys.
+
     * Log into Wordpress as an admin
     * Under the Settings panel, select 'MAS Options'
     * Populate the G Suite access JSON key (must be a service account with domain-wide delegation)
     * Populate the Stripe Public and Secret Keys (supports test mode and production mode)
     * Populate the Slack Secret Key (used for sending slack invites)
+
 1. Populate Admin Emails.
     * From the MAS Options page, fill in the Admin Email Addresses (used for new member emails and failed payment emails)
 1. Update the Wordpress Website to Refer to User Pages the Plugin Created.
@@ -87,6 +89,7 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
 1. If the website fails to load after the plugin has been installed (i.e. a white page), check the server's PHP logs to see if a dependency was not installed correctly.
 1. If the Makerspace Automation Suite displays error text but the rest of the website still loads, check the validity of the API keys under the "MAS Options" page in the Administrator settings page.
 1. If the Makerspace Automation Suite is not visible in the administrator dashboard, check to ensure that you are an administrator who can edit settings.
+
 
 ## Authors
 * Team Goatr
