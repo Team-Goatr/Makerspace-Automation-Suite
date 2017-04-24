@@ -13,9 +13,9 @@ The Detailed Design Document containing the initial specifications of this plugi
     * Registration form now doesn't allow submit if passwords are bad (#107)
     * Removed unused admin pages
     * Fixed issue where site is broken when plugin is first loaded because of no installed dependencies
+    * Check for expired members when member table is loaded, set them to expired
 * **Known Bugs and Defects**
     * No email alerts are sent to non-recurring members when membership expires (#135)
-    * Non-recurring members don't have their subscription status automatically updated when they expire
     * Registration form still allows you to submit when username field is red (#130)
     * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
 
