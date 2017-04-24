@@ -4,7 +4,7 @@ $wp_user = wp_get_current_user();
 
 //redirect if not logged in
 if ($wp_user->ID == 0) {
-    wp_redirect('member');
+    wp_redirect('/login');
     exit('Redirected logged out user');
 }
 
