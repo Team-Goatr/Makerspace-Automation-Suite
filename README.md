@@ -16,6 +16,7 @@ The Detailed Design Document containing the initial specifications of this plugi
     * Check for expired members when member table is loaded, set them to expired
 * **Known Bugs and Defects**
     * No email alerts are sent to non-recurring members when membership expires (#135)
+    * When non-recurring members expire, they do not immediately transition into an 'Expired' status. This only happens the next time the member table is loaded after they expire. We don't have a good way to trigger this to happen. Recurring members get triggered by a Stripe expiration event.
     * Registration form still allows you to submit when username field is red (#130)
     * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
 
