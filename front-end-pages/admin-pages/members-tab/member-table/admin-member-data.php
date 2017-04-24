@@ -58,7 +58,7 @@ if (count($results->getUsers()) != 0) {
             # Print Table Row
             echo <<<END
                 <tr>
-                    <td><a href="admin.php?page=mas-plugin&content=5&email=$email" class="edit">&#9998; $name</a></td>
+                    <td><a href="admin.php?page=mas-plugin&mas-action=edit&email=$email" class="edit">&#9998; $name</a></td>
                     <td>$email</td>
                     <td>$rfid_tag</td>
                     <td>$type</td>
