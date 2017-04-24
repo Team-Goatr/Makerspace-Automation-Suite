@@ -71,7 +71,6 @@ The Detailed Design Document containing the initial specifications of this plugi
     * php-curl
     * sendmail
 1. Install Required PHP Libraries on the Server.
-    * **NOTE: The website will not be functional if the plugin is active and the dependencies have not been installed.**
     * From within the plugin's directory, run 'resources/install.sh' to install required PHP libraries.
     * This script installs composer (https://getcomposer.org), and runs it to install the library dependencies.
 1. Update Keys.
@@ -97,6 +96,7 @@ The Detailed Design Document containing the initial specifications of this plugi
 1. If the website fails to load after the plugin has been installed (i.e. a white page), check the server's PHP logs to see if a dependency was not installed correctly.
 1. If the Makerspace Automation Suite displays error text but the rest of the website still loads, check the validity of the API keys under the "MAS Options" page in the Administrator settings page.
 1. If the Makerspace Automation Suite is not visible in the administrator dashboard, check to ensure that you are an administrator who can edit settings.
+1. If an error is shown when the member page is loaded, check that you are logged in as a G Suite user and not a wordpress-only user
 
 
 ## Authors
