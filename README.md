@@ -6,6 +6,7 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
 ### v0.7 2017-04-24
 * **Bug Fixes**
     * Admin edit page now allows edit of subscription status (#113) and blank RFID (#110)
+    * Navigating to Member page when logged out redirects to /login (#97)
 * **Known Bugs and Defects**
 
 ### v0.6 2017-04-17
@@ -77,10 +78,10 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
     * Add a 'Member' tab that points to /member/
         * This is the member profile page
     * Add links to /register/ where the user is expected to enter the registration process
-1. Install the GSuite Login Plugin to enable GSuite SAML.
-    * [Download Link](https://wordpress.org/plugins/miniorange-google-apps-login/)
+1. Install the Google Apps Login plugin.
+    * [Download Link](https://wordpress.org/plugins/google-apps-login/)
     * Follow the configuration steps provided with the plugin.
-    * Replace "Login" instances on website with a link to the new GSuite login.
+    * Configure the plugin to automatically redirect to Google Login
 
 ## Troubleshooting
 1. If the website fails to load after the plugin has been installed (i.e. a white page), check the server's PHP logs to see if a dependency was not installed correctly.
