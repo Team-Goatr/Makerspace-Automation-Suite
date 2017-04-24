@@ -7,7 +7,15 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
 * **Bug Fixes**
     * Admin edit page now allows edit of subscription status (#113) and blank RFID (#110)
     * Navigating to Member page when logged out redirects to /login (#97)
+    * Registration form now doesn't allow submit if passwords are bad (#107)
+    * Removed unused admin pages
+    * Fixed issue where site is broken when plugin first loaded because of no dependencies
 * **Known Bugs and Defects**
+    * Registration form still allows you to submit when username field is red (#130)
+    * If you navigate to the member page without being logged in, redirects to wp login instead of Google login
+    * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
+    * No email alerts are sent to non-recurring members when membership expires (#23)
+    * Non-recurring members don't have their subscription status automatically updated when they expire
 
 ### v0.6 2017-04-17
 * **New Features**
