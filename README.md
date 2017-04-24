@@ -1,6 +1,9 @@
 # Makerspace Automation Suite
 The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decatur Makers](https://www.decaturmakers.org/) by Team Goatr, a team of students from Georgia Tech. The Makerspace Automation Suite automates the onboarding process of creating accounts and sending email invitations to new members who register for the makerspace. MAS integrates with a G Suite account, using the G Suite directory as a master data store for user information and accounts. MAS also integrates with Stripe for online payment processing and subscription management. MAS provides a registration process UI, member profile page UI, admin member table UI, and admin member edit UI.
 
+## Documentation
+The Detailed Design Document containing the initial specifications of this plugin is available under the documentation folder. This is available in both pdf and docx versions for editing as the specifications may change in the future. Please consult this documentation for information on how this plugin is built.
+
 ## Release Notes
 
 ### v0.7 2017-04-24
@@ -11,11 +14,11 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
     * Removed unused admin pages
     * Fixed issue where site is broken when plugin first loaded because of no dependencies
 * **Known Bugs and Defects**
-    * Registration form still allows you to submit when username field is red (#130)
-    * If you navigate to the member page without being logged in, redirects to wp login instead of Google login
-    * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
-    * No email alerts are sent to non-recurring members when membership expires (#23)
+    * No email alerts are sent to non-recurring members when membership expires (#135)
     * Non-recurring members don't have their subscription status automatically updated when they expire
+    * Registration form still allows you to submit when username field is red (#130)
+    * If you navigate to the member page without being logged in, redirects to wp login instead of Google login (#97)
+    * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
 
 ### v0.6 2017-04-17
 * **New Features**
@@ -37,10 +40,7 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
     * Admin member edit page cannot be submitted with RFID field blank (#110)
     * Passwords aren't validated per G Suites requirements (#107)
     * If you navigate to the member page without being logged in via Google, PHP error is shown (#97)
-    * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
     * Old admin pages still need to be cleaned up
-    * No email alerts are sent to non-recurring members when membership expires (#23)
-    * Non-recurring members don't have their subscription status automatically updated when they expire
 
 ### v0.5 2017-04-02 Initial Release
 * **New Features**
