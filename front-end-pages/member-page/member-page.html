@@ -29,12 +29,18 @@
         var password = jQuery("#newpw").val();
         var confirmPassword = jQuery("#confirmpw").val();
 
-        if (password != confirmPassword) {
+        if (password.length < 8) {
+            jQuery("#submit-button").prop("disabled", true);
+            jQuery("#errorGroup").addClass("has-error");
+            jQuery("#Error").html("Passwords must be 8 characters");
+        } else if (password != confirmPassword) {
+            jQuery("#submit-button").prop("disabled", true);
             jQuery("#errorGroup").addClass("has-error");
             jQuery("#Error").html("Passwords do not match!");
         } else {
             jQuery("#errorGroup").removeClass("has-error");
             jQuery("#Error").html("");
+            jQuery("#submit-button").prop("disabled", false);
         }
     }
 
@@ -152,7 +158,7 @@
 
                     <input type="hidden" name="action" value="update_self_password">
 
-                    <button type="submit" class="btn mas-button">Update Password</button>                    
+                    <button id="submit-button" type="submit" class="btn mas-button" disabled="true">Update Password</button>                    
                 </form>
             </div>
         </div>
