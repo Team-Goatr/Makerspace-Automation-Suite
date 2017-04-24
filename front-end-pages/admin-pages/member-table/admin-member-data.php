@@ -67,7 +67,7 @@ if (count($results->getUsers()) != 0) {
                     <td>$rfid_tag</td>
                     <td>$type</td>
                     <td>$status</td>
-                    <td>$expiration_time</td>
+                    <td>$now</td>
                     <td>$creation_string</td>
                     <td>$founding_member</td>
                 </tr>
