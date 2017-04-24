@@ -2,14 +2,13 @@
 
 defined( 'ABSPATH' ) or die();
 
-require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
-
 // Adding the action to the wordpress hooks
 add_action('admin_post_update_member', 'prefix_admin_update_member');
 
 
 function prefix_admin_update_member() {
-    
+    require_once dirname(__DIR__).'/resources/GSuiteAPI.php';
+
     $username = $_POST['username'];
 
     $firstName = $_POST['firstName'];
@@ -28,10 +27,10 @@ function prefix_admin_update_member() {
     }
 
     $properties = array(
-    	'name' => array(
-    		'givenName' => $firstName,
+        'name' => array(
+            'givenName' => $firstName,
             'familyName' => $lastName
-    	)
+        )
     );
 
     $properties['customSchemas']['Subscription_Management']['Subscription_Type'] = $subscriptionType;

@@ -1,13 +1,24 @@
 # Makerspace Automation Suite
 The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decatur Makers](https://www.decaturmakers.org/) by Team Goatr, a team of students from Georgia Tech. The Makerspace Automation Suite automates the onboarding process of creating accounts and sending email invitations to new members who register for the makerspace. MAS integrates with a G Suite account, using the G Suite directory as a master data store for user information and accounts. MAS also integrates with Stripe for online payment processing and subscription management. MAS provides a registration process UI, member profile page UI, admin member table UI, and admin member edit UI.
 
+## Documentation
+The Detailed Design Document containing the initial specifications of this plugin is available under the documentation folder. This is available in both pdf and docx versions for editing as the specifications may change in the future. Please consult this documentation for information on how this plugin is built.
+
 ## Release Notes
 
 ### v0.7 2017-04-24
 * **Bug Fixes**
     * Admin edit page now allows edit of subscription status (#113) and blank RFID (#110)
     * Navigating to Member page when logged out redirects to /login (#97)
+    * Registration form now doesn't allow submit if passwords are bad (#107)
+    * Removed unused admin pages
+    * Fixed issue where site is broken when plugin is first loaded because of no installed dependencies
+    * Check for expired members when member table is loaded, set them to expired
 * **Known Bugs and Defects**
+    * No email alerts are sent to non-recurring members when membership expires (#135)
+    * When non-recurring members expire, they do not immediately transition into an 'Expired' status. This only happens the next time the member table is loaded after they expire. We don't have a good way to trigger this to happen. Recurring members get triggered by a Stripe expiration event.
+    * Registration form still allows you to submit when username field is red (#130)
+    * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
 
 ### v0.6 2017-04-17
 * **New Features**
@@ -29,10 +40,7 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
     * Admin member edit page cannot be submitted with RFID field blank (#110)
     * Passwords aren't validated per G Suites requirements (#107)
     * If you navigate to the member page without being logged in via Google, PHP error is shown (#97)
-    * Login may fail when logged into another (non-DecaturMakers) Google account (#44)
     * Old admin pages still need to be cleaned up
-    * No email alerts are sent to non-recurring members when membership expires (#23)
-    * Non-recurring members don't have their subscription status automatically updated when they expire
 
 ### v0.5 2017-04-02 Initial Release
 * **New Features**
@@ -63,7 +71,6 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
     * php-curl
     * sendmail
 1. Install Required PHP Libraries on the Server.
-    * **NOTE: The website will not be functional if the plugin is active and the dependencies have not been installed.**
     * From within the plugin's directory, run 'resources/install.sh' to install required PHP libraries.
     * This script installs composer (https://getcomposer.org), and runs it to install the library dependencies.
 1. Update Keys.
@@ -89,6 +96,7 @@ The Makerspace Automation Suite (MAS) is a Wordpress plugin built for the [Decat
 1. If the website fails to load after the plugin has been installed (i.e. a white page), check the server's PHP logs to see if a dependency was not installed correctly.
 1. If the Makerspace Automation Suite displays error text but the rest of the website still loads, check the validity of the API keys under the "MAS Options" page in the Administrator settings page.
 1. If the Makerspace Automation Suite is not visible in the administrator dashboard, check to ensure that you are an administrator who can edit settings.
+1. If an error is shown when the member page is loaded, check that you are logged in as a G Suite user and not a wordpress-only user
 
 
 ## Authors
