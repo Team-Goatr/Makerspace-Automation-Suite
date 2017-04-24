@@ -28,9 +28,11 @@
         var confirmPassword = jQuery("#confirmpw").val();
 
         if (password.length < 8) {
+            jQuery("#submit-button").prop("disabled", true);
             jQuery("#errorGroup").addClass("has-error");
             jQuery("#Error").html("Passwords must be 8 characters");
         } else if (password != confirmPassword) {
+            jQuery("#submit-button").prop("disabled", true);
             jQuery("#errorGroup").addClass("has-error");
             jQuery("#Error").html("Passwords do not match!");
         } else {
