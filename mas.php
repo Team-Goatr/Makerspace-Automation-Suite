@@ -234,7 +234,6 @@ add_action('admin_menu', 'mas_admin_menu_setup');
 function mas_admin_menu_setup() {
     add_menu_page('MAS Administration Page', 'Makerspace Automation Suite', 'manage_options', 'mas-plugin', 'mas_admin_init');
 };
-
 function mas_admin_init() {
     echo '<br>';
     $dir = plugin_dir_path( __FILE__ );
@@ -242,10 +241,10 @@ function mas_admin_init() {
 }
 
 // Registering postable actions and hooks via the init file
-require plugin_dir_path( __FILE__ ) . 'postable/init.php';
+require_once plugin_dir_path( __FILE__ ) . 'postable/init.php';
 
 // Register the webhook listeners with wordpress
-require plugin_dir_path( __FILE__ ) . 'resources/webhooks.php';
+require_once plugin_dir_path( __FILE__ ) . 'resources/webhooks.php';
 
 /**
  * Begins execution of the plugin.
