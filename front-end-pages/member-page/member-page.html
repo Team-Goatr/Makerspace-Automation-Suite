@@ -30,9 +30,12 @@
         if (password != confirmPassword) {
             jQuery("#errorGroup").addClass("has-error");
             jQuery("#Error").html("Passwords do not match!");
+            jQuery("#submit-button").prop("disabled", true);
         } else {
             jQuery("#errorGroup").removeClass("has-error");
             jQuery("#Error").html("");
+            jQuery("#submit-button").prop("disabled", false);
+            jQuery("#submit-button").prop("disabled", false);
         }
     }
 
@@ -150,7 +153,7 @@
 
                     <input type="hidden" name="action" value="update_self_password">
 
-                    <button type="submit" class="btn mas-button">Update Password</button>                    
+                    <button id="submit-button" type="submit" class="btn mas-button">Update Password</button>                    
                 </form>
             </div>
         </div>
