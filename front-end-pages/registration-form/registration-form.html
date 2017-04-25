@@ -67,7 +67,7 @@
 
                     <div id="username-group" class="form-group">
                         <label for="username" class="control-label" >Username:</label>
-                        <div class="input-group">
+                        <div class="input-group" id="username-group">
                             <input type="text" style="" onkeyup="checkUsername()" onchange="checkUsername()" class="form-control" id="username"
                                    name="username" placeholder=""
                                    aria-describedby="username-help-block">
@@ -82,14 +82,14 @@
                         function showError() {
                             jQuery("#username-group").addClass("has-error");
                             jQuery("#username-help-block").removeClass("hidden");
-                            jQuery("#username").addClass("has-error");
+                            jQuery("#username-group").addClass("has-error");
                             //TODO Add submission blocker
                         }
 
                         function clearError() {
                             jQuery("#username-group").removeClass("has-error");
                             jQuery("#username-help-block").addClass("hidden");
-                            jQuery("#username").removeClass("has-error");
+                            jQuery("#username-group").removeClass("has-error");
                         }
 
                         function checkUsername() {
