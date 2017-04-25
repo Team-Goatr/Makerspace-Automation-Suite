@@ -1,6 +1,66 @@
 <script language="javascript">
-  var passwordGood = 0;
-  var usernameGood = 0;
+    var passwordGood = 0;
+    var usernameGood = 0;
+
+    function showError() {
+        jQuery("#username-group").addClass("has-error");
+        jQuery("#username-help-block").removeClass("hidden");
+        jQuery("#submit-button").prop("disabled", true);
+    }
+
+    function clearError() {
+        jQuery("#username-group").removeClass("has-error");
+        jQuery("#username-help-block").addClass("hidden");
+        if (passwordGood) {
+            jQuery("#submit-button").prop("disabled", false);
+        }
+    }
+
+    function checkUsername() {
+        jQuery.ajax({
+            type: "GET",
+            url: "register",
+            data: {
+                "username": jQuery('#username').val(),
+                "action": 'check'
+            },
+            success: function(result) {
+                console.log(result);
+                var resultJson = JSON.parse(result);
+                if (resultJson['result'] == true) {
+                    usernameGood = 1;
+                    clearError();
+                } else {
+                    usernameGood = 0;
+                    showError();
+                }
+            }
+        });
+    }
+
+    function checkPasswordMatch() {
+        var password = jQuery("#password").val();
+        var confirmPassword = jQuery("#passwordMatch").val();
+
+        if (password.length < 8) {
+            jQuery("#submit-button").prop("disabled", true);
+            jQuery("#errorGroup").addClass("has-error");
+            jQuery("#Error").html("Passwords must be 8 characters");
+            passwordGood = 0;
+        } else if (password != confirmPassword) {
+            jQuery("#submit-button").prop("disabled", true);
+            jQuery("#errorGroup").addClass("has-error");
+            jQuery("#Error").html("Passwords do not match!");
+            passwordGood = 0;
+        } else {
+            jQuery("#errorGroup").removeClass("has-error");
+            jQuery("#Error").html("");
+            passwordGood = 1;
+            if (usernameGood) {
+                jQuery("#submit-button").prop("disabled", false);
+            }
+        }
+    }
 </script>
 
 <body style="background-color: #EBEBEB">
@@ -38,81 +98,15 @@
                         <span id="username-help-block" class="help-block hidden">This username is already taken.</span>
                     </div>
 
-                    <script>
-                        function showError() {
-                            jQuery("#username-group").addClass("has-error");
-                            jQuery("#username-help-block").removeClass("hidden");
-                            jQuery("#submit-button").prop("disabled", true);
-                        }
-
-                        function clearError() {
-                            jQuery("#username-group").removeClass("has-error");
-                            jQuery("#username-help-block").addClass("hidden");
-                            if (passwordGood) {
-                                jQuery("#submit-button").prop("disabled", false);
-                            }
-                        }
-
-                        function checkUsername() {
-                            jQuery.ajax({
-                                type: "GET",
-                                url: "register",
-                                data: {
-                                    "username": jQuery('#username').val(),
-                                    "action": 'check'
-                                },
-                                success: function(result) {
-                                    console.log(result);
-                                    var resultJson = JSON.parse(result);
-                                    if (resultJson['result'] == true) {
-                                        usernameGood = 1;
-                                        clearError();
-                                    } else {
-                                        usernameGood = 0;
-                                        showError();
-                                    }
-                                }
-                            });
-                        }
-
-                        function checkPasswordMatch() {
-                            var password = jQuery("#password").val();
-                            var confirmPassword = jQuery("#passwordMatch").val();
-
-                            if (password.length < 8) {
-                                jQuery("#submit-button").prop("disabled", true);
-                                jQuery("#errorGroup").addClass("has-error");
-                                jQuery("#Error").html("Passwords must be 8 characters");
-                                passwordGood = 0;
-                            } else if (password != confirmPassword) {
-                                jQuery("#submit-button").prop("disabled", true);
-                                jQuery("#errorGroup").addClass("has-error");
-                                jQuery("#Error").html("Passwords do not match!");
-                                passwordGood = 0;
-                            } else {
-                                jQuery("#errorGroup").removeClass("has-error");
-                                jQuery("#Error").html("");
-                                passwordGood = 1;
-                                if (usernameGood) {
-                                    jQuery("#submit-button").prop("disabled", false);
-                                }
-                            }
-                        }
-
-                        jQuery(document).ready(function () {
-                           jQuery("#confirmpw").keyup(checkPasswordMatch);
-                        });
-                    </script>
-
                     <div id="errorGroup">
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control" onchange="checkPasswordMatch();">
+                            <input type="password" name="password" id="password" class="form-control" onchange="checkPasswordMatch();" onkeyup="checkPasswordMatch();">
                         </div>
 
                         <div class="form-group">
                             <label for="passwordMatch">Confirm Password:</label>
-                            <input type="password" name="passwordMatch" id="passwordMatch" class="form-control" onchange="checkPasswordMatch();">
+                            <input type="password" name="passwordMatch" id="passwordMatch" class="form-control" onchange="checkPasswordMatch();" onkeyup="checkPasswordMatch();">
                             <div id="Error" class="help-block"></div>
                         </div>
                     </div>
