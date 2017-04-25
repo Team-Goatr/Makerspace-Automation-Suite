@@ -1,44 +1,66 @@
 <script language="javascript">
-(function() {
-  "use strict";
-  angular
-    .module('registration', ['ngMessages'])
-    .controller('registrationCtrl', mainCtrl)
-    .directive('passwordVerify', passwordVerify);
+    var passwordGood = 0;
+    var usernameGood = 0;
 
-  function mainCtrl($scope) {
-    // Some code
-  }
-
-  function passwordVerify() {
-    return {
-      restrict: 'A', // only activate on element attribute
-      require: '?ngModel', // get a hold of NgModelController
-      link: function(scope, elem, attrs, ngModel) {
-        if (!ngModel) return; // do nothing if no ng-model
-
-        // watch own value and re-validate on change
-        scope.$watch(attrs.ngModel, function() {
-          validate();
-        });
-
-        // observe the other value and re-validate on change
-        attrs.$observe('passwordVerify', function(val) {
-          validate();
-        });
-
-        var validate = function() {
-          // values
-          var val1 = ngModel.$viewValue;
-          var val2 = attrs.passwordVerify;
-
-          // set validity
-          ngModel.$setValidity('passwordVerify', val1 === val2);
-        };
-      }
+    function showError() {
+        jQuery("#username-group").addClass("has-error");
+        jQuery("#username-help-block").removeClass("hidden");
+        jQuery("#submit-button").prop("disabled", true);
     }
-  }
-})();
+
+    function clearError() {
+        jQuery("#username-group").removeClass("has-error");
+        jQuery("#username-help-block").addClass("hidden");
+        if (passwordGood) {
+            jQuery("#submit-button").prop("disabled", false);
+        }
+    }
+
+    function checkUsername() {
+        jQuery.ajax({
+            type: "GET",
+            url: "register",
+            data: {
+                "username": jQuery('#username').val(),
+                "action": 'check'
+            },
+            success: function(result) {
+                console.log(result);
+                var resultJson = JSON.parse(result);
+                if (resultJson['result'] == true) {
+                    usernameGood = 1;
+                    clearError();
+                } else {
+                    usernameGood = 0;
+                    showError();
+                }
+            }
+        });
+    }
+
+    function checkPasswordMatch() {
+        var password = jQuery("#password").val();
+        var confirmPassword = jQuery("#passwordMatch").val();
+
+        if (password.length < 8) {
+            jQuery("#submit-button").prop("disabled", true);
+            jQuery("#errorGroup").addClass("has-error");
+            jQuery("#Error").html("Passwords must be 8 characters");
+            passwordGood = 0;
+        } else if (password != confirmPassword) {
+            jQuery("#submit-button").prop("disabled", true);
+            jQuery("#errorGroup").addClass("has-error");
+            jQuery("#Error").html("Passwords do not match!");
+            passwordGood = 0;
+        } else {
+            jQuery("#errorGroup").removeClass("has-error");
+            jQuery("#Error").html("");
+            passwordGood = 1;
+            if (usernameGood) {
+                jQuery("#submit-button").prop("disabled", false);
+            }
+        }
+    }
 </script>
 
 <body style="background-color: #EBEBEB">
@@ -67,7 +89,7 @@
 
                     <div id="username-group" class="form-group">
                         <label for="username" class="control-label" >Username:</label>
-                        <div class="input-group">
+                        <div class="input-group" id="username-group">
                             <input type="text" style="" onkeyup="checkUsername()" onchange="checkUsername()" class="form-control" id="username"
                                    name="username" placeholder=""
                                    aria-describedby="username-help-block">
@@ -76,57 +98,16 @@
                         <span id="username-help-block" class="help-block hidden">This username is already taken.</span>
                     </div>
 
-                    <script>
-
-
-                        function showError() {
-                            jQuery("#username-group").addClass("has-error");
-                            jQuery("#username-help-block").removeClass("hidden");
-                            //TODO Add submission blocker
-                        }
-
-                        function clearError() {
-                            jQuery("#username-group").removeClass("has-error");
-                            jQuery("#username-help-block").addClass("hidden");
-                        }
-
-                        function checkUsername() {
-                            jQuery.ajax({
-                                type: "GET",
-                                url: "register",
-                                data: {
-                                    "username": jQuery('#username').val(),
-                                    "action": 'check'
-                                },
-                                success: function(result) {
-                                    console.log(result);
-                                    var resultJson = JSON.parse(result);
-                                    if (resultJson['result'] == true) {
-                                        clearError();
-                                    } else {
-                                        showError();
-                                    }
-                                }
-                            });
-                        }
-                    </script>
-
-                    <div class="form-group" ng-class="{ 'has-error' : register.password.$dirty && register.password.$invalid && register.passwordMatch.$dirty && register.passwordMatch.$invalid}">
-                        <label for="password" class="control-label" >Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="password" name="password" required ng-model="password" password-verify="{{passwordMatch}}" ng-minlength="8">
-                        <div class="help-block" ng-messages="register.password.$error" ng-if="register.password.$dirty">
-                            <p ng-message="minlength">Must be 8 characters.</p>
-                            <p ng-message="required">This field is required.</p>                            
+                    <div id="errorGroup">
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="password" class="form-control" onchange="checkPasswordMatch();" onkeyup="checkPasswordMatch();">
                         </div>
-                    </div>
 
-                    <div class="form-group" ng-class="{ 'has-error' : register.passwordMatch.$dirty && register.passwordMatch.$invalid }">
-                        <label for="passwordMatch" class="control-label" >Confirm Password:</label>
-                        <input type="password" style="display: inline;" class="form-control" id="passwordMatch" name="passwordMatch" ng-model="passwordMatch" required password-verify="{{password}}" ng-minlength="8">
-                        <div class="help-block" ng-messages="register.passwordMatch.$error" ng-if="register.passwordMatch.$dirty">
-                            <p ng-message="required">This field is required.</p>
-                            <p ng-message="minlength">Must be 8 characters.</p>
-                            <p ng-message="passwordVerify">The fields do not match.</p>
+                        <div class="form-group">
+                            <label for="passwordMatch">Confirm Password:</label>
+                            <input type="password" name="passwordMatch" id="passwordMatch" class="form-control" onchange="checkPasswordMatch();" onkeyup="checkPasswordMatch();">
+                            <div id="Error" class="help-block"></div>
                         </div>
                     </div>
 
@@ -147,7 +128,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" ng-disabled="register.$invalid">Submit</button>
+                        <button id="submit-button" type="submit" class="btn btn-primary"  disabled="true">Submit</button>
                     </div>
                 </div>
             </form>
