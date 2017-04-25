@@ -1,15 +1,15 @@
-<?php 
+<?php
+require_once dirname(__DIR__).'/../resources/GSuiteAPI.php';
 
+get_header();
+
+// Show error if not logged in
 $wp_user = wp_get_current_user();
-
-//redirect if not logged in
-if ($wp_user->ID == 0) {
-    wp_redirect('/login');
-    exit('Redirected logged out user');
+if ($wp_user->ID == 0 || getUser($wp_user->user_email) == NULL) {
+    include 'failure.html';
+    get_footer();
+    exit();
 }
-
-get_header(); 
-
 ?>
 
 <div id="primary" class="content-area">

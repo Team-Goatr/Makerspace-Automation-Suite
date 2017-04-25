@@ -42,7 +42,13 @@ function getUser($email) {
         'projection' => 'custom',
         'customFieldMask' => 'Subscription_Management,roles',
     );
-    return $service->users->get($email, $optParams);
+    $user;
+    try {
+        $user = $service->users->get($email, $optParams);
+    } catch (Google_Service_Exception $e) {
+        $user = NULL;
+    }
+    return $user;
 }
 
 /**
