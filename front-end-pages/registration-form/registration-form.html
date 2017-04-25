@@ -1,44 +1,6 @@
 <script language="javascript">
-(function() {
-  "use strict";
-  angular
-    .module('registration', ['ngMessages'])
-    .controller('registrationCtrl', mainCtrl)
-    .directive('passwordVerify', passwordVerify);
-
-  function mainCtrl($scope) {
-    // Some code
-  }
-
-  function passwordVerify() {
-    return {
-      restrict: 'A', // only activate on element attribute
-      require: '?ngModel', // get a hold of NgModelController
-      link: function(scope, elem, attrs, ngModel) {
-        if (!ngModel) return; // do nothing if no ng-model
-
-        // watch own value and re-validate on change
-        scope.$watch(attrs.ngModel, function() {
-          validate();
-        });
-
-        // observe the other value and re-validate on change
-        attrs.$observe('passwordVerify', function(val) {
-          validate();
-        });
-
-        var validate = function() {
-          // values
-          var val1 = ngModel.$viewValue;
-          var val2 = attrs.passwordVerify;
-
-          // set validity
-          ngModel.$setValidity('passwordVerify', val1 === val2);
-        };
-      }
-    }
-  }
-})();
+  var passwordGood = 0;
+  var usernameGood = 0;
 </script>
 
 <body style="background-color: #EBEBEB">
@@ -77,19 +39,18 @@
                     </div>
 
                     <script>
-
-
                         function showError() {
                             jQuery("#username-group").addClass("has-error");
                             jQuery("#username-help-block").removeClass("hidden");
                             jQuery("#submit-button").prop("disabled", true);
-                            //TODO Add submission blocker
                         }
 
                         function clearError() {
                             jQuery("#username-group").removeClass("has-error");
                             jQuery("#username-help-block").addClass("hidden");
-                            jQuery("#submit-button").prop("disabled", false);
+                            if (passwordGood) {
+                                jQuery("#submit-button").prop("disabled", false);
+                            }
                         }
 
                         function checkUsername() {
@@ -104,16 +65,16 @@
                                     console.log(result);
                                     var resultJson = JSON.parse(result);
                                     if (resultJson['result'] == true) {
+                                        usernameGood = 1;
                                         clearError();
                                     } else {
+                                        usernameGood = 0;
                                         showError();
                                     }
                                 }
                             });
                         }
-                    </script>
-                    
-                    <script type="text/javascript">
+
                         function checkPasswordMatch() {
                             var password = jQuery("#password").val();
                             var confirmPassword = jQuery("#passwordMatch").val();
@@ -122,20 +83,25 @@
                                 jQuery("#submit-button").prop("disabled", true);
                                 jQuery("#errorGroup").addClass("has-error");
                                 jQuery("#Error").html("Passwords must be 8 characters");
+                                passwordGood = 0;
                             } else if (password != confirmPassword) {
                                 jQuery("#submit-button").prop("disabled", true);
                                 jQuery("#errorGroup").addClass("has-error");
                                 jQuery("#Error").html("Passwords do not match!");
+                                passwordGood = 0;
                             } else {
                                 jQuery("#errorGroup").removeClass("has-error");
                                 jQuery("#Error").html("");
-                                jQuery("#submit-button").prop("disabled", false);
+                                passwordGood = 1;
+                                if (usernameGood) {
+                                    jQuery("#submit-button").prop("disabled", false);
+                                }
                             }
                         }
 
                         jQuery(document).ready(function () {
                            jQuery("#confirmpw").keyup(checkPasswordMatch);
-                        });    
+                        });
                     </script>
 
                     <div id="errorGroup">
