@@ -115,8 +115,8 @@
                     
                     <script type="text/javascript">
                         function checkPasswordMatch() {
-                            var password = jQuery("#newpw").val();
-                            var confirmPassword = jQuery("#confirmpw").val();
+                            var password = jQuery("#password").val();
+                            var confirmPassword = jQuery("#passwordMatch").val();
 
                             if (password.length < 8) {
                                 jQuery("#submit-button").prop("disabled", true);
