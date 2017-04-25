@@ -82,12 +82,14 @@
                         function showError() {
                             jQuery("#username-group").addClass("has-error");
                             jQuery("#username-help-block").removeClass("hidden");
+                            jQuery("#submit-button").prop("disabled", true);
                             //TODO Add submission blocker
                         }
 
                         function clearError() {
                             jQuery("#username-group").removeClass("has-error");
                             jQuery("#username-help-block").addClass("hidden");
+                            jQuery("#submit-button").prop("disabled", false);
                         }
 
                         function checkUsername() {
@@ -157,12 +159,12 @@
                     
                     <div id="errorGroup">
                         <div class="form-group">
-                            <label for="newpw">Password</label>
+                            <label for="newpw">Password:</label>
                             <input type="password" name="newPassword" id="newpw" class="form-control" onchange="checkPasswordMatch();">
                         </div>
 
                         <div class="form-group">
-                            <label for="confirmpw">Confirm Password</label>
+                            <label for="confirmpw">Confirm Password:</label>
                             <input type="password" id="confirmpw" class="form-control" onchange="checkPasswordMatch();">
                             <div id="Error" class="help-block"></div>
                         </div>
